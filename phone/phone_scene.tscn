@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bv1mgonpgdr7i"]
+[gd_scene load_steps=11 format=3 uid="uid://bv1mgonpgdr7i"]
 
 [ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="1_35fy7"]
+[ext_resource type="PackedScene" uid="uid://d08dcf4v1mhry" path="res://phone/assets/scene.gltf" id="2_ghcha"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4tqka"]
 
@@ -11,8 +12,17 @@ sky_material = SubResource("ProceduralSkyMaterial_4tqka")
 background_mode = 1
 background_color = Color(0.945098, 0.886275, 0.858824, 1)
 sky = SubResource("Sky_a345p")
+ambient_light_energy = 0.0
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_geafj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rp11f"]
+shading_mode = 0
+albedo_color = Color(0.945098, 0.886275, 0.858824, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wa2kq"]
+material = SubResource("StandardMaterial3D_rp11f")
+size = Vector2(100, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_27knq"]
 
@@ -29,11 +39,15 @@ shadow_enabled = true
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
-[node name="GroundShape" type="CollisionShape3D" parent="Ground"]
+[node name="GroundCollisionShape" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape3D_geafj")
+
+[node name="GroundMesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_wa2kq")
 
 [node name="TempCube" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.579125, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TempCube"]
 shape = SubResource("BoxShape3D_27knq")
@@ -43,3 +57,6 @@ mesh = SubResource("BoxMesh_e7w8r")
 
 [node name="CameraScene" parent="." instance=ExtResource("1_35fy7")]
 transform = Transform3D(1, 0, 0, 0, 0.959097, 0.283078, 0, -0.283078, 0.959097, 0, 2.16884, 5.12652)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_ghcha")]
+transform = Transform3D(0.2, 0, 0, 0, -0.2, 1.74846e-08, 0, -1.74846e-08, -0.2, 0, 0.00675988, 0)

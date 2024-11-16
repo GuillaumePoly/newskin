@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://mnveckdvr04b"
-path="res://.godot/imported/ear.blend-9cd0bb9a163d959d61355a44d47297b2.scn"
+path="res://.godot/imported/ear.blend-676bf5696e4db3eb344b4e2902ca0c20.scn"
 
 [deps]
 
-source_file="res://phone/ear.blend"
-dest_files=["res://.godot/imported/ear.blend-9cd0bb9a163d959d61355a44d47297b2.scn"]
+source_file="res://ear.blend"
+dest_files=["res://.godot/imported/ear.blend-676bf5696e4db3eb344b4e2902ca0c20.scn"]
 
 [params]
 

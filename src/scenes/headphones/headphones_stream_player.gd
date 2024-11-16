@@ -16,14 +16,20 @@ func _ready() -> void:
 
 
 func tween_pan_property(to: float, duration: float = duration_trans_time):
-	if tween_pan == null: tween_pan = create_tween()
-	if tween_pan.is_running(): tween_pan.kill()
+	if tween_pan != null:
+		tween_pan.kill()
+	tween_pan = null
+	tween_pan = create_tween()
+
 	tween_pan.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween_pan.tween_property(panner_effect, "pan", to, duration)
 
 func tween_db_property(to: float, duration: float = duration_trans_time):
-	if tween_db == null: tween_db = create_tween()
-	if tween_db.is_running(): tween_db.kill()
+	if tween_db != null:
+		tween_db.kill()
+	tween_db = null
+	tween_db = create_tween()
+
 	tween_db.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween_db.tween_property(self, "volume_db", to, duration)
 

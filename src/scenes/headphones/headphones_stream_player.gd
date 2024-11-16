@@ -65,3 +65,4 @@ func get_high_pass_bus(bus_name: String = "Headphones"):
 func activate_high_filter(activate: bool):
 	if activate == false:
 		tween_cutoffhz_property(0.0, 5.0)
+		tween_db_property(-30.0, 5.0)

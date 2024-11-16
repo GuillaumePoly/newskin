@@ -1,10 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=14 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
 [ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_eblxm"]
 
@@ -16,6 +21,26 @@ radius = 1.63692
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j71ja"]
 radius = 3.92815
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qrx0"]
+sky_top_color = Color(0.237224, 0.190904, 1, 1)
+sky_horizon_color = Color(1, 0.730178, 0.846296, 1)
+ground_bottom_color = Color(0.235294, 0.192157, 1, 1)
+ground_horizon_color = Color(1, 0.729412, 0.847059, 1)
+ground_curve = 0.538174
+
+[sub_resource type="Sky" id="Sky_a8eev"]
+sky_material = SubResource("ProceduralSkyMaterial_5qrx0")
+
+[sub_resource type="Environment" id="Environment_s3r0g"]
+background_mode = 2
+sky = SubResource("Sky_a8eev")
+ambient_light_source = 1
+reflected_light_source = 1
+tonemap_mode = 2
+fog_light_color = Color(0.243516, 0.537704, 1, 1)
+fog_sky_affect = 0.0
+fog_height_density = 4.3789
 
 [node name="HeadphoneScene" type="Node3D"]
 script = ExtResource("1_r7bxv")
@@ -31,7 +56,8 @@ fov = 45.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, -16.0042, 0)
 use_collision = true
 collision_mask = 2
-size = Vector3(25.5791, 32.5223, 11.9316)
+size = Vector3(85.751, 32.5223, 102.674)
+material = SubResource("StandardMaterial3D_mqb2j")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
@@ -77,6 +103,14 @@ shape = SubResource("SphereShape3D_8ysdg")
 [node name="CollisionShape3D" parent="HearplugZoneLeft/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HearplugZoneLeft"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
+operation = 2
+
 [node name="HearplugZoneRight" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.68941, 3.09581, 0)
 headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
@@ -87,8 +121,18 @@ shape = SubResource("SphereShape3D_8ysdg")
 [node name="CollisionShape3D" parent="HearplugZoneRight/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
 
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="HearplugZoneRight"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneRight/CSGSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
+operation = 2
+
 [node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
 stream_paused = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s3r0g")
 
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]

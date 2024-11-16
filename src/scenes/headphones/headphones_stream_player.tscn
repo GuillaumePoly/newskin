@@ -5,7 +5,7 @@
 
 [node name="HeadphonesStreamPlayer" type="AudioStreamPlayer"]
 stream = ExtResource("1_j1wqa")
-volume_db = -20.0
+volume_db = -30.0
 autoplay = true
 stream_paused = true
 bus = &"Headphones"

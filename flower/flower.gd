@@ -1,7 +1,20 @@
 extends Node3D
 
-var last_petal_selected : Node3D
-var petal_fallen : Array[Node3D]
+class Petal:
+	var area : Area3D
+	var material : ShaderMaterial
+	var linear_velocity := Vector3.ZERO
+	var angular_velocity := Vector3.ZERO
+	
+	func _init(_area : Area3D, _material : ShaderMaterial) -> void:
+		area = _area
+		material = _material
+
+var last_petal_selected : Petal
+var grabbed_petal : Petal
+var petals_fallen : Array[Petal]
+
+var deform := Vector2.ZERO
 
 func _ready() -> void:
 	for child in get_children():
@@ -22,28 +35,58 @@ func _ready() -> void:
 			petal_area.add_child(col_shape)
 			col_shape.global_position = petal_area.global_position
 			
-			petal_area.mouse_entered.connect(_on_petal_mouse_entered.bind(petal_area))
-			petal_area.mouse_exited.connect(_on_petal_mouse_exited.bind(petal_area))
+			var petal := Petal.new(petal_area, (child as MeshInstance3D).get_surface_override_material(0))
+			
+			petal_area.mouse_entered.connect(_on_petal_mouse_entered.bind(petal))
+			petal_area.mouse_exited.connect(_on_petal_mouse_exited.bind(petal))
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		print(last_petal_selected)
+	if Input.is_action_just_pressed("click"):
 		if last_petal_selected != null:
-			petal_fallen.append(last_petal_selected)
+			grabbed_petal = last_petal_selected
+			grabbed_petal.material.set_shader_parameter("grab_mouse_position", Vector2(get_viewport().get_mouse_position()) / Vector2(get_viewport().size))
+	if Input.is_action_just_released("click") && grabbed_petal != null:
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_ELASTIC)
+		tween.set_ease(Tween.EASE_OUT)
+		tween.tween_method(_tween_deform_parameter.bind(grabbed_petal), deform, Vector2.ZERO, 0.5)
+		deform = Vector2.ZERO
+		grabbed_petal = null
+	
+	if event is InputEventMouseMotion && grabbed_petal != null:
+		deform += Vector2(event.relative.x, -event.relative.y) / Vector2(get_viewport().size) * 0.1
+		grabbed_petal.material.set_shader_parameter("deform", deform)
+		
+		if deform.length() > 0.03:
+			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_ELASTIC)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_method(_tween_deform_parameter.bind(grabbed_petal), deform, Vector2.ZERO, 0.5)
+			deform = Vector2.ZERO
+			grabbed_petal.linear_velocity = (grabbed_petal.area.global_position - global_position) * Vector3(20.0, 10.0, 20.0)
+			grabbed_petal.angular_velocity = Vector3(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0, randf() * 2.0 - 1.0)
+			petals_fallen.append(grabbed_petal)
+			grabbed_petal = null
+
+
+func _tween_deform_parameter(progress : Vector2, petal : Petal):
+	petal.material.set_shader_parameter("deform", progress)
 
 
 func _physics_process(delta: float) -> void:
-	for petal in petal_fallen:
-		petal.global_position += delta * Vector3.DOWN
+	for petal in petals_fallen:
+		petal.linear_velocity += Vector3.DOWN * delta * 9.81
+		petal.area.global_position += petal.linear_velocity * delta * 0.1
+		
+		petal.area.global_rotation += petal.angular_velocity * delta
 
 
-func _on_petal_mouse_entered(petal : Node3D):
+func _on_petal_mouse_entered(petal : Petal):
 	last_petal_selected = petal
-	((petal.get_child(0) as MeshInstance3D).get_surface_override_material(0) as StandardMaterial3D).emission = Color.GRAY
+	petal.material.set_shader_parameter("emission", Color.DARK_SLATE_GRAY)
 
 
-func _on_petal_mouse_exited(petal : Node3D):
+func _on_petal_mouse_exited(petal : Petal):
 	last_petal_selected = null
-	((petal.get_child(0) as MeshInstance3D).get_surface_override_material(0) as StandardMaterial3D).emission = Color.BLACK
-	
+	petal.material.set_shader_parameter("emission", Color.BLACK)

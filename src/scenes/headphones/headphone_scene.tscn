@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=15 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
@@ -7,9 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
-transparency = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 1, 0)
+roughness = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_eblxm"]
 
@@ -17,10 +15,12 @@ albedo_color = Color(1, 1, 1, 0)
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_8ysdg"]
-radius = 1.63692
+radius = 1.34195
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j71ja"]
-radius = 3.92815
+radius = 2.48589
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7f0yg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qrx0"]
 sky_top_color = Color(0.237224, 0.190904, 1, 1)
@@ -38,7 +38,8 @@ sky = SubResource("Sky_a8eev")
 ambient_light_source = 1
 reflected_light_source = 1
 tonemap_mode = 2
-fog_light_color = Color(0.243516, 0.537704, 1, 1)
+fog_enabled = true
+fog_light_color = Color(1, 0.361893, 0.59194, 1)
 fog_sky_affect = 0.0
 fog_height_density = 4.3789
 
@@ -50,7 +51,7 @@ grab_distance = 18.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9257, 17.7993)
-fov = 45.3
+fov = 30.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, -16.0042, 0)
@@ -63,10 +64,10 @@ material = SubResource("StandardMaterial3D_mqb2j")
 transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
 
 [node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29024, 1.91625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.898, 0)
 
 [node name="HearplugRight" parent="." instance=ExtResource("2_pm2kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19601, 2.39799, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
 
 [node name="RopeLeft" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -94,7 +95,7 @@ mesh = SubResource("BoxMesh_eblxm")
 shape = SubResource("ConcavePolygonShape3D_ygl82")
 
 [node name="HearplugZoneLeft" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.42891, 3.09581, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
 headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneLeft/InnerArea" index="0"]
@@ -106,13 +107,14 @@ shape = SubResource("SphereShape3D_j71ja")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="HearplugZoneLeft"]
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft"]
+material = SubResource("StandardMaterial3D_7f0yg")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft/CSGSphere3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
 operation = 2
 
 [node name="HearplugZoneRight" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.68941, 3.09581, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 0)
 headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneRight/InnerArea" index="0"]

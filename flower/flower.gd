@@ -65,7 +65,7 @@ func _input(event: InputEvent) -> void:
 			deform = Vector2.ZERO
 			grabbed_petal = null
 	
-	if event is InputEventMouseMotion && last_petal_selected != null:
+	if event is InputEventMouseMotion && last_petal_selected != null && grabbed_petal == null:
 		last_petal_selected.material.set_shader_parameter("grab_mouse_position", Vector2(event.position) / Vector2(get_viewport().size))
 	
 	if event is InputEventMouseMotion && grabbed_petal != null:
@@ -87,10 +87,7 @@ func _input(event: InputEvent) -> void:
 			var point = plane.intersects_ray(origin, direction);
 			var delta : Vector3 = (grabbed_petal.rigidbody.global_position - Vector3.UP * 0.1) - point
 			
-			grabbed_petal.rigidbody.apply_impulse(
-				-delta * Vector3(1.0, 3.0, 1.0) * 0.01,
-				 Vector3.ONE * 0.5
-				)
+			grabbed_petal.rigidbody.apply_central_impulse( -delta * Vector3(1.0, 5.0, 1.0) * 0.01 )
 			petals_fallen.append(grabbed_petal)
 			grabbed_petal = null
 

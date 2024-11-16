@@ -34,17 +34,17 @@ vec3 get_view_position_from_uv(vec2 uv, float depth, mat4 inv_proj_m)
 
 void vertex() {
 	UV = UV * uv1_scale.xy + uv1_offset.xy;
-	
+
 	view_pos = (MODELVIEW_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	screen_pos = get_uv_from_view_position(view_pos, PROJECTION_MATRIX);
-	
+
 	float dist_to_mouse = length(screen_pos - grab_mouse_position);
 	dist_to_mouse = smoothstep(0.1, 0.0, dist_to_mouse);
-	
+
 	vec2 deformed_view_pos = view_pos.xy + deform * dist_to_mouse;
-	
+
 	VERTEX = (inverse(MODELVIEW_MATRIX) * vec4(deformed_view_pos.x, deformed_view_pos.y, view_pos.z, 1.0)).xyz;
-	
+
 }
 
 void fragment() {

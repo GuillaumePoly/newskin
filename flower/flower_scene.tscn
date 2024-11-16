@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ulv8gpjxnlox"]
+[gd_scene load_steps=7 format=3 uid="uid://ulv8gpjxnlox"]
 
 [ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="1_3x2wx"]
 [ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="2_xmhxm"]
@@ -25,11 +25,6 @@ size = Vector2(4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x52c4"]
 size = Vector3(10, 0.5, 10)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_8vid3"]
-radius = 0.300604
-
-[sub_resource type="SphereMesh" id="SphereMesh_uj8fe"]
 
 [node name="FlowerScene" type="Node3D"]
 
@@ -67,18 +62,3 @@ collision_mask = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ShadowPlane/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247559, 0)
 shape = SubResource("BoxShape3D_x52c4")
-
-[node name="Area3D" type="Area3D" parent="."]
-gravity_space_override = 3
-gravity_point = true
-gravity_point_center = Vector3(0, 0, 0)
-gravity_direction = Vector3(0, 0, 0)
-gravity = -9.81
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_8vid3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
-transform = Transform3D(0.085, 0, 0, 0, 0.085, 0, 0, 0, 0.085, 0, 0, 0)
-mesh = SubResource("SphereMesh_uj8fe")
-skeleton = NodePath("../..")

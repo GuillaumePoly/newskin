@@ -17,39 +17,39 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [node name="HeadphoneScene" type="Node3D"]
 script = ExtResource("1_r7bxv")
-I = 100.0
-S = 10.0
+grab_distance = 18.0
 
 [node name="CameraAnchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.77301)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
-transform = Transform3D(-0.0376552, 0, 0.999291, 0, 1, 0, -0.999291, 0, -0.0376552, 7.45412, 0, -9.88644)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9257, 17.7993)
+fov = 30.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, 0, 0)
 use_collision = true
 collision_mask = 2
-size = Vector3(10.1381, 0.513916, 29.4866)
+size = Vector3(10.0957, 0.513916, 11.9316)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
 
-[node name="Hearplug" type="RigidBody3D" parent="." groups=["grab_headphones"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81127, 1.74142)
+[node name="HearplugLeft" type="RigidBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.74142, 2.81127, -7.61199e-08)
 collision_layer = 2
 script = ExtResource("2_6uhj0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Hearplug"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HearplugLeft"]
 mesh = SubResource("SphereMesh_rlegr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hearplug"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HearplugLeft"]
 shape = SubResource("SphereShape3D_y34cq")
 
-[node name="Marker3D" type="Marker3D" parent="Hearplug"]
+[node name="Marker3D" type="Marker3D" parent="HearplugLeft"]
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="." groups=["grab_headphones"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21243, -1.06573)
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.06573, 4.21243, 4.65845e-08)
 collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2"]
@@ -61,25 +61,27 @@ shape = SubResource("SphereShape3D_35d21")
 [node name="Marker3D" type="Marker3D" parent="RigidBody3D2"]
 
 [node name="Rope1" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_3rxrb")
-start_point = NodePath("../StaticBody3D")
-end_point = NodePath("../Hearplug")
+start_point = NodePath("../AnchorHearplugs")
+end_point = NodePath("../HearplugLeft")
 number_of_segments = 30
 cable_length = 20.0
 
 [node name="Rope2" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 visible = false
 script = ExtResource("1_3rxrb")
-start_point = NodePath("../StaticBody3D")
+start_point = NodePath("../AnchorHearplugs")
 end_point = NodePath("../RigidBody3D2")
 cable_gravity_amp = 10.0
 cable_springiness = 1.0
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 3.64449, 0)
+[node name="AnchorHearplugs" type="StaticBody3D" parent="."]
+transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 0, 3.64449, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnchorHearplugs"]
 mesh = SubResource("BoxMesh_eblxm")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnchorHearplugs"]
 shape = SubResource("ConcavePolygonShape3D_ygl82")

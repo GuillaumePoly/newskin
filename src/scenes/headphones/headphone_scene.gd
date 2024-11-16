@@ -11,6 +11,9 @@ var grabbed_object = null
 var mouse = Vector2()
 const DIST = 1000 #Ray Max distance
 
+var _initial_x_position_hearplug: float
+var _initial_y_position_hearplug: float
+
 var current_pan: float = 0.0
 var current_db: float = -20.0
 var number_of_hearplugs_arrived: int = 0
@@ -18,6 +21,9 @@ var number_of_hearplugs_arrived: int = 0
 func _ready() -> void:
 	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_left))
 	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_right))
+	
+	_initial_x_position_hearplug = hearplug_right.position.x
+	_initial_y_position_hearplug = hearplug_right.position.y
 
 func _process(delta: float) -> void:
 	if grabbed_object:
@@ -54,6 +60,8 @@ func get_mouse_world_pos(mouse:Vector2):
 		var tmp_collider = result.collider
 		if tmp_collider is Hearplug and tmp_collider.is_in_group("grabbable"):
 			grabbed_object = result.collider
+		if tmp_collider.is_in_group("button3d"):
+			tmp_collider.owner.press()
 
 #Get the position in the world you want to object to follow
 func get_grab_position():

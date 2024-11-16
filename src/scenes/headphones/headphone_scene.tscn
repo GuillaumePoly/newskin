@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=16 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
 [ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
+[ext_resource type="PackedScene" uid="uid://dvc2op3hw81u0" path="res://src/scenes/headphones/reset_button.tscn" id="6_p1vwe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
 roughness = 0.0
@@ -135,9 +136,13 @@ operation = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s3r0g")
 
+[node name="ResetButton" parent="." instance=ExtResource("6_p1vwe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.807565, 0)
+
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]
 [editable path="HearplugZoneLeft/OuterArea"]
 [editable path="HearplugZoneRight"]
 [editable path="HearplugZoneRight/InnerArea"]
 [editable path="HearplugZoneRight/OuterArea"]
+[editable path="ResetButton"]

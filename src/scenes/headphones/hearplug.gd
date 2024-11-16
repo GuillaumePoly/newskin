@@ -26,6 +26,8 @@ var inner_area: HearplugZone = null:
 
 var initial_position_z: float
 
+var is_plugged: bool = false
+
 func _ready() -> void:
 	initial_position_z = position.z
 
@@ -46,3 +48,4 @@ func tween_position(object: Node3D, duration: float):
 	tween.tween_callback(func(): hearplug_on_zone.emit())
 	tween.tween_callback(func(): deactivate())
 	inner_area.is_zone_active = false
+	is_plugged = true

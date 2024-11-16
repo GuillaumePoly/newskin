@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=6 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
+[ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rlegr"]
 
@@ -9,6 +10,9 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_35d21"]
 
 [node name="HeadphoneScene" type="Node3D"]
+script = ExtResource("1_r7bxv")
+I = 100.0
+S = 10.0
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.77301)

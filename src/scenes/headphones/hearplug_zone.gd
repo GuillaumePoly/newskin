@@ -35,11 +35,14 @@ func _on_hearplug_body_exited(body: Node3D, area: Area3D):
 
 func update_audio(in_outer_zone: bool):
 	if in_outer_zone:
-		headphones_stream_player.tween_db_property(0.0, 1.0)
-		if name.contains("Left"):
-			headphones_stream_player.tween_pan_property(-1.0, 1.0)
-		elif name.contains("Right"):
-			headphones_stream_player.tween_pan_property(1.0, 1.0)
+		headphones_stream_player.tween_db_property(-8.0, 1.0)
+		if owner.number_of_hearplugs_arrived > 0:
+			headphones_stream_player.tween_pan_property(0, 1.0)
+		else:
+			if name.contains("Left"):
+				headphones_stream_player.tween_pan_property(-1.0, 1.0)
+			elif name.contains("Right"):
+				headphones_stream_player.tween_pan_property(1.0, 1.0)
 	else:
 		headphones_stream_player.tween_pan_property(owner.current_pan, 1.0)
-		headphones_stream_player.tween_db_property(-10.0, 1.0)
+		headphones_stream_player.tween_db_property(-20.0, 1.0)

@@ -88,6 +88,7 @@ shape = SubResource("SphereShape3D_8ysdg")
 shape = SubResource("SphereShape3D_j71ja")
 
 [node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
+stream_paused = false
 
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]

@@ -131,7 +131,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
 operation = 2
 
 [node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
-stream_paused = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s3r0g")

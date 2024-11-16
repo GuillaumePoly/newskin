@@ -12,6 +12,7 @@ var mouse = Vector2()
 const DIST = 1000 #Ray Max distance
 
 var current_pan: float = 0.0
+var current_db: float = -20.0
 var number_of_hearplugs_arrived: int = 0
 
 func _ready() -> void:
@@ -65,6 +66,10 @@ func _on_hearplug_on_zone(hearplug: Hearplug):
 		current_pan = - 1.0
 	elif hearplug.name.contains("Right"):
 		current_pan = 1.0
+	
 	if number_of_hearplugs_arrived == 2:
 		headphones_stream_player.tween_pan_property(0.0, 3.0)
 		headphones_stream_player.activate_high_filter(false)
+	elif number_of_hearplugs_arrived == 1:
+		current_db += 3.0
+		headphones_stream_player.tween_db_property(current_db, 3.0)

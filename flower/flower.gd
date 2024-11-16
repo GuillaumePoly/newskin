@@ -1,4 +1,5 @@
 extends Node3D
+class_name Flower
 
 class Petal:
 	var rigidbody : RigidBody3D
@@ -8,15 +9,41 @@ class Petal:
 		rigidbody = _rigidbody
 		material = _material
 
+var petal_amount := 0
+
 var last_petal_selected : Petal
 var grabbed_petal : Petal
 var petals_fallen : Array[Petal]
 
 var deform := Vector2.ZERO
 
+signal petal_fallen
+
+
 func _ready() -> void:
 	for child in get_children():
-		if child is MeshInstance3D && child.name.contains("petals"):
+		if child is MeshInstance3D:
+			if !child.name.contains("petals"):
+				continue
+			child.global_scale(Vector3.ZERO)
+	
+	global_scale(Vector3.ZERO)
+	var tween_flower_scale := create_tween()
+	tween_flower_scale.set_trans(Tween.TRANS_BACK)
+	tween_flower_scale.tween_property(self, "scale", Vector3.ONE, 0.5)
+	await tween_flower_scale.finished
+	
+	for child in get_children():
+		if child is MeshInstance3D:
+			if !child.name.contains("petals"):
+				continue
+			
+			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_BACK)
+			tween.tween_property(child, "scale", Vector3.ONE, 0.4)
+			await get_tree().create_timer(0.1).timeout
+			
+			petal_amount += 1
 			(child as MeshInstance3D).set_surface_override_material(0, child.get_active_material(0).duplicate())
 			
 			var petal_rb := RigidBody3D.new()
@@ -59,10 +86,20 @@ func _input(event: InputEvent) -> void:
 		
 		if grabbed_petal != null:
 			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_BACK)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_method(
+				_update_camera_anticipation,
+				 GameManager.camera.camera_start_fov - GameManager.camera.fov,
+				 0.0,
+				 0.5
+				)
+			tween.parallel()
 			tween.set_trans(Tween.TRANS_ELASTIC)
 			tween.set_ease(Tween.EASE_OUT)
 			tween.tween_method(_tween_deform_parameter.bind(grabbed_petal), deform, Vector2.ZERO, 0.75)
 			deform = Vector2.ZERO
+			grabbed_petal.material.set_shader_parameter("emission", Color.BLACK)
 			grabbed_petal = null
 	
 	if event is InputEventMouseMotion && last_petal_selected != null && grabbed_petal == null:
@@ -71,9 +108,19 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion && grabbed_petal != null:
 		deform += Vector2(event.relative.x, -event.relative.y) / Vector2(get_viewport().size) * 0.1
 		grabbed_petal.material.set_shader_parameter("deform", deform)
+		_update_camera_anticipation(deform.length() * 50.0)
 		
 		if deform.length() > 0.03:
 			var tween := create_tween()
+			tween.set_trans(Tween.TRANS_ELASTIC)
+			tween.set_ease(Tween.EASE_OUT)
+			tween.tween_method(
+				_update_camera_anticipation,
+				 GameManager.camera.camera_start_fov - GameManager.camera.fov,
+				 0.0,
+				 0.5
+				)
+			tween.parallel()
 			tween.set_trans(Tween.TRANS_BOUNCE)
 			tween.set_ease(Tween.EASE_OUT)
 			tween.tween_method(_tween_deform_parameter.bind(grabbed_petal), deform, Vector2.ZERO, 0.75)
@@ -89,7 +136,13 @@ func _input(event: InputEvent) -> void:
 			
 			grabbed_petal.rigidbody.apply_central_impulse( -delta * Vector3(1.0, 5.0, 1.0) * 0.01 )
 			petals_fallen.append(grabbed_petal)
+			petal_fallen.emit()
+			grabbed_petal.material.set_shader_parameter("emission", Color.BLACK)
 			grabbed_petal = null
+
+
+func _update_camera_anticipation(value : float):
+	GameManager.camera.fov = GameManager.camera.camera_start_fov - value
 
 
 func _tween_deform_parameter(progress : Vector2, petal : Petal):
@@ -98,9 +151,11 @@ func _tween_deform_parameter(progress : Vector2, petal : Petal):
 
 func _on_petal_mouse_entered(petal : Petal):
 	last_petal_selected = petal
-	petal.material.set_shader_parameter("emission", Color("#7F3636"))
+	if grabbed_petal == null:
+		petal.material.set_shader_parameter("emission", Color("#7F3636"))
 
 
 func _on_petal_mouse_exited(petal : Petal):
 	last_petal_selected = null
-	petal.material.set_shader_parameter("emission", Color.BLACK)
+	if grabbed_petal == null:
+		petal.material.set_shader_parameter("emission", Color.BLACK)

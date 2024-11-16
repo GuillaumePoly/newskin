@@ -1,4 +1,4 @@
-extends Node3D
+extends Camera3D
 class_name RotatableCamera
 
 @export var camera_radius: float = 10.0
@@ -7,6 +7,7 @@ class_name RotatableCamera
 var enable_rotation := true
 
 var camera_sensitivity: float = 0.1
+var camera_start_fov: float = 30.0
 var mouse_button_pressed_at_previous_frame: bool = false
 var previous_mouse_position: Vector2
 
@@ -18,6 +19,10 @@ var min_latitude: float = PI / 8
 var max_latitude: float = (PI / 2) - 0.01
 var min_longitude: float = - PI / 3
 var max_longitude: float = PI / 3
+
+
+func _ready() -> void:
+	camera_start_fov = fov
 
 
 func _process(delta: float):

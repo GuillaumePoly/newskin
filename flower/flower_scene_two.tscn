@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://ulv8gpjxnlox"]
+[gd_scene load_steps=8 format=3 uid="uid://bfoy8qybh3t4m"]
 
-[ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="1_3x2wx"]
-[ext_resource type="Script" path="res://flower/flower_scene.gd" id="1_g532l"]
-[ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="2_xmhxm"]
+[ext_resource type="Script" path="res://flower/flower_scene.gd" id="1_kgd0w"]
+[ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="2_lrsmm"]
+[ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="3_wlh2l"]
 
 [sub_resource type="Environment" id="Environment_6a3x1"]
 background_mode = 1
@@ -28,7 +28,7 @@ size = Vector2(4, 4)
 size = Vector3(10, 0.5, 10)
 
 [node name="FlowerScene" type="Node3D"]
-script = ExtResource("1_g532l")
+script = ExtResource("1_kgd0w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.948381, 0.310237, -0.0657661, -0.209243, 0.767974, 0.605338, 0.238308, -0.560335, 0.793244, 0, 0, 0)
@@ -45,10 +45,10 @@ directional_shadow_max_distance = 3.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6a3x1")
 
-[node name="Flower" parent="." instance=ExtResource("1_3x2wx")]
+[node name="Flower" parent="." instance=ExtResource("2_lrsmm")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.00163019, 0, 0.0497221)
 
-[node name="Camera3D" parent="." instance=ExtResource("2_xmhxm")]
+[node name="Camera3D" parent="." instance=ExtResource("3_wlh2l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973)
 fov = 25.0
 camera_radius = 1.75

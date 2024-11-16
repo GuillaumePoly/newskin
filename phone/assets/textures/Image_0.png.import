@@ -2,26 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhr81qkbphgow"
-path="res://.godot/imported/gradient.png-9a6d1cec1bf09b6e56f4315d91031633.ctex"
+uid="uid://cjrkgnokdldhp"
+path="res://.godot/imported/Image_0.png-5042cdc0a083e2b9c53e526a605782db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://flower/assets/gradient.png"
-dest_files=["res://.godot/imported/gradient.png-9a6d1cec1bf09b6e56f4315d91031633.ctex"]
+source_file="res://phone/assets/textures/Image_0.png"
+dest_files=["res://.godot/imported/Image_0.png-5042cdc0a083e2b9c53e526a605782db.ctex"]
 
 [params]
 
-compress/mode=1
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

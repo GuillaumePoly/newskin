@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=10 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
+[ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_eblxm"]
 
@@ -84,6 +85,8 @@ shape = SubResource("SphereShape3D_8ysdg")
 
 [node name="CollisionShape3D" parent="HearplugZoneRight/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
+
+[node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
 
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]

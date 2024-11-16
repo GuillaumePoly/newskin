@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://deyqc8wmvp3se"]
+
+[ext_resource type="Script" path="res://src/scenes/headphones/headphones_stream_player.gd" id="1_gy8n3"]
+
+[node name="HeadphonesStreamPlayer" type="AudioStreamPlayer"]
+bus = &"Headphones"
+script = ExtResource("1_gy8n3")

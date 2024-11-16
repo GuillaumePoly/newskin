@@ -11,5 +11,6 @@ shader_parameter/emission = Color(0, 0, 0, 1)
 shader_parameter/emission_energy = 1.0
 shader_parameter/uv1_scale = Vector2(1, 1)
 shader_parameter/uv1_offset = Vector2(0, 0)
+shader_parameter/grab_mouse_position = null
 shader_parameter/deform = Vector2(0, 0)
 shader_parameter/texture_albedo = ExtResource("1_h6oul")

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmd1kidjybi2q"]
+
+[ext_resource type="Texture2D" uid="uid://dhr81qkbphgow" path="res://flower/assets/gradient.png" id="1_h6oul"]
+
+[resource]
+cull_mode = 2
+diffuse_mode = 2
+albedo_texture = ExtResource("1_h6oul")
+emission_enabled = true
+subsurf_scatter_strength = 0.31

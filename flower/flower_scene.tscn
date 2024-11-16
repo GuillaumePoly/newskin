@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://ulv8gpjxnlox"]
+
+[ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="1_3x2wx"]
+
+[sub_resource type="Environment" id="Environment_6a3x1"]
+background_mode = 1
+background_color = Color(0.353842, 0.397162, 0.290362, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.353178, 0.237899, 0.253883, 1)
+
+[node name="FlowerScene" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0.0522899, 0.449999, 0.430323)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6a3x1")
+
+[node name="Flower" parent="." instance=ExtResource("1_3x2wx")]

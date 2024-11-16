@@ -1,11 +1,21 @@
 extends Node3D
 
+@onready var hearplug_zone_right: HearplugZone = $HearplugZoneRight
+@onready var hearplug_zone_left: HearplugZone = $HearplugZoneLeft
+
+
+
 @export var grab_distance: float = 20
 var grabbed_object = null
 var mouse = Vector2()
 const DIST = 1000 #Ray Max distance
 
 
+var number_of_hearplugs_arrived: int = 0
+
+func _ready() -> void:
+	hearplug_zone_right.hearplug_on_zone.connect(_on_hearplug_on_zone)
+	hearplug_zone_left.hearplug_on_zone.connect(_on_hearplug_on_zone)
 
 func _process(delta: float) -> void:
 	if grabbed_object:
@@ -39,9 +49,15 @@ func get_mouse_world_pos(mouse:Vector2):
 	#cast the ray using the space and return the results as a Dictionary
 	var result = space.intersect_ray(params)
 	if result.is_empty() == false:
-		if result.collider is Hearplug:
+		var tmp_collider = result.collider
+		if tmp_collider is Hearplug and tmp_collider.is_in_group("grabbable"):
 			grabbed_object = result.collider
 
 #Get the position in the world you want to object to follow
 func get_grab_position():
 	return get_viewport().get_camera_3d().project_position(mouse,grab_distance)
+
+
+func _on_hearplug_on_zone():
+	number_of_hearplugs_arrived += 1
+	print(number_of_hearplugs_arrived)

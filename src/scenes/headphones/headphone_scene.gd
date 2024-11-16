@@ -1,8 +1,8 @@
 extends Node3D
 
-@onready var hearplug_zone_right: HearplugZone = $HearplugZoneRight
-@onready var hearplug_zone_left: HearplugZone = $HearplugZoneLeft
 
+@onready var hearplug_left: Hearplug = $HearplugLeft
+@onready var hearplug_right: Hearplug = $HearplugRight
 
 
 @export var grab_distance: float = 20
@@ -14,8 +14,8 @@ const DIST = 1000 #Ray Max distance
 var number_of_hearplugs_arrived: int = 0
 
 func _ready() -> void:
-	hearplug_zone_right.hearplug_on_zone.connect(_on_hearplug_on_zone)
-	hearplug_zone_left.hearplug_on_zone.connect(_on_hearplug_on_zone)
+	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone)
+	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone)
 
 func _process(delta: float) -> void:
 	if grabbed_object:
@@ -60,4 +60,3 @@ func get_grab_position():
 
 func _on_hearplug_on_zone():
 	number_of_hearplugs_arrived += 1
-	print(number_of_hearplugs_arrived)

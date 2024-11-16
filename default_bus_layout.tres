@@ -1,7 +1,12 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://ysnwjts587ij"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ysnwjts587ij"]
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_sh4tb"]
 resource_name = "Panner"
+
+[sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_3d80n"]
+resource_name = "HighPassFilter"
+resonance = 0.25
+db = 2
 
 [resource]
 bus/1/name = &"Headphones"
@@ -12,3 +17,5 @@ bus/1/volume_db = 0.0
 bus/1/send = &"Master"
 bus/1/effect/0/effect = SubResource("AudioEffectPanner_sh4tb")
 bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectHighPassFilter_3d80n")
+bus/1/effect/1/enabled = true

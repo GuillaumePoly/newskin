@@ -22,7 +22,6 @@ script = ExtResource("1_r7bxv")
 grab_distance = 18.0
 
 [node name="CameraAnchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9257, 17.7993)
@@ -68,8 +67,9 @@ mesh = SubResource("BoxMesh_eblxm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AnchorHearplugs"]
 shape = SubResource("ConcavePolygonShape3D_ygl82")
 
-[node name="HearplugZoneLeft" parent="." instance=ExtResource("4_sp4dj")]
+[node name="HearplugZoneLeft" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.42891, 3.09581, 0)
+headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneLeft/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")
@@ -77,8 +77,9 @@ shape = SubResource("SphereShape3D_8ysdg")
 [node name="CollisionShape3D" parent="HearplugZoneLeft/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
 
-[node name="HearplugZoneRight" parent="." instance=ExtResource("4_sp4dj")]
+[node name="HearplugZoneRight" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.68941, 3.09581, 0)
+headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneRight/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")

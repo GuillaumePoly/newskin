@@ -57,7 +57,9 @@ void fragment() {
 
 	ROUGHNESS = 1.0;
 
+	float dist_to_mouse = length(screen_pos - grab_mouse_position);
+	dist_to_mouse = smoothstep(0.075, 0.0, dist_to_mouse);
 
 	vec3 emission_tex = texture(texture_emission, base_uv).rgb;
-	EMISSION = (emission.rgb + emission_tex) * emission_energy;
+	EMISSION = (emission.rgb + emission_tex) * emission_energy * dist_to_mouse;
 }

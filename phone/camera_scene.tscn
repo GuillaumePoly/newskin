@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://buvo41hrqtkd8"]
+
+[ext_resource type="Script" path="res://phone/camera_scene.gd" id="1_800dp"]
+
+[node name="Camera3D" type="Camera3D"]
+script = ExtResource("1_800dp")

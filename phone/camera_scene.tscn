@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://phone/camera_scene.gd" id="1_800dp"]
 
-[node name="Camera3D" type="Camera3D"]
+[node name="Camera3D" type="Camera3D" groups=["rotatable_camera"]]
 script = ExtResource("1_800dp")

@@ -1,11 +1,15 @@
 extends Node3D
+class_name RotatableCamera
+
+@export var camera_radius: float = 10.0
+
+var rotation_enabled := true
 
 var camera_sensitivity: float = 0.01
 var camera_target: Vector3 = Vector3.ZERO
 var mouse_button_pressed_at_previous_frame: bool = false
 var previous_mouse_position: Vector2
 
-var camera_radius: float = 10.0
 var longitude: float = 0.0  # Initial longitude in radians
 var latitude: float = PI / 3  # Initial latitude in radians
 
@@ -21,6 +25,9 @@ func _ready() -> void:
 
 
 func _process(_delta: float):
+	if !rotation_enabled:
+		return
+	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		var current_mouse_position: Vector2 = get_viewport().get_mouse_position()
 		if not mouse_button_pressed_at_previous_frame:

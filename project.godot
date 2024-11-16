@@ -15,6 +15,14 @@ run/main_scene="res://phone/phone_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://common/GameManager.gd"
+
+[global_group]
+
+rotatable_camera=""
+
 [input]
 
 click={

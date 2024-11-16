@@ -4,18 +4,19 @@ extends Node3D
 @onready var hearplug_left: Hearplug = $HearplugLeft
 @onready var hearplug_right: Hearplug = $HearplugRight
 
+@onready var headphones_stream_player: HeadphonesStreamPlayer = $HeadphonesStreamPlayer
 
 @export var grab_distance: float = 20
 var grabbed_object = null
 var mouse = Vector2()
 const DIST = 1000 #Ray Max distance
 
-
+var current_pan: float = 0.0
 var number_of_hearplugs_arrived: int = 0
 
 func _ready() -> void:
-	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone)
-	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone)
+	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_left))
+	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_right))
 
 func _process(delta: float) -> void:
 	if grabbed_object:
@@ -58,5 +59,12 @@ func get_grab_position():
 	return get_viewport().get_camera_3d().project_position(mouse,grab_distance)
 
 
-func _on_hearplug_on_zone():
+func _on_hearplug_on_zone(hearplug: Hearplug):
 	number_of_hearplugs_arrived += 1
+	if hearplug.name.contains("Left"):
+		current_pan = - 1.0
+	elif hearplug.name.contains("Right"):
+		current_pan = 1.0
+	if number_of_hearplugs_arrived == 2:
+		headphones_stream_player.tween_pan_property(0.0, 3.0)
+		headphones_stream_player.activate_high_filter(false)

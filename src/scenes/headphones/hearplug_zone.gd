@@ -41,5 +41,5 @@ func update_audio(in_outer_zone: bool):
 		elif name.contains("Right"):
 			headphones_stream_player.tween_pan_property(1.0, 1.0)
 	else:
+		headphones_stream_player.tween_pan_property(owner.current_pan, 1.0)
 		headphones_stream_player.tween_db_property(-10.0, 1.0)
-		headphones_stream_player.tween_pan_property(0.0, 1.0)

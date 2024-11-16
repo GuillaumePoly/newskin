@@ -1,13 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=9 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
+[ext_resource type="Script" path="res://src/scenes/headphones/hearplug.gd" id="2_6uhj0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rlegr"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_y34cq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_35d21"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eblxm"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ygl82"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="HeadphoneScene" type="Node3D"]
 script = ExtResource("1_r7bxv")
@@ -21,26 +27,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.77301)
 transform = Transform3D(-0.0376552, 0, 0.999291, 0, 1, 0, -0.999291, 0, -0.0376552, 7.45412, 0, -9.88644)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, 0, 0)
 use_collision = true
 collision_mask = 2
-size = Vector3(5.57642, 0.513916, 5.00977)
+size = Vector3(10.1381, 0.513916, 29.4866)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
+[node name="Hearplug" type="RigidBody3D" parent="." groups=["grab_headphones"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81127, 1.74142)
 collision_layer = 2
+script = ExtResource("2_6uhj0")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Hearplug"]
 mesh = SubResource("SphereMesh_rlegr")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hearplug"]
 shape = SubResource("SphereShape3D_y34cq")
 
-[node name="Marker3D" type="Marker3D" parent="RigidBody3D"]
+[node name="Marker3D" type="Marker3D" parent="Hearplug"]
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+[node name="RigidBody3D2" type="RigidBody3D" parent="." groups=["grab_headphones"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.21243, -1.06573)
 collision_layer = 2
 
@@ -52,8 +60,26 @@ shape = SubResource("SphereShape3D_35d21")
 
 [node name="Marker3D" type="Marker3D" parent="RigidBody3D2"]
 
-[node name="Node3D" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+[node name="Rope1" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 script = ExtResource("1_3rxrb")
-start_point = NodePath("../RigidBody3D")
-start_is_rigidbody = true
+start_point = NodePath("../StaticBody3D")
+end_point = NodePath("../Hearplug")
+number_of_segments = 30
+cable_length = 20.0
+
+[node name="Rope2" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+visible = false
+script = ExtResource("1_3rxrb")
+start_point = NodePath("../StaticBody3D")
 end_point = NodePath("../RigidBody3D2")
+cable_gravity_amp = 10.0
+cable_springiness = 1.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 3.64449, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_eblxm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ygl82")

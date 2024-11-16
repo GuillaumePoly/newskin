@@ -9,6 +9,7 @@ const DIST = 1000 #Ray Max distance
 @export var S : float = 20.0
 
 
+
 func _process(delta: float) -> void:
 	if grabbed_object:
 		var grab_pos_tmp = get_grab_position()
@@ -42,7 +43,9 @@ func get_mouse_world_pos(mouse:Vector2):
 	#cast the ray using the space and return the results as a Dictionary
 	var result = space.intersect_ray(params)
 	if result.is_empty() == false:
-		grabbed_object = result.collider
+		if result.collider.is_in_group("grab_headphones"):
+			print(result.collider)
+			grabbed_object = result.collider
 
 #Get the position in the world you want to object to follow
 func get_grab_position():

@@ -21,6 +21,8 @@ var number_of_hearplugs_arrived: int = 0
 func _ready() -> void:
 	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_left))
 	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_right))
+	hearplug_left.hearplug_lost.connect(_on_hearplug_lost)
+	hearplug_right.hearplug_lost.connect(_on_hearplug_lost)
 	
 	_initial_x_position_hearplug = hearplug_right.position.x
 	_initial_y_position_hearplug = hearplug_right.position.y
@@ -62,6 +64,7 @@ func get_mouse_world_pos(mouse:Vector2):
 			grabbed_object = result.collider
 		if tmp_collider.is_in_group("button3d"):
 			tmp_collider.owner.press()
+		print(tmp_collider)
 
 #Get the position in the world you want to object to follow
 func get_grab_position():
@@ -81,3 +84,6 @@ func _on_hearplug_on_zone(hearplug: Hearplug):
 	elif number_of_hearplugs_arrived == 1:
 		current_db += 3.0
 		headphones_stream_player.tween_db_property(current_db, 3.0)
+
+func _on_hearplug_lost():
+	get_tree().get_nodes_in_group("button3d")[0].owner.appear()

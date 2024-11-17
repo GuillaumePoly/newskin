@@ -2,6 +2,7 @@ extends RigidBody3D
 class_name Hearplug
 
 signal hearplug_on_zone
+signal hearplug_lost
 
 var is_grabbed: bool = false:
 	set(new_value):
@@ -27,12 +28,17 @@ var inner_area: HearplugZone = null:
 var initial_position_z: float
 
 var is_plugged: bool = false
+var check_position_y: bool = true
 
 func _ready() -> void:
 	initial_position_z = position.z
 
+
 func _physics_process(delta: float) -> void:
 	position.z = initial_position_z
+	if check_position_y and position.y < -10.0:
+		check_position_y = false
+		hearplug_lost.emit()
 
 func deactivate():
 	freeze = true

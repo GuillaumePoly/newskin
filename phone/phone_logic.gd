@@ -91,13 +91,10 @@ func pressed_good_button():
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
-<<<<<<< Updated upstream
 		#switcher.next_scene
-=======
 		game_won = true
 		$"../PhoneBipingAndPickupPlayer".play()
 		#LevelSwitcher.next_level(5.0, Vector3.UP * .38)
->>>>>>> Stashed changes
 	else:
 		shuffle_numbers()
 

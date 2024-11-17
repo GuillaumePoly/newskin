@@ -1,7 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://decqhh2fiemr7"]
+[gd_scene load_steps=10 format=3 uid="uid://decqhh2fiemr7"]
 
 [ext_resource type="PackedScene" uid="uid://c1lvyialhjr8l" path="res://flower/assets/flower.blend" id="1_jjwg4"]
 [ext_resource type="Script" path="res://flower/flower.gd" id="2_tj32j"]
+[ext_resource type="AudioStream" uid="uid://daeynlwex6ro3" path="res://common/assets/sounds/plip_01.wav" id="3_bt64e"]
+[ext_resource type="AudioStream" uid="uid://ch6qq8grtpq43" path="res://common/assets/sounds/plip_02.wav" id="4_1rp2l"]
+[ext_resource type="AudioStream" uid="uid://buw1vwncwxltq" path="res://common/assets/sounds/plip_03.wav" id="5_e1rin"]
+[ext_resource type="AudioStream" uid="uid://dn28ftiuiqqyv" path="res://common/assets/sounds/grow.wav" id="6_w6xq3"]
+[ext_resource type="AudioStream" uid="uid://bh8bum1mturey" path="res://common/assets/sounds/stretch.wav" id="7_7asw6"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_bngfe"]
+streams_count = 3
+stream_0/stream = ExtResource("3_bt64e")
+stream_1/stream = ExtResource("4_1rp2l")
+stream_2/stream = ExtResource("5_e1rin")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ih8gr"]
+random_pitch = 2.0
+random_volume_offset_db = 2.0
+streams_count = 3
+stream_0/stream = ExtResource("3_bt64e")
+stream_1/stream = ExtResource("4_1rp2l")
+stream_2/stream = ExtResource("5_e1rin")
 
 [node name="Flower" instance=ExtResource("1_jjwg4")]
 script = ExtResource("2_tj32j")
+
+[node name="StartPetalStreamPlayer" type="AudioStreamPlayer" parent="." index="13"]
+stream = SubResource("AudioStreamRandomizer_bngfe")
+pitch_scale = 0.4
+
+[node name="PetalStreamPlayer" type="AudioStreamPlayer" parent="." index="14"]
+stream = SubResource("AudioStreamRandomizer_ih8gr")
+pitch_scale = 0.4
+
+[node name="StartStreamPlayer" type="AudioStreamPlayer" parent="." index="15"]
+stream = ExtResource("6_w6xq3")
+
+[node name="StretchStreamPlayer" type="AudioStreamPlayer" parent="." index="16"]
+stream = ExtResource("7_7asw6")
+volume_db = -6.0

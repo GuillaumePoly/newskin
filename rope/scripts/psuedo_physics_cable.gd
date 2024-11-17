@@ -9,7 +9,7 @@ extends Node3D
 @export var cable_gravity_amp = 0.245
 @export var cable_thickness = 0.1
 @export var cable_springiness = 9.81*2
-@onready var cable_mesh := preload("res://scenes/mesh_instance_3d.tscn")
+@onready var cable_mesh := preload("res://rope/scenes/mesh_instance_3d.tscn")
 @onready var segment_stretch = float(cable_length/number_of_segments)
 # instances
 var segments : Array

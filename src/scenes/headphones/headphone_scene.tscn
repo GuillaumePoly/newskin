@@ -1,10 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=20 format=4 uid="uid://dtfoupxsnx328"]
 
-[ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
+[ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
-[ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
 [ext_resource type="PackedScene" uid="uid://dvc2op3hw81u0" path="res://src/scenes/headphones/reset_button.tscn" id="6_p1vwe"]
 [ext_resource type="Shader" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="8_rigwt"]
 [ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="9_jqjjn"]
@@ -115,12 +114,6 @@ material = SubResource("StandardMaterial3D_mqb2j")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
 
-[node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.898, 0)
-
-[node name="HearplugRight" parent="." instance=ExtResource("2_pm2kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
-
 [node name="RopeLeft" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_3rxrb")
@@ -128,6 +121,7 @@ start_point = NodePath("../ModelHeadphones")
 end_point = NodePath("../HearplugLeft")
 number_of_segments = 30
 cable_length = 20.0
+cable_thickness = 0.05
 
 [node name="RopeRight" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -136,10 +130,10 @@ start_point = NodePath("../ModelHeadphones")
 end_point = NodePath("../HearplugRight")
 number_of_segments = 30
 cable_length = 20.0
+cable_thickness = 0.05
 
-[node name="HearplugZoneLeft" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
+[node name="HearplugZoneLeft" parent="." groups=["scale_objects"] instance=ExtResource("4_sp4dj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
-headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneLeft/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")
@@ -156,9 +150,8 @@ material = SubResource("StandardMaterial3D_7f0yg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
 operation = 2
 
-[node name="HearplugZoneRight" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
+[node name="HearplugZoneRight" parent="." groups=["scale_objects"] instance=ExtResource("4_sp4dj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 0)
-headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
 
 [node name="CollisionShape3D" parent="HearplugZoneRight/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")
@@ -173,13 +166,12 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
 operation = 2
 
-[node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s3r0g")
 
 [node name="ModelHeadphones" parent="." instance=ExtResource("10_bkxnk")]
 transform = Transform3D(0.258819, -2.26267e-08, -0.965926, -8.74228e-08, -1, 0, -0.965926, 8.44439e-08, -0.258819, 0, 0.268196, 0)
+visible = false
 
 [node name="ResetButton" parent="ModelHeadphones" instance=ExtResource("6_p1vwe")]
 transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-15, 0, 0, 1, 0, 0, 0)
@@ -198,6 +190,30 @@ sgt_dist_min = 0.25
 sgt_follow_normal = false
 metadata/SimpleGrassTextured = "2.0.5"
 
+[node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 3.3, 0)
+
+[node name="MeshInstance3D" parent="HearplugLeft" index="0"]
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+
+[node name="CollisionShape3D2" parent="HearplugLeft" index="1"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+
+[node name="CollisionShape3D" parent="HearplugLeft" index="2"]
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+
+[node name="HearplugRight" parent="." instance=ExtResource("2_pm2kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 3.33237, 0)
+
+[node name="MeshInstance3D" parent="HearplugRight" index="0"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
+
+[node name="CollisionShape3D2" parent="HearplugRight" index="1"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
+
+[node name="CollisionShape3D" parent="HearplugRight" index="2"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
+
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]
 [editable path="HearplugZoneLeft/OuterArea"]
@@ -205,3 +221,5 @@ metadata/SimpleGrassTextured = "2.0.5"
 [editable path="HearplugZoneRight/InnerArea"]
 [editable path="HearplugZoneRight/OuterArea"]
 [editable path="ModelHeadphones/ResetButton"]
+[editable path="HearplugLeft"]
+[editable path="HearplugRight"]

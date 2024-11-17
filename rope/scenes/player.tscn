@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cssglj6choju3"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_aafa8"]
-[ext_resource type="Script" path="res://scripts/cross_hair.gd" id="5_hvj71"]
+[ext_resource type="Script" path="res://rope/scripts/player.gd" id="1_aafa8"]
+[ext_resource type="Script" path="res://rope/scripts/cross_hair.gd" id="5_hvj71"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6ovi3"]
 radius = 0.25

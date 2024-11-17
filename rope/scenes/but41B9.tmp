@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ownlqtwynx88"]
+[gd_scene load_steps=11 format=3 uid="uid://ownlqtwynx88"]
 
-[ext_resource type="Script" path="res://rope/scenes/butterfly.gd" id="1_2f3g8"]
+[ext_resource type="Script" path="res://Scenes/butterfly.gd" id="1_61uu2"]
 [ext_resource type="ArrayMesh" uid="uid://dcfd85arlsyjn" path="res://Meshes/ButterfyBody.res" id="1_q0qnp"]
 [ext_resource type="ArrayMesh" uid="uid://ckw5mbidknthh" path="res://Meshes/ButterfyRightWing.res" id="2_x5rju"]
-[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://Materials/tree.tres" id="3_f38ge"]
-[ext_resource type="Material" uid="uid://dqdonwowvl261" path="res://Materials/wings.tres" id="3_upee4"]
+[ext_resource type="Material" uid="uid://b7b74xgj67wjg" path="res://Materials/wings.tres" id="3_upee4"]
 [ext_resource type="ArrayMesh" uid="uid://dn8nf3ig37git" path="res://Meshes/ButterfyLeftWing.res" id="4_eqjcb"]
-[ext_resource type="PackedScene" uid="uid://cggqrmjw4dhsb" path="res://rope/scenes/gitterbutterfy_vfx.tscn" id="6_wc07c"]
 
 [sub_resource type="Animation" id="Animation_4h678"]
 resource_name = "Fy"
@@ -74,9 +72,13 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pshko"]
 radius = 0.409997
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chkf2"]
+albedo_color = Color(0.18033, 0.123545, 0.127133, 1)
+emission_enabled = true
+
 [node name="Butterfly" type="AnimatableBody3D"]
 sync_to_physics = false
-script = ExtResource("1_2f3g8")
+script = ExtResource("1_61uu2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -88,7 +90,7 @@ shape = SubResource("SphereShape3D_pshko")
 
 [node name="ButterfyBody" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_q0qnp")
-surface_material_override/0 = ExtResource("3_f38ge")
+surface_material_override/0 = SubResource("StandardMaterial3D_chkf2")
 
 [node name="ButterfyRW" type="MeshInstance3D" parent="ButterfyBody"]
 mesh = ExtResource("2_x5rju")
@@ -98,9 +100,6 @@ surface_material_override/0 = ExtResource("3_upee4")
 [node name="ButterfyLW" type="MeshInstance3D" parent="ButterfyBody"]
 mesh = ExtResource("4_eqjcb")
 surface_material_override/0 = ExtResource("3_upee4")
-
-[node name="ClickVFX" parent="." instance=ExtResource("6_wc07c")]
-script = null
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -60,7 +60,6 @@ func releaseButterfly():
 	camera_3d.cameraSwitch = true;
 	for i in pathFollowArray.size() :
 			var butter = BUTTERFLY.instantiate()
-			print(pathFollowArray[i])
 			butter.followPath = pathFollowArray[i]
 			butter.position = self.global_position
 			get_tree().current_scene.add_child(butter)

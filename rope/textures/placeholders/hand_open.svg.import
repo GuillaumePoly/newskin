@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3idfaesjfyjk"
-path="res://.godot/imported/target_b.svg-6c63ebf492078ba2b0d203cac0cde9c0.ctex"
+uid="uid://c7fw5cfp7a2tk"
+path="res://.godot/imported/hand_open.svg-fc68f01eba9ade820008da127021b44c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/placeholders/target_b.svg"
-dest_files=["res://.godot/imported/target_b.svg-6c63ebf492078ba2b0d203cac0cde9c0.ctex"]
+source_file="res://rope/textures/placeholders/hand_open.svg"
+dest_files=["res://.godot/imported/hand_open.svg-fc68f01eba9ade820008da127021b44c.ctex"]
 
 [params]
 

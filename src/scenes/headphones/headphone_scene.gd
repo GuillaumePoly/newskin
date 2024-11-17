@@ -4,7 +4,8 @@ extends Node3D
 @onready var hearplug_left: Hearplug = $HearplugLeft
 @onready var hearplug_right: Hearplug = $HearplugRight
 
-@onready var headphones_stream_player: HeadphonesStreamPlayer = $HeadphonesStreamPlayer
+@export var fade_duration: float = 5.0
+
 
 @export var grab_distance: float = 20
 var grabbed_object = null
@@ -19,6 +20,8 @@ var current_db: float = -20.0
 var number_of_hearplugs_arrived: int = 0
 
 func _ready() -> void:
+	LevelSwitcher.tween_fade_out(fade_duration)
+	init_scale_objects(fade_duration-2.0)
 	hearplug_left.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_left))
 	hearplug_right.hearplug_on_zone.connect(_on_hearplug_on_zone.bind(hearplug_right))
 	hearplug_left.hearplug_lost.connect(_on_hearplug_lost)
@@ -79,11 +82,26 @@ func _on_hearplug_on_zone(hearplug: Hearplug):
 		current_pan = 1.0
 	
 	if number_of_hearplugs_arrived == 2:
-		headphones_stream_player.tween_pan_property(0.0, 3.0)
-		headphones_stream_player.activate_high_filter(false)
+		HeadphonesStreamPlayer.tween_pan_property(0.0, 3.0)
+		HeadphonesStreamPlayer.activate_high_filter(false)
+		await get_tree().create_timer(3.0).timeout
+		LevelSwitcher.next_level(3.0)
 	elif number_of_hearplugs_arrived == 1:
 		current_db += 3.0
-		headphones_stream_player.tween_db_property(current_db, 3.0)
+		HeadphonesStreamPlayer.tween_db_property(current_db, 3.0)
+
 
 func _on_hearplug_lost():
 	get_tree().get_nodes_in_group("button3d")[0].owner.appear()
+
+func init_scale_objects(wait_time: float):
+	var scale_objects = get_tree().get_nodes_in_group("scale_objects")
+	for scale_object: Node3D in scale_objects:
+		scale_object.scale = Vector3(0.0, 0.0, 0.0)
+	await get_tree().create_timer(wait_time).timeout
+	
+	for scale_object: Node3D in scale_objects:
+		var tween: Tween = create_tween()
+		tween.set_trans(Tween.TRANS_BACK)
+		tween.tween_property(scale_object, "scale", Vector3.ONE, 0.7)
+		await get_tree().create_timer(0.1).timeout

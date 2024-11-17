@@ -5,6 +5,8 @@ var canClick: bool
 var pos: Vector3
 const CLICK_VFX = preload("res://Scenes/click_vfx.tscn")
 const BUTTERFLY = preload("res://Scenes/butterfly.tscn")
+@onready var camera_3d: Camera3D = $"../Camera3D"
+
 var ray_length = 1000
 
 @export var counter: int = 3
@@ -12,14 +14,14 @@ var ray_length = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	butterfy_scene_manager.counter = pathFollowArray.size()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func _on_mouse_entered() -> void:
-	self.linear_velocity = Vector3(-speed.x * 0.01, 0, 0)
+	self.linear_velocity = Vector3(-speed.x * 0.001, 0, 0)
 	canClick = true
 	
 func _on_mouse_exited() -> void:
@@ -44,20 +46,21 @@ func _input(event):
 		if !raycast_result.is_empty():
 			# Spawn the VFX at the hit position
 			var vfx = CLICK_VFX.instantiate()
-			if canClick && counter >0:
-				counter -=1
-				self.add_child(vfx)
-				vfx.global_position = raycast_result.position
-			else:
-				for i in 3 :
-					var butter = BUTTERFLY.instantiate()
-					butter.followPath = pathFollowArray[i]
-					get_tree().current_scene.add_child(butter)
-					butter.position = self.global_position
-					queue_free()
-				self.add_child(vfx)
-				vfx.global_position = raycast_result.position
-				
+			self.add_child(vfx)
+			vfx.global_position = raycast_result.position
 			
-		
-		
+			if canClick:
+				if counter > 0:
+					counter -=1
+				else:
+					releaseButterfly()
+			
+
+func releaseButterfly():
+	camera_3d.cameraSwitch = true;
+	for i in pathFollowArray.size() :
+			var butter = BUTTERFLY.instantiate()
+			butter.followPath = pathFollowArray[i]
+			butter.position = self.global_position
+			get_tree().current_scene.add_child(butter)
+			queue_free()

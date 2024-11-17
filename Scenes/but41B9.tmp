@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ownlqtwynx88"]
+[gd_scene load_steps=11 format=3 uid="uid://ownlqtwynx88"]
 
 [ext_resource type="Script" path="res://Scenes/butterfly.gd" id="1_61uu2"]
 [ext_resource type="ArrayMesh" uid="uid://dcfd85arlsyjn" path="res://Meshes/ButterfyBody.res" id="1_q0qnp"]
 [ext_resource type="ArrayMesh" uid="uid://ckw5mbidknthh" path="res://Meshes/ButterfyRightWing.res" id="2_x5rju"]
 [ext_resource type="Material" uid="uid://b7b74xgj67wjg" path="res://Materials/wings.tres" id="3_upee4"]
 [ext_resource type="ArrayMesh" uid="uid://dn8nf3ig37git" path="res://Meshes/ButterfyLeftWing.res" id="4_eqjcb"]
-[ext_resource type="PackedScene" uid="uid://cggqrmjw4dhsb" path="res://Scenes/gitterbutterfy_vfx.tscn" id="6_wc07c"]
 
 [sub_resource type="Animation" id="Animation_4h678"]
 resource_name = "Fy"
@@ -101,8 +100,6 @@ surface_material_override/0 = ExtResource("3_upee4")
 [node name="ButterfyLW" type="MeshInstance3D" parent="ButterfyBody"]
 mesh = ExtResource("4_eqjcb")
 surface_material_override/0 = ExtResource("3_upee4")
-
-[node name="ClickVFX" parent="." instance=ExtResource("6_wc07c")]
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

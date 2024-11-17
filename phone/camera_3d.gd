@@ -18,10 +18,9 @@ var latitude: float = 0  # Initial latitude in radians
 @export var min_longitude: float = - PI / 3
 @export var max_longitude: float = PI / 3
 
-
 func _ready() -> void:
-	rotate_camera(longitude, latitude)
-
+	longitude = (min_longitude + max_longitude)/2.0
+	latitude = (min_latitude + max_latitude)/2.0
 
 func _process(_delta: float):
 	if not rotation_enabled:
@@ -36,16 +35,17 @@ func _process(_delta: float):
 			var camera_displacement: Vector2 = current_mouse_position - previous_mouse_position
 			longitude = clamp(longitude + camera_displacement.x * camera_sensitivity, min_longitude, max_longitude)
 			latitude = clamp(latitude - camera_displacement.y * camera_sensitivity, min_latitude, max_latitude)
-			rotate_camera(longitude, latitude)
 			previous_mouse_position = current_mouse_position
 	else:
 		mouse_button_pressed_at_previous_frame = false
+	
+	rotate_camera(longitude, latitude, _delta)
 
 
-func rotate_camera(new_longitude: float, new_latitude):
+func rotate_camera(new_longitude: float, new_latitude, delta : float):
 	var x: float = camera_radius * cos(new_latitude) * cos(new_longitude)
 	var y: float = camera_radius * sin(new_latitude)
 	var z: float = - camera_radius * cos(new_latitude) * sin(new_longitude)
 	
-	global_position = Vector3(x, y, z)
+	global_position = Vector3(x, y, z).lerp(global_position, exp(-5.0 * delta))
 	look_at(camera_target)

@@ -22,6 +22,11 @@ var button_asterix: MeshInstance3D
 var button_star: MeshInstance3D
 
 
+@onready var phone_state1: MeshInstance3D = $"../phone/Phone_handoff"
+@onready var phone_state2: MeshInstance3D = $"../phone/Phone"
+@onready var cable1: MeshInstance3D = $"../phone/NurbsPath"
+@onready var cable2: MeshInstance3D = $"../phone/NurbsPath_001"
+
 const button_position_dict = {
 	"0": Vector3(6.465, 1.728, -3.502),
 	"1": Vector3(6.994, 3.987, -1.318),
@@ -78,12 +83,9 @@ func handle_button_pressed(button_pressed_label: String):
 		return
 	## If correct
 	if corresponding_button_pressed_label == correct_number[current_entered_number.length()]:
-		print("\nGood button!")
 		current_entered_number += corresponding_button_pressed_label
-		print("\nCurrent Sequence: ", current_entered_number)
 		pressed_good_button()
 	else:
-		print('\nWrong Button!')
 		pressed_wrong_button()
 
 
@@ -91,6 +93,10 @@ func pressed_good_button():
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
+		phone_state1.visible = false
+		phone_state2.visible = true
+		cable1.visible = false
+		cable2.visible = true
 		#switcher.next_scene
 		game_won = true
 		$"../PhoneBipingAndPickupPlayer".play()
@@ -133,9 +139,7 @@ func shuffle_numbers():
 	
 	move_phone_dict_button()
 
-func reset_to_initial_position():
-	print("\nReset to initial Position")
-	
+func reset_to_initial_position():	
 	phone_dict.clear()
 	
 	phone_dict = {

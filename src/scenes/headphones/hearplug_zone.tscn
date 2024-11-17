@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpl41ygrbtgci"]
+[gd_scene load_steps=5 format=3 uid="uid://bpl41ygrbtgci"]
 
 [ext_resource type="Script" path="res://src/scenes/headphones/hearplug_zone.gd" id="1_gtpfc"]
 [ext_resource type="PackedScene" uid="uid://crmucx3gbah4q" path="res://src/scenes/headphones/hearplug_area.tscn" id="1_v5tux"]
 [ext_resource type="ArrayMesh" uid="uid://bq7qd50ew7yh6" path="res://Meshes/ear.res" id="3_q3slb"]
+[ext_resource type="PackedScene" uid="uid://mnveckdvr04b" path="res://ear.blend" id="4_5cixe"]
 
 [node name="HearplugZone" type="Node3D"]
 script = ExtResource("1_gtpfc")
@@ -13,7 +14,11 @@ script = ExtResource("1_gtpfc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.14374, 0.374467, -0.761146)
+visible = false
 mesh = ExtResource("3_q3slb")
+
+[node name="ear" parent="." instance=ExtResource("4_5cixe")]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.163978, 0.409944, -0.842998)
 
 [editable path="InnerArea"]
 [editable path="OuterArea"]

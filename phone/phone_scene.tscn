@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bv1mgonpgdr7i"]
+[gd_scene load_steps=25 format=3 uid="uid://bv1mgonpgdr7i"]
 
 [ext_resource type="PackedScene" uid="uid://dyd4ngykkotwa" path="res://phone/assets/phone.blend" id="2_6wy13"]
 [ext_resource type="Script" path="res://phone/button.gd" id="2_x76o1"]
@@ -6,11 +6,13 @@
 [ext_resource type="Script" path="res://phone/camera_3d.gd" id="3_vc4ur"]
 [ext_resource type="AudioStream" uid="uid://cx75ostpkn1ch" path="res://phone/assets/keypad.ogg" id="5_nx7nn"]
 [ext_resource type="AudioStream" uid="uid://cxtr86jdo7hge" path="res://phone/assets/phone.ogg" id="6_235b0"]
+[ext_resource type="Texture2D" uid="uid://bfmcvovrtc43n" path="res://phone/assets/eliot_nb.png" id="8_cwpal"]
+[ext_resource type="PackedScene" uid="uid://m0wqlv05fbmv" path="res://phone/assets/pin/scene.gltf" id="8_vp408"]
 
 [sub_resource type="Environment" id="Environment_dlyjm"]
 background_mode = 1
 background_color = Color(1, 0.760784, 0.376471, 1)
-ambient_light_energy = 4.37
+ambient_light_energy = 4.5
 reflected_light_source = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bw8vx"]
@@ -70,9 +72,11 @@ font_size = 127
 text = "*"
 font_size = 127
 
-[sub_resource type="TextMesh" id="TextMesh_y222q"]
-text = "0488258094"
-font_size = 127
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v4j8o"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("8_cwpal")
 
 [node name="PhoneScene" type="Node3D"]
 
@@ -82,7 +86,7 @@ environment = SubResource("Environment_dlyjm")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.656179, 0.259463, 0.708596, -0.465306, 0.878381, 0.109254, -0.594071, -0.401404, 0.697105, 59.7838, 82.6808, 3.75447)
 shadow_enabled = true
-shadow_opacity = 0.63
+shadow_opacity = 0.6
 directional_shadow_mode = 1
 directional_shadow_split_1 = 0.0
 directional_shadow_blend_splits = true
@@ -98,6 +102,9 @@ camera_radius = 55.0
 
 [node name="phone" parent="." instance=ExtResource("2_6wy13")]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+
+[node name="Phone" parent="phone" index="1"]
+visible = false
 
 [node name="StaticBody3D" parent="phone/Button-7" index="0"]
 script = ExtResource("2_x76o1")
@@ -134,6 +141,9 @@ script = ExtResource("2_x76o1")
 
 [node name="StaticBody3D" parent="phone/Button-*" index="0"]
 script = ExtResource("2_x76o1")
+
+[node name="NurbsPath_001" parent="phone" index="16"]
+visible = false
 
 [node name="PhoneLogic" type="Node" parent="."]
 script = ExtResource("3_c0fc8")
@@ -197,10 +207,6 @@ transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819
 mesh = SubResource("TextMesh_48c65")
 skeleton = NodePath("../Button#")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.036417, 0, 0.999337, 0, 1, 0, -0.999337, 0, -0.036417, 9.86396, 12.2923, -3.34274)
-mesh = SubResource("TextMesh_y222q")
-
 [node name="ButtonPressPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_nx7nn")
 volume_db = -3.0
@@ -216,5 +222,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.0259643, -0.00239411, 1.99983, 1.53901, 1.27714, -0.0184526, -1.27701, 1.53912, 0.0184224, 1.10083, 8.90364, -21.2628)
+material_override = SubResource("StandardMaterial3D_v4j8o")
+modulate = Color(0.942823, 0.942823, 0.942823, 1)
+texture = ExtResource("8_cwpal")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("8_vp408")]
+transform = Transform3D(19.432, 93.2538, 30.4322, -95.1251, 25.4887, -17.3648, -23.9501, -25.5744, 93.6608, 1.36089, 13.0155, -22.3709)
 
 [editable path="phone"]

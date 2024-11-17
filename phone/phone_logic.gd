@@ -86,7 +86,7 @@ func pressed_good_button():
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
-		#switcher.next_scene
+		LevelSwitcher.next_level(5.0, Vector3.UP * .38)
 	else:
 		shuffle_numbers()
 

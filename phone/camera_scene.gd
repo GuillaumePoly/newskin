@@ -26,7 +26,7 @@ func _ready() -> void:
 	camera_start_fov = fov
 
 
-func _process(_delta: float):
+func _process(delta: float):
 	if not rotation_enabled:
 		return
 	

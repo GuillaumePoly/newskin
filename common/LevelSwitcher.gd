@@ -3,6 +3,7 @@ extends Node
 @export var levels : Array[PackedScene]
 
 var current_level : PackedScene
+var changing_scene := false
 
 @onready var fade_effect: ShaderMaterial = $FadeEffect.material
 
@@ -19,10 +20,15 @@ func _ready() -> void:
 
 ## focus point is a point in world space that the circle will focus for the transistion
 func next_level(transition_duration : float = 2.0, focus_point : Vector3 = Vector3.ZERO):
+	if changing_scene:
+		return
+	
 	var next_scene_index := levels.find(current_level) + 1
 	if levels.size() <= next_scene_index:
 		printerr("no next scene")
 		return
+	else:
+		changing_scene = true
 	
 	var screen_point := get_viewport().get_camera_3d().unproject_position(focus_point)
 	print(Vector2(screen_point)/Vector2(get_viewport().size))
@@ -35,10 +41,11 @@ func next_level(transition_duration : float = 2.0, focus_point : Vector3 = Vecto
 	get_tree().change_scene_to_packed(current_level)
 	
 	var tween_out := create_tween()
-	tween_out.tween_method(_tween_fade, 0.0, 1.0, transition_duration/2.0)
+	tween_out.tween_method(_tween_fade, 0.0, 1.0, transition_duration)
 	
 	await tween_out.finished
 	
+	changing_scene = false
 	scene_finished_loading.emit()
 
 func _tween_fade(progress : float):

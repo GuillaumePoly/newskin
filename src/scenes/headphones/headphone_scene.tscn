@@ -1,0 +1,206 @@
+[gd_scene load_steps=21 format=4 uid="uid://dtfoupxsnx328"]
+
+[ext_resource type="Script" path="res://scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
+[ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
+[ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
+[ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
+[ext_resource type="PackedScene" uid="uid://deyqc8wmvp3se" path="res://src/scenes/headphones/headphones_stream_player.tscn" id="5_egcnq"]
+[ext_resource type="PackedScene" uid="uid://dvc2op3hw81u0" path="res://src/scenes/headphones/reset_button.tscn" id="6_p1vwe"]
+[ext_resource type="Shader" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="8_rigwt"]
+[ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="9_jqjjn"]
+[ext_resource type="Script" path="res://addons/simplegrasstextured/grass.gd" id="10_6x3dp"]
+[ext_resource type="PackedScene" uid="uid://cj28u3jtfql0f" path="res://src/scenes/headphones/model_headphones.tscn" id="10_bkxnk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
+roughness = 0.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8ysdg"]
+radius = 1.34195
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j71ja"]
+radius = 2.48589
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7f0yg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qrx0"]
+sky_top_color = Color(0.237224, 0.190904, 1, 1)
+sky_horizon_color = Color(1, 0.730178, 0.846296, 1)
+sky_curve = 0.0724453
+ground_bottom_color = Color(0.235294, 0.192157, 1, 1)
+ground_horizon_color = Color(1, 0.729412, 0.847059, 1)
+ground_curve = 0.171484
+
+[sub_resource type="Sky" id="Sky_a8eev"]
+sky_material = SubResource("ProceduralSkyMaterial_5qrx0")
+
+[sub_resource type="Environment" id="Environment_s3r0g"]
+background_mode = 2
+sky = SubResource("Sky_a8eev")
+ambient_light_source = 1
+reflected_light_source = 1
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(1, 0.361893, 0.59194, 1)
+fog_sky_affect = 0.0
+fog_height_density = 4.3789
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggbni"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("8_rigwt")
+shader_parameter/albedo = Color(0, 0.191845, 1, 1)
+shader_parameter/texture_frames = Vector2(1, 1)
+shader_parameter/light_mode = 1
+shader_parameter/alpha_scissor_threshold = 0.5
+shader_parameter/normal_scale = 1.0
+shader_parameter/metallic = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/roughness = 1.0
+shader_parameter/roughness_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/scale_h = 1.0
+shader_parameter/scale_w = 1.0
+shader_parameter/scale_var = -0.25
+shader_parameter/grass_strength = 0.55
+shader_parameter/optimization_by_distance = false
+shader_parameter/optimization_level = 7.0
+shader_parameter/optimization_dist_min = 10.0
+shader_parameter/optimization_dist_max = 50.0
+shader_parameter/grass_size_y = 1.0
+shader_parameter/interactive_mode = true
+shader_parameter/interactive_level_xz = 3.0
+shader_parameter/interactive_level_y = 0.3
+shader_parameter/texture_albedo = ExtResource("9_jqjjn")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_dijnh"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
+"attribute_data": PackedByteArray("/wAA/wAAAAAAAAAAAAAA/wAAgD8AAIA/AAAA/wAAAAAAAIA//wAA/wAAgD8AAAAA/wAA/wAAAAAAAAAAAAAA/wAAgD8AAIA/AAAA/wAAAAAAAIA//wAA/wAAgD8AAAAA"),
+"format": 34359742495,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAwABAAAABAAFAAYABwAFAAQA"),
+"material": SubResource("ShaderMaterial_ggbni"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAvwAAgD8AAAAAAAAAPwAAAAAAAAAAAAAAvwAAAAAAAAAAAAAAPwAAgD8AAAAAAAAAAAAAgD8AAAC/AAAAAAAAAAAAAAA/AAAAAAAAAAAAAAC/AAAAAAAAgD8AAAA//3//f////7//f/9/////v/9//3////+//3//f////78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vw==")
+}]
+metadata/GodotVersion = "4.3-stable (official)"
+
+[sub_resource type="MultiMesh" id="MultiMesh_4jaou"]
+transform_format = 1
+instance_count = 12
+mesh = SubResource("ArrayMesh_dijnh")
+buffer = PackedFloat32Array(-0.416275, 0, 0.909239, 0.493332, 0, 1, 0, 0.25695, -0.909239, 0, -0.416275, -1.4979, -0.892702, 0, 0.450647, -0.642648, 0, 1, 0, 0.25695, -0.450647, 0, -0.892702, -1.25611, -0.905854, 0, 0.42359, 0.938481, 0, 1, 0, 0.25695, -0.42359, 0, -0.905854, -1.14984, 0.387463, 0, 0.921885, -2.47719, 0, 1, 0, 0.25695, -0.921885, 0, 0.387463, 0.37933, 0.994186, 0, -0.107678, 1.25903, 0, 1, 0, 0.25695, 0.107678, 0, 0.994186, -0.663445, 0.369108, 0, -0.929386, 2.13507, 0, 1, 0, 0.25695, 0.929386, 0, 0.369108, 0.542891, 0.860333, 0, -0.509732, 1.76242, 0, 1, 0, 0.25695, 0.509732, 0, 0.860333, 0.157935, -0.96736, 0, -0.253405, -1.81018, 0, 1, 0, 0.25695, 0.253405, 0, -0.96736, -0.680723, -0.949963, 0, 0.312362, 0.748483, 0, 1, 0, 0.25695, -0.312362, 0, -0.949963, 1.26346, -0.0820549, 0, 0.996628, -0.689353, 0, 1, 0, 0.25695, -0.996628, 0, -0.0820549, 1.49909, 0.17728, 0, 0.984161, -1.33337, 0, 1, 0, 0.25695, -0.984161, 0, 0.17728, 0.76406, -0.706226, 0, -0.707986, -2.12318, 0, 1, 0, 0.25695, 0.707986, 0, -0.706226, 0.503617)
+
+[node name="HeadphoneScene" type="Node3D"]
+script = ExtResource("1_r7bxv")
+grab_distance = 18.0
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9257, 17.7993)
+fov = 30.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, -16.0042, 0)
+use_collision = true
+collision_mask = 2
+size = Vector3(85.751, 32.5223, 102.674)
+material = SubResource("StandardMaterial3D_mqb2j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.275268, 0.961367, 0, -0.961367, 0.275268, 0, 3.62447, 4.87538)
+
+[node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.898, 0)
+
+[node name="HearplugRight" parent="." instance=ExtResource("2_pm2kj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 0)
+
+[node name="RopeLeft" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_3rxrb")
+start_point = NodePath("../ModelHeadphones")
+end_point = NodePath("../HearplugLeft")
+number_of_segments = 30
+cable_length = 20.0
+
+[node name="RopeRight" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_3rxrb")
+start_point = NodePath("../ModelHeadphones")
+end_point = NodePath("../HearplugRight")
+number_of_segments = 30
+cable_length = 20.0
+
+[node name="HearplugZoneLeft" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
+headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
+
+[node name="CollisionShape3D" parent="HearplugZoneLeft/InnerArea" index="0"]
+shape = SubResource("SphereShape3D_8ysdg")
+
+[node name="CollisionShape3D" parent="HearplugZoneLeft/OuterArea" index="0"]
+shape = SubResource("SphereShape3D_j71ja")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="HearplugZoneLeft"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft"]
+material = SubResource("StandardMaterial3D_7f0yg")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft/CSGSphere3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
+operation = 2
+
+[node name="HearplugZoneRight" parent="." node_paths=PackedStringArray("headphones_stream_player") instance=ExtResource("4_sp4dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 0)
+headphones_stream_player = NodePath("../HeadphonesStreamPlayer")
+
+[node name="CollisionShape3D" parent="HearplugZoneRight/InnerArea" index="0"]
+shape = SubResource("SphereShape3D_8ysdg")
+
+[node name="CollisionShape3D" parent="HearplugZoneRight/OuterArea" index="0"]
+shape = SubResource("SphereShape3D_j71ja")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="HearplugZoneRight"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneRight/CSGSphere3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
+operation = 2
+
+[node name="HeadphonesStreamPlayer" parent="." instance=ExtResource("5_egcnq")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_s3r0g")
+
+[node name="ModelHeadphones" parent="." instance=ExtResource("10_bkxnk")]
+transform = Transform3D(0.258819, -2.26267e-08, -0.965926, -8.74228e-08, -1, 0, -0.965926, 8.44439e-08, -0.258819, 0, 0.268196, 0)
+
+[node name="ResetButton" parent="ModelHeadphones" instance=ExtResource("6_p1vwe")]
+transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-15, 0, 0, 1, 0, 0, 0)
+
+[node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_4jaou")
+script = ExtResource("10_6x3dp")
+albedo = Color(0, 0.191845, 1, 1)
+texture_albedo = ExtResource("9_jqjjn")
+sgt_radius = 0.1
+sgt_density = 25
+sgt_scale = 1.0
+sgt_rotation = 0.0
+sgt_rotation_rand = 1.0
+sgt_dist_min = 0.25
+sgt_follow_normal = false
+metadata/SimpleGrassTextured = "2.0.5"
+
+[editable path="HearplugZoneLeft"]
+[editable path="HearplugZoneLeft/InnerArea"]
+[editable path="HearplugZoneLeft/OuterArea"]
+[editable path="HearplugZoneRight"]
+[editable path="HearplugZoneRight/InnerArea"]
+[editable path="HearplugZoneRight/OuterArea"]
+[editable path="ModelHeadphones/ResetButton"]

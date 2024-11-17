@@ -47,6 +47,7 @@ environment = SubResource("Environment_6a3x1")
 
 [node name="Flower" parent="." instance=ExtResource("1_3x2wx")]
 transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.00163019, 0, 0.0497221)
+visible = false
 
 [node name="Camera3D" parent="." instance=ExtResource("2_xmhxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973)

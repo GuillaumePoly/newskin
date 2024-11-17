@@ -21,6 +21,14 @@ signal petal_fallen
 
 
 func _ready() -> void:
+	#await LevelSwitcher.scene_finished_loading
+	
+	initialize()
+
+
+func initialize() -> void:
+	visible = true
+	
 	for child in get_children():
 		if child is MeshInstance3D:
 			if !child.name.contains("petals"):
@@ -30,7 +38,7 @@ func _ready() -> void:
 	global_scale(Vector3.ZERO)
 	var tween_flower_scale := create_tween()
 	tween_flower_scale.set_trans(Tween.TRANS_BACK)
-	tween_flower_scale.tween_property(self, "scale", Vector3.ONE, 0.5)
+	tween_flower_scale.tween_property(self, "scale", Vector3.ONE, 1.0)
 	await tween_flower_scale.finished
 	
 	for child in get_children():
@@ -135,7 +143,8 @@ func _input(event: InputEvent) -> void:
 			var delta : Vector3 = (grabbed_petal.rigidbody.global_position - Vector3.UP * 0.1) - point
 			
 			grabbed_petal.rigidbody.apply_central_impulse( -delta * Vector3(1.0, 5.0, 1.0) * 0.01 )
-			petals_fallen.append(grabbed_petal)
+			if petals_fallen.find(grabbed_petal) == -1:
+				petals_fallen.append(grabbed_petal)
 			petal_fallen.emit()
 			grabbed_petal.material.set_shader_parameter("emission", Color.BLACK)
 			grabbed_petal = null

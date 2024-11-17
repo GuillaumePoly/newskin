@@ -6,10 +6,15 @@ var current_level : PackedScene
 
 @onready var fade_effect: ShaderMaterial = $FadeEffect.material
 
+signal scene_finished_loading
+
+
 func _ready() -> void:
 	for level in levels:
 		if level.resource_path == get_tree().current_scene.scene_file_path:
 			current_level = level
+			await get_tree().process_frame
+			scene_finished_loading.emit()
 			break
 
 ## focus point is a point in world space that the circle will focus for the transistion
@@ -38,3 +43,4 @@ func _tween_fade(progress : float):
 func tween_fade_out(duration: float):
 	var tween_out := create_tween()
 	tween_out.tween_method(_tween_fade, 0.0, 1.0, duration)
+	tween_out.tween_callback(func(): scene_finished_loading.emit())

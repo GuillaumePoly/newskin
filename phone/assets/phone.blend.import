@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d0qrtadykf25n"
+uid="uid://dyd4ngykkotwa"
 path="res://.godot/imported/phone.blend-212392280d33d297851932109ca44c7d.scn"
 
 [deps]
@@ -31,7 +31,14 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Material": {
+"use_external/enabled": true,
+"use_external/path": "res://phone/assets/phone.tres"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

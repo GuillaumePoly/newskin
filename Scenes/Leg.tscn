@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://m4b8fvfvf0ry"]
+
+[ext_resource type="ArrayMesh" uid="uid://jh2bgm7hjiy1" path="res://Meshes/LeftLeg.res" id="1_b8dk2"]
+[ext_resource type="Script" path="res://Leg.gd" id="2_ixjl6"]
+
+[sub_resource type="Environment" id="Environment_u0fby"]
+background_mode = 1
+background_color = Color(0.691723, 0.913638, 0.962655, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.168902, 0.461098, 0.516002, 1)
+fog_mode = 1
+fog_light_color = Color(0.337255, 0.733333, 0.811765, 1)
+fog_density = 1.0
+fog_depth_begin = 5.0
+fog_depth_end = 15.0
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h20cw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r4v8q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1j2s5"]
+albedo_color = Color(0.712342, 0, 0.395777, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67bpw"]
+albedo_color = Color(0.86514, 0.683159, 0.660531, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u0fby")
+camera_attributes = SubResource("CameraAttributesPractical_h20cw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.953191, 0.30237, 0, -0.30237, 0.953191, 0, 1.791, 2.83)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(16.075, 0, 0, 0, 16.075, 0, 0, 0, 16.075, -0.0104194, 0, 0.00654745)
+visible = false
+mesh = SubResource("PlaneMesh_r4v8q")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_1j2s5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-9.99503, 2.58657, 3.40088, 0.439497, -7.98369, 7.36372, 4.25008, 6.90849, 7.23647, -0.2, -0.296, 0.807)
+mesh = ExtResource("1_b8dk2")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_67bpw")
+script = ExtResource("2_ixjl6")
+metadata/_edit_lock_ = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)

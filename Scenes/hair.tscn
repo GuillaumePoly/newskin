@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3xxjy31r1yhx"]
+
+[ext_resource type="ArrayMesh" uid="uid://b8cioh0p22g03" path="res://Meshes/Hair.res" id="1_n0upv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d3mjt"]
+margin = 0.0
+radius = 0.008
+height = 0.045
+
+[node name="Hair" type="MeshInstance3D"]
+mesh = ExtResource("1_n0upv")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+shape = SubResource("CapsuleShape3D_d3mjt")

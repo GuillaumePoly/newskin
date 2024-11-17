@@ -25,9 +25,10 @@ radius = 2.48589
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qrx0"]
 sky_top_color = Color(0.237224, 0.190904, 1, 1)
 sky_horizon_color = Color(1, 0.730178, 0.846296, 1)
+sky_curve = 0.0724453
 ground_bottom_color = Color(0.235294, 0.192157, 1, 1)
 ground_horizon_color = Color(1, 0.729412, 0.847059, 1)
-ground_curve = 0.538174
+ground_curve = 0.171484
 
 [sub_resource type="Sky" id="Sky_a8eev"]
 sky_material = SubResource("ProceduralSkyMaterial_5qrx0")
@@ -97,7 +98,7 @@ script = ExtResource("1_r7bxv")
 grab_distance = 18.0
 
 [node name="CameraAnchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.97961, 0.200907, 0, -0.200907, 0.97961, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.996194, 0.0871557, 0, -0.0871557, 0.996194, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraAnchor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9257, 17.7993)
@@ -105,6 +106,7 @@ fov = 30.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, -16.0042, 0)
+visible = false
 use_collision = true
 collision_mask = 2
 size = Vector3(85.751, 32.5223, 102.674)

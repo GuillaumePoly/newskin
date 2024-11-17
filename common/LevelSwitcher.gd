@@ -29,8 +29,12 @@ func next_level(transition_duration : float = 2.0, focus_point : Vector3 = Vecto
 	current_level = levels[next_scene_index]
 	get_tree().change_scene_to_packed(current_level)
 	
-	var tween_out := create_tween()
-	tween_out.tween_method(_tween_fade, 0.0, 1.0, transition_duration/2.0)
+	tween_fade_out(transition_duration/2.0)
+
 
 func _tween_fade(progress : float):
 	fade_effect.set_shader_parameter("fade", progress)
+
+func tween_fade_out(duration: float):
+	var tween_out := create_tween()
+	tween_out.tween_method(_tween_fade, 0.0, 1.0, duration)

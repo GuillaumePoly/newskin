@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="newskin"
-run/main_scene="res://phone/phone_scene.tscn"
+run/main_scene="res://src/scenes/headphones/headphone_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,8 @@ config/icon="res://icon.svg"
 
 GameManager="*res://common/GameManager.gd"
 LevelSwitcher="*res://common/LevelSwitcher.tscn"
-SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
+SimpleGrass="res://addons/simplegrasstextured/singleton.tscn"
+HeadphonesStreamPlayer="*res://src/scenes/headphones/headphones_stream_player.tscn"
 
 [display]
 

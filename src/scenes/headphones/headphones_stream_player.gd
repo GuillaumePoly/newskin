@@ -1,5 +1,4 @@
 extends AudioStreamPlayer
-class_name HeadphonesStreamPlayer
 
 @export var duration_trans_time: float = 0.5
 

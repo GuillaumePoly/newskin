@@ -4,7 +4,7 @@ class_name RotatableCamera
 @export var camera_radius: float = 10.0
 @export var camera_target: Vector3 = Vector3.ZERO
 
-var rotation_enabled: bool = true
+var enable_rotation: bool = true
 
 var camera_sensitivity: float = 0.1
 var camera_start_fov: float = 30.0
@@ -27,7 +27,7 @@ func _ready() -> void:
 
 
 func _process(delta: float):
-	if not rotation_enabled:
+	if not enable_rotation:
 		return
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) || Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):

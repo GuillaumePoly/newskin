@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://common/LevelSwitcher.gd" id="1_uvyns"]
 [ext_resource type="PackedScene" uid="uid://ulv8gpjxnlox" path="res://flower/flower_scene.tscn" id="2_46qlg"]
+[ext_resource type="PackedScene" uid="uid://btlmp0r3pw2i7" path="res://main_menu/main_menu.tscn" id="2_fqd8q"]
 [ext_resource type="PackedScene" uid="uid://bv1mgonpgdr7i" path="res://phone/phone_scene.tscn" id="3_n4y1g"]
 [ext_resource type="PackedScene" uid="uid://dtfoupxsnx328" path="res://src/scenes/headphones/headphone_scene.tscn" id="3_y5kq8"]
 [ext_resource type="Shader" path="res://common/assets/fade_effect.gdshader" id="4_5f7u3"]

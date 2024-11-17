@@ -11,7 +11,7 @@ void fragment() {
 	base_uv = base_uv * vec2(SCREEN_PIXEL_SIZE.y/SCREEN_PIXEL_SIZE.x, 1.0) * 0.25;
 
 	float circle = length(base_uv);
-	circle = smoothstep(fade - 0.1, fade, circle);
+	circle = smoothstep(fade - 0.05, fade, circle);
 
 	COLOR = vec4(color, circle);
 }

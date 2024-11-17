@@ -168,17 +168,7 @@ environment = SubResource("Environment_s3r0g")
 [node name="ModelHeadphones" parent="." instance=ExtResource("10_bkxnk")]
 transform = Transform3D(-0.707107, -6.18172e-08, 0.707107, 8.74228e-08, -1, 0, 0.707107, 6.18172e-08, 0.707107, 0, 0.268196, 0)
 
-[node name="MeshInstance3D" parent="ModelHeadphones" index="0"]
-transform = Transform3D(3.7749e-08, -0.5, 2.18557e-08, 0, -2.18557e-08, -0.5, 0.5, 3.7749e-08, -1.65006e-15, -8.75906e-09, -0.100192, -2.54598e-22)
-
-[node name="CollisionShape3D" parent="ModelHeadphones" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0554199, -0.0715332, 6.81513e-22)
-
-[node name="ResetButton" parent="ModelHeadphones" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227306, -0.102611, -0.000143197)
-
 [node name="MeshInstance3D2" parent="ModelHeadphones/ResetButton/Button" index="0"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0152308, 0, 6.65759e-10)
 surface_material_override/0 = SubResource("StandardMaterial3D_i5ymk")
 
 [node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="."]

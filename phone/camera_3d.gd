@@ -2,7 +2,7 @@ extends Camera3D
 
 @export var camera_radius: float = 40.0
 
-var camera_sensitivity: float = 0.01
+var camera_sensitivity: float = 0.1
 var camera_target: Vector3 = Vector3.ZERO
 var mouse_button_pressed_at_previous_frame: bool = false
 var previous_mouse_position: Vector2
@@ -32,7 +32,7 @@ func _process(_delta: float):
 			mouse_button_pressed_at_previous_frame = true
 			previous_mouse_position = current_mouse_position
 		else:
-			var camera_displacement: Vector2 = current_mouse_position - previous_mouse_position
+			var camera_displacement: Vector2 = (current_mouse_position - previous_mouse_position) * _delta
 			longitude = clamp(longitude + camera_displacement.x * camera_sensitivity, min_longitude, max_longitude)
 			latitude = clamp(latitude - camera_displacement.y * camera_sensitivity, min_latitude, max_latitude)
 			previous_mouse_position = current_mouse_position

@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://cj28u3jtfql0f"]
+[gd_scene load_steps=6 format=3 uid="uid://cj28u3jtfql0f"]
 
 [ext_resource type="ArrayMesh" uid="uid://b04eu23uhn0eh" path="res://Meshes/ipod.res" id="1_bu21m"]
 [ext_resource type="PackedScene" uid="uid://dvc2op3hw81u0" path="res://src/scenes/headphones/reset_button.tscn" id="2_1obj7"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_484tg"]
+albedo_color = Color(0.952941, 0.980392, 1, 1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_qn2yw"]
 size = Vector3(1.56494, 0.127441, 1.06616)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8i3ve"]
+resource_local_to_scene = true
+albedo_color = Color(0.670989, 0.917647, 1, 1)
 
 [node name="ModelHeadphones" type="StaticBody3D"]
 transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 8.74228e-08, -4.37114e-08, 0, 0.268196, 0)
@@ -12,6 +19,7 @@ transform = Transform3D(4.37114e-08, -3.82137e-15, -1, -8.74228e-08, -1, 0, -1, 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.7749e-08, -0.5, 2.18557e-08, 0, -2.18557e-08, -0.5, 0.5, 3.7749e-08, -1.65006e-15, -8.75906e-09, -0.100192, -2.54598e-22)
 mesh = ExtResource("1_bu21m")
+surface_material_override/0 = SubResource("StandardMaterial3D_484tg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0554199, -0.0715332, 6.81513e-22)
@@ -22,5 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.227306, -0.102611, -0.00014
 
 [node name="MeshInstance3D2" parent="ResetButton/Button" index="0"]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.0152308, 0, 6.65759e-10)
+surface_material_override/0 = SubResource("StandardMaterial3D_8i3ve")
 
 [editable path="ResetButton"]

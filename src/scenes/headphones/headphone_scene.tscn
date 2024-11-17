@@ -106,6 +106,7 @@ fov = 30.0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.347473, -16.0042, 0)
+visible = false
 use_collision = true
 collision_mask = 2
 size = Vector3(85.751, 32.5223, 102.674)

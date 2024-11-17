@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bpl41ygrbtgci"]
+
+[ext_resource type="Script" path="res://src/scenes/headphones/hearplug_zone.gd" id="1_gtpfc"]
+[ext_resource type="PackedScene" uid="uid://crmucx3gbah4q" path="res://src/scenes/headphones/hearplug_area.tscn" id="1_v5tux"]
+
+[node name="HearplugZone" type="Node3D"]
+script = ExtResource("1_gtpfc")
+
+[node name="InnerArea" parent="." instance=ExtResource("1_v5tux")]
+
+[node name="OuterArea" parent="." instance=ExtResource("1_v5tux")]
+
+[editable path="InnerArea"]
+[editable path="OuterArea"]

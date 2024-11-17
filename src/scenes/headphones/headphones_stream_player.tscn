@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://deyqc8wmvp3se"]
+
+[ext_resource type="Script" path="res://src/scenes/headphones/headphones_stream_player.gd" id="1_gy8n3"]
+[ext_resource type="AudioStream" uid="uid://bk4i3giyrs5tr" path="res://sound/test/timber_heart.mp3" id="1_j1wqa"]
+
+[node name="HeadphonesStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_j1wqa")
+volume_db = -20.0
+autoplay = true
+bus = &"Headphones"
+script = ExtResource("1_gy8n3")

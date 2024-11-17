@@ -84,11 +84,12 @@ func _on_hearplug_on_zone(hearplug: Hearplug):
 	if number_of_hearplugs_arrived == 2:
 		HeadphonesStreamPlayer.tween_pan_property(0.0, 3.0)
 		HeadphonesStreamPlayer.activate_high_filter(false)
+		await get_tree().create_timer(3.0).timeout
+		LevelSwitcher.next_level(3.0)
 	elif number_of_hearplugs_arrived == 1:
 		current_db += 3.0
 		HeadphonesStreamPlayer.tween_db_property(current_db, 3.0)
-		await get_tree().create_timer(3.0).timeout
-		LevelSwitcher.next_level(3.0)
+
 
 func _on_hearplug_lost():
 	get_tree().get_nodes_in_group("button3d")[0].owner.appear()

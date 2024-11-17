@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dveu7no5orvc8"
-path="res://.godot/imported/hand_point.svg-9cc1b761233b51f614517792de61b8da.ctex"
+uid="uid://bi331rhl2qt83"
+path="res://.godot/imported/hand_closed.svg-c3dc542ffdc03a202573baff0f30cf98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/placeholders/hand_point.svg"
-dest_files=["res://.godot/imported/hand_point.svg-9cc1b761233b51f614517792de61b8da.ctex"]
+source_file="res://rope/textures/placeholders/hand_closed.svg"
+dest_files=["res://.godot/imported/hand_closed.svg-c3dc542ffdc03a202573baff0f30cf98.ctex"]
 
 [params]
 

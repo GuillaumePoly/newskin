@@ -93,20 +93,14 @@ func pressed_good_button():
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
 		phone_state1.visible = false
 		phone_state2.visible = true
 		cable1.visible = false
 		cable2.visible = true
->>>>>>> Stashed changes
 		#switcher.next_scene
-=======
 		game_won = true
 		$"../PhoneBipingAndPickupPlayer".play()
 		#LevelSwitcher.next_level(5.0, Vector3.UP * .38)
->>>>>>> Stashed changes
 	else:
 		shuffle_numbers()
 

@@ -1,0 +1,201 @@
+[gd_scene load_steps=21 format=3 uid="uid://bv1mgonpgdr7i"]
+
+[ext_resource type="PackedScene" uid="uid://dyd4ngykkotwa" path="res://phone/assets/phone.blend" id="2_6wy13"]
+[ext_resource type="Script" path="res://phone/button.gd" id="2_x76o1"]
+[ext_resource type="Script" path="res://phone/phone_logic.gd" id="3_c0fc8"]
+[ext_resource type="Script" path="res://phone/camera_3d.gd" id="3_vc4ur"]
+
+[sub_resource type="Environment" id="Environment_dlyjm"]
+background_mode = 1
+background_color = Color(1, 0.760784, 0.376471, 1)
+ambient_light_energy = 4.37
+reflected_light_source = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bw8vx"]
+blend_mode = 2
+albedo_color = Color(0.961566, 0.929469, 0.936759, 1)
+shadow_to_opacity = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e5kgc"]
+material = SubResource("StandardMaterial3D_bw8vx")
+size = Vector2(100, 100)
+
+[sub_resource type="TextMesh" id="TextMesh_6yqau"]
+text = "0"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_s4ar6"]
+text = "1"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_toa04"]
+text = "2"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_ssh1k"]
+text = "3"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_ji7l5"]
+text = "4"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_m5346"]
+text = "5"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_hruff"]
+text = "6"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_8nkub"]
+text = "7"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_jswif"]
+text = "8"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_oal85"]
+text = "9"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_hehdu"]
+text = "#"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_48c65"]
+text = "*"
+font_size = 127
+
+[sub_resource type="TextMesh" id="TextMesh_y222q"]
+text = "0488258094"
+font_size = 127
+
+[node name="PhoneScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dlyjm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.656179, 0.259463, 0.708596, -0.465306, 0.878381, 0.109254, -0.594071, -0.401404, 0.697105, 59.7838, 82.6808, 3.75447)
+shadow_enabled = true
+shadow_opacity = 0.63
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 200.0
+
+[node name="BackgroundWall" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.212326, 0, 0)
+mesh = SubResource("PlaneMesh_e5kgc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("3_vc4ur")
+
+[node name="phone" parent="." instance=ExtResource("2_6wy13")]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+
+[node name="StaticBody3D" parent="phone/Button-7" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-8" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-9" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-6" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-5" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-4" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-1" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-2" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-3" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-#" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-0" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="StaticBody3D" parent="phone/Button-*" index="0"]
+script = ExtResource("2_x76o1")
+
+[node name="PhoneLogic" type="Node" parent="."]
+script = ExtResource("3_c0fc8")
+
+[node name="Button00" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.22136e-08, 0.259527, 0.965736, 1.13443e-08, 0.965736, -0.259527, -1, -8.56711e-16, -4.37114e-08, 6.46498, 1.72835, -3.50204)
+mesh = SubResource("TextMesh_6yqau")
+skeleton = NodePath("../Button*")
+
+[node name="Button01" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 6.99448, 3.98681, -1.31753)
+mesh = SubResource("TextMesh_s4ar6")
+
+[node name="Button02" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 6.97833, 4.02971, -3.5424)
+mesh = SubResource("TextMesh_toa04")
+skeleton = NodePath("../..")
+
+[node name="Button03" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 7.00855, 4.07879, -5.64954)
+mesh = SubResource("TextMesh_ssh1k")
+skeleton = NodePath("../Button02")
+
+[node name="Button04" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 7.67846, 6.2202, -1.30659)
+mesh = SubResource("TextMesh_ji7l5")
+skeleton = NodePath("../Button03")
+
+[node name="Button05" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 7.65125, 6.25616, -3.4527)
+mesh = SubResource("TextMesh_m5346")
+skeleton = NodePath("../Button04")
+
+[node name="Button06" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 7.68899, 6.34924, -5.52942)
+mesh = SubResource("TextMesh_hruff")
+skeleton = NodePath("../Button05")
+
+[node name="Button07" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 8.378, 8.31295, -1.33648)
+mesh = SubResource("TextMesh_8nkub")
+skeleton = NodePath("../Button06")
+
+[node name="Button08" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 8.37904, 8.32108, -3.47788)
+mesh = SubResource("TextMesh_jswif")
+skeleton = NodePath("../Button07")
+
+[node name="Button09" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 8.40575, 8.35145, -5.5128)
+mesh = SubResource("TextMesh_oal85")
+skeleton = NodePath("../Button08")
+
+[node name="Button#" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 6.46023, 1.79671, -5.61834)
+mesh = SubResource("TextMesh_hehdu")
+skeleton = NodePath("../Button09")
+
+[node name="Button*" type="MeshInstance3D" parent="PhoneLogic"]
+transform = Transform3D(-4.37114e-08, 0.258819, 0.965926, 0, 0.965926, -0.258819, -1, -1.13133e-08, -4.2222e-08, 6.42042, 1.51752, -1.2588)
+mesh = SubResource("TextMesh_48c65")
+skeleton = NodePath("../Button#")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.036417, 0, 0.999337, 0, 1, 0, -0.999337, 0, -0.036417, 9.86396, 12.2923, -3.34274)
+mesh = SubResource("TextMesh_y222q")
+
+[editable path="phone"]

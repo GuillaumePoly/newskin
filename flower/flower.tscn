@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://decqhh2fiemr7"]
+
+[ext_resource type="PackedScene" uid="uid://c1lvyialhjr8l" path="res://flower/assets/flower.blend" id="1_jjwg4"]
+[ext_resource type="Script" path="res://flower/flower.gd" id="2_tj32j"]
+
+[node name="Flower" instance=ExtResource("1_jjwg4")]
+script = ExtResource("2_tj32j")

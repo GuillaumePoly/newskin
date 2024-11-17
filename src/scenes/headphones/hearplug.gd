@@ -11,6 +11,11 @@ var is_grabbed: bool = false:
 			if is_on_area_inner:
 				print("Body dropped in Inner zone")
 				tween_position(self, 0.5)
+				var _rotation_plugged: Vector3
+				if name.contains("Left"):
+					tween_rotation_property(self, 3.0, Vector3(0.0, 180, 0.0))
+				else:
+					tween_rotation_property(self, 3.0, Vector3(0.0, -200, 0.0))
 		if new_value:
 			tween_rotation_property(self, 0.75)
 		is_grabbed = new_value
@@ -57,10 +62,12 @@ func tween_position(object: Node3D, duration: float):
 	tween.tween_property(object, "global_position", inner_area.global_position, duration)
 	tween.tween_callback(func(): hearplug_on_zone.emit())
 	tween.tween_callback(func(): deactivate())
+	
+
 	inner_area.is_zone_active = false
 	is_plugged = true
 
-func tween_rotation_property(object: Node3D, duration: float):
+func tween_rotation_property(object: Node3D, duration: float, _rotation: Vector3 = Vector3(0.0, 0.0, 0.0)):
 	if tween_rotation != null:
 		tween_rotation.kill()
 	tween_rotation = null
@@ -68,4 +75,4 @@ func tween_rotation_property(object: Node3D, duration: float):
 	
 	tween_rotation.set_ease(Tween.EASE_OUT)
 	tween_rotation.set_trans(Tween.TRANS_CUBIC)
-	tween_rotation.tween_property(object, "rotation", Vector3(0.0, 0.0, 0.0), duration)
+	tween_rotation.tween_property(object, "rotation", _rotation, duration)

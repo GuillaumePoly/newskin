@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=19 format=4 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
@@ -18,8 +18,6 @@ radius = 1.34195
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_j71ja"]
 radius = 2.48589
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7f0yg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5qrx0"]
 sky_top_color = Color(0.237224, 0.190904, 1, 1)
@@ -133,7 +131,7 @@ cable_length = 20.0
 cable_thickness = 0.05
 
 [node name="HearplugZoneLeft" parent="." groups=["scale_objects"] instance=ExtResource("4_sp4dj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 0)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -7, 3, 0)
 
 [node name="CollisionShape3D" parent="HearplugZoneLeft/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")
@@ -141,17 +139,14 @@ shape = SubResource("SphereShape3D_8ysdg")
 [node name="CollisionShape3D" parent="HearplugZoneLeft/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="HearplugZoneLeft"]
+[node name="MeshInstance3D" parent="HearplugZoneLeft" index="2"]
+transform = Transform3D(-0.35, 0, -4.47035e-08, 0, 0.35, 0, -4.47035e-08, 0, 0.35, 0.14374, 0.374467, -0.761146)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft"]
-material = SubResource("StandardMaterial3D_7f0yg")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneLeft/CSGSphere3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
-operation = 2
+[node name="Hearplug" parent="HearplugZoneLeft" index="3"]
+transform = Transform3D(1, 0, -8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="HearplugZoneRight" parent="." groups=["scale_objects"] instance=ExtResource("4_sp4dj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, 0)
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 7, 3, 0)
 
 [node name="CollisionShape3D" parent="HearplugZoneRight/InnerArea" index="0"]
 shape = SubResource("SphereShape3D_8ysdg")
@@ -159,19 +154,18 @@ shape = SubResource("SphereShape3D_8ysdg")
 [node name="CollisionShape3D" parent="HearplugZoneRight/OuterArea" index="0"]
 shape = SubResource("SphereShape3D_j71ja")
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="HearplugZoneRight"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="MeshInstance3D" parent="HearplugZoneRight" index="2"]
+transform = Transform3D(0.35, 0, 1.49012e-08, 0, 0.35, 0, -1.49012e-08, 0, 0.35, 0.144, 0.374, -0.701)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="HearplugZoneRight/CSGSphere3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.292451, 0, 0.248761)
-operation = 2
+[node name="Hearplug" parent="HearplugZoneRight" index="3"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s3r0g")
 
 [node name="ModelHeadphones" parent="." instance=ExtResource("10_bkxnk")]
 transform = Transform3D(0.258819, -2.26267e-08, -0.965926, -8.74228e-08, -1, 0, -0.965926, 8.44439e-08, -0.258819, 0, 0.268196, 0)
-visible = false
 
 [node name="ResetButton" parent="ModelHeadphones" instance=ExtResource("6_p1vwe")]
 transform = Transform3D(1, 0, 0, 0, 1, -1.77636e-15, 0, 0, 1, 0, 0, 0)
@@ -194,25 +188,16 @@ metadata/SimpleGrassTextured = "2.0.5"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8, 3.3, 0)
 
 [node name="MeshInstance3D" parent="HearplugLeft" index="0"]
-transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.200137, 0.673219, 0.113421)
 
 [node name="CollisionShape3D2" parent="HearplugLeft" index="1"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.200137, 0.673219, 0.113421)
 
 [node name="CollisionShape3D" parent="HearplugLeft" index="2"]
-transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.204878, 0.629622, 0.0951283)
+transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.200137, 0.673219, 0.113421)
 
 [node name="HearplugRight" parent="." instance=ExtResource("2_pm2kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, 3.33237, 0)
-
-[node name="MeshInstance3D" parent="HearplugRight" index="0"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
-
-[node name="CollisionShape3D2" parent="HearplugRight" index="1"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
-
-[node name="CollisionShape3D" parent="HearplugRight" index="2"]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.620682, 0.0889923)
 
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]

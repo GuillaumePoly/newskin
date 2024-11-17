@@ -1,6 +1,6 @@
 extends Camera3D
 
-@export var camera_radius: float = 60.0
+@export var camera_radius: float = 40.0
 
 var camera_sensitivity: float = 0.01
 var camera_target: Vector3 = Vector3.ZERO

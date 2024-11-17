@@ -3,7 +3,7 @@ var followPath : PathFollow3D
 var canClick : bool
 var speed : Vector3
 var ray_length = 1000
-
+var butterflysound:AudioStreamPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @export var counter: int = 3
@@ -59,4 +59,6 @@ func releaseButterfly() -> void:
 	vfx.position = pos
 	get_tree().current_scene.add_child(vfx)
 	butterfy_scene_manager.removeButt()
+	butterflysound.play()
+	#$ButterfyBody.visible = false
 	queue_free()

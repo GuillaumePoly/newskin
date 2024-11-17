@@ -6,6 +6,7 @@ var pos: Vector3
 const CLICK_VFX = preload("res://rope/scenes/click_vfx.tscn")
 const BUTTERFLY = preload("res://rope/scenes/butterfly.tscn")
 @onready var camera_3d: Camera3D = $"../Camera3D"
+@onready var butterfly_sound: AudioStreamPlayer = $"../ButterflySound"
 
 var ray_length = 1000
 
@@ -50,6 +51,7 @@ func _input(event):
 			vfx.global_position = raycast_result.position
 			
 			if canClick:
+				$"../ChrysalideTapSound".play()
 				if counter > 0:
 					counter -=1
 				else:
@@ -62,5 +64,6 @@ func releaseButterfly():
 			var butter = BUTTERFLY.instantiate()
 			butter.followPath = pathFollowArray[i]
 			butter.position = self.global_position
+			butter.butterflysound = butterfly_sound
 			get_tree().current_scene.add_child(butter)
 			queue_free()

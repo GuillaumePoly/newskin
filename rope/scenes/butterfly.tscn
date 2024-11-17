@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ownlqtwynx88"]
+[gd_scene load_steps=18 format=3 uid="uid://ownlqtwynx88"]
 
 [ext_resource type="Script" path="res://rope/scenes/butterfly.gd" id="1_2f3g8"]
 [ext_resource type="ArrayMesh" uid="uid://dcfd85arlsyjn" path="res://Meshes/ButterfyBody.res" id="1_q0qnp"]
@@ -7,6 +7,11 @@
 [ext_resource type="Material" uid="uid://dqdonwowvl261" path="res://Materials/wings.tres" id="3_upee4"]
 [ext_resource type="ArrayMesh" uid="uid://dn8nf3ig37git" path="res://Meshes/ButterfyLeftWing.res" id="4_eqjcb"]
 [ext_resource type="PackedScene" uid="uid://cggqrmjw4dhsb" path="res://rope/scenes/gitterbutterfy_vfx.tscn" id="6_wc07c"]
+[ext_resource type="AudioStream" uid="uid://1caj232bnp0g" path="res://rope/scenes/audio/laugh_01.ogg" id="8_kkknj"]
+[ext_resource type="AudioStream" uid="uid://vvsxnx0mnwce" path="res://rope/scenes/audio/laugh_02.ogg" id="9_3uver"]
+[ext_resource type="AudioStream" uid="uid://bp0l610h3guve" path="res://rope/scenes/audio/laugh_03.ogg" id="10_lcgvj"]
+[ext_resource type="AudioStream" uid="uid://bnff4vh1mdnom" path="res://rope/scenes/audio/laugh_04.ogg" id="11_85qj0"]
+[ext_resource type="AudioStream" uid="uid://dkd4ynlp57k6i" path="res://rope/scenes/audio/laugh_05.ogg" id="12_fidr2"]
 
 [sub_resource type="Animation" id="Animation_4h678"]
 resource_name = "Fy"
@@ -74,6 +79,14 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_pshko"]
 radius = 0.409997
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ym4ys"]
+streams_count = 5
+stream_0/stream = ExtResource("8_kkknj")
+stream_1/stream = ExtResource("9_3uver")
+stream_2/stream = ExtResource("10_lcgvj")
+stream_3/stream = ExtResource("11_85qj0")
+stream_4/stream = ExtResource("12_fidr2")
+
 [node name="Butterfly" type="AnimatableBody3D"]
 sync_to_physics = false
 script = ExtResource("1_2f3g8")
@@ -101,6 +114,9 @@ surface_material_override/0 = ExtResource("3_upee4")
 
 [node name="ClickVFX" parent="." instance=ExtResource("6_wc07c")]
 script = null
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ym4ys")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

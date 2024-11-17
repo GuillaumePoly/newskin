@@ -169,6 +169,8 @@ func _input(event: InputEvent) -> void:
 			var direction = camera.project_ray_normal(event.position);
 			var plane = Plane(0.0, 1.0, 0.0, grabbed_petal.rigidbody.global_position.y);
 			var point = plane.intersects_ray(origin, direction);
+			if grabbed_petal == null:
+				return
 			var delta : Vector3 = (grabbed_petal.rigidbody.global_position - Vector3.UP * 0.1) - point
 			
 			grabbed_petal.rigidbody.apply_central_impulse( -delta * Vector3(1.0, 5.0, 1.0) * 0.01 )

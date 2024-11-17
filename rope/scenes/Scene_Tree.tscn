@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://rope/scenes/butterfy_scene_manager.gd" id="1_8mxo0"]
 [ext_resource type="ArrayMesh" uid="uid://djgwjglwtkd5b" path="res://Meshes/Crysa.res" id="1_w2jqa"]
-[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://Materials/tree.tres" id="2_0q6qa"]
+[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://materials/tree.tres" id="2_0q6qa"]
 [ext_resource type="ArrayMesh" uid="uid://f1glco7e6orf" path="res://Meshes/Tree.res" id="2_nv8p0"]
 [ext_resource type="Script" path="res://rope/scenes/chrysa.gd" id="3_udf3u"]
-[ext_resource type="Material" uid="uid://bt4yiffh2i8kc" path="res://Materials/chrysa.tres" id="5_gjj7d"]
+[ext_resource type="Material" uid="uid://bt4yiffh2i8kc" path="res://materials/chrysa.tres" id="5_gjj7d"]
 [ext_resource type="Script" path="res://rope/scenes/camera_3d.gd" id="5_gswfh"]
 [ext_resource type="Script" path="res://rope/scenes/path_follow_3d.gd" id="8_qbwgb"]
 [ext_resource type="AudioStream" uid="uid://quci4ckyax20" path="res://common/assets/sounds/plop_01.wav" id="9_brlq2"]

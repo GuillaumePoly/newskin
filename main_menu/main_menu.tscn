@@ -15,7 +15,7 @@ shader = ExtResource("2_is8r2")
 
 [sub_resource type="TextMesh" id="TextMesh_parwr"]
 material = SubResource("ShaderMaterial_1r7nx")
-text = "GAME TITLE"
+text = "ELIE"
 font = ExtResource("1_vtwp8")
 font_size = 32
 

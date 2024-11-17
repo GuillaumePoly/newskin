@@ -3,8 +3,8 @@ extends RigidBody3D
 var speed: Vector2
 var canClick: bool
 var pos: Vector3
-const CLICK_VFX = preload("res://rope/scenes/click_vfx.tscn")
-const BUTTERFLY = preload("res://rope/scenes/butterfly.tscn")
+var CLICK_VFX = load("res://rope/scenes/click_vfx.tscn")
+var BUTTERFLY 
 @onready var camera_3d: Camera3D = $"../Camera3D"
 @onready var butterfly_sound: AudioStreamPlayer = $"../ButterflySound"
 
@@ -15,6 +15,8 @@ var ray_length = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	CLICK_VFX = load("res://rope/scenes/click_vfx.tscn")
+	BUTTERFLY = load("res://rope/scenes/butterfly.tscn")
 	butterfy_scene_manager.counter = pathFollowArray.size()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

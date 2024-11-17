@@ -4,6 +4,10 @@ class_name Hearplug
 signal hearplug_on_zone
 signal hearplug_lost
 
+
+@onready var stream_pop: AudioStream= load("res://sound/test/pop.ogg")
+
+
 var is_grabbed: bool = false:
 	set(new_value):
 		gravity_scale = 0.0 if new_value else 1.0
@@ -18,6 +22,8 @@ var is_grabbed: bool = false:
 					tween_rotation_property(self, 3.0, Vector3(0.0, -200, 0.0))
 		if new_value:
 			tween_rotation_property(self, 0.75)
+		if new_value != is_grabbed:
+			HeadphonesStreamPlayer._play_sound_eff_random(stream_pop)
 		is_grabbed = new_value
 
 var is_on_area_inner: bool = false:

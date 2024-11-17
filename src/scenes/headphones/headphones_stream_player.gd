@@ -65,3 +65,22 @@ func activate_high_filter(activate: bool):
 	if activate == false:
 		tween_cutoffhz_property(0.0, 5.0)
 		tween_db_property(-30.0, 5.0)
+
+
+func _play_sound_eff_random(_stream: AudioStream):
+	var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
+	var random_player: AudioStreamRandomizer = AudioStreamRandomizer.new()
+	random_player.add_stream(0, _stream)
+	random_player.random_pitch = 10.0
+	
+	new_player.stream = random_player
+	
+	new_player.finished.connect(_on_pop_player_finished.bind(new_player))
+	new_player.bus = "VFX"
+	new_player.stream = _stream
+	new_player.volume_db = 0.0
+	get_tree().current_scene.add_child(new_player)
+	new_player.play()
+
+func _on_pop_player_finished(player: AudioStreamPlayer):
+	player.queue_free()

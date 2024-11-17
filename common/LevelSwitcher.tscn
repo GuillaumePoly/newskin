@@ -1,8 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch7osesh2iyaf"]
+[gd_scene load_steps=13 format=3 uid="uid://ch7osesh2iyaf"]
 
 [ext_resource type="Script" path="res://common/LevelSwitcher.gd" id="1_uvyns"]
 [ext_resource type="PackedScene" uid="uid://ulv8gpjxnlox" path="res://flower/flower_scene.tscn" id="2_46qlg"]
+[ext_resource type="Script" path="res://flower/flower_scene.gd" id="3_ff4oj"]
+[ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="4_4yhdq"]
 [ext_resource type="Shader" path="res://common/assets/fade_effect.gdshader" id="4_5f7u3"]
+[ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="5_3ghso"]
+
+[sub_resource type="Environment" id="Environment_6a3x1"]
+background_mode = 1
+background_color = Color(0.753774, 0.245417, 0.230641, 1)
+ambient_light_color = Color(0.529376, 0.313678, 0.5255, 1)
+reflected_light_source = 1
+sdfgi_min_cell_size = 0.0292969
+sdfgi_cascade0_distance = 1.875
+sdfgi_max_distance = 30.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ongnr"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(0.695503, 0.695503, 0.695503, 1)
+shadow_to_opacity = true
+proximity_fade_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bakm5"]
+material = SubResource("StandardMaterial3D_ongnr")
+size = Vector2(4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x52c4"]
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="PackedScene" id="PackedScene_6eysf"]
+_bundled = {
+"conn_count": 1,
+"conns": PackedInt32Array(3, 0, 31, 30, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("FlowerScene", "script", "Node3D", "DirectionalLight3D", "transform", "light_energy", "shadow_enabled", "shadow_bias", "shadow_normal_bias", "shadow_opacity", "shadow_blur", "directional_shadow_mode", "directional_shadow_split_1", "directional_shadow_max_distance", "WorldEnvironment", "environment", "Flower", "visible", "Camera3D", "fov", "camera_radius", "camera_target", "ShadowPlane", "mesh", "MeshInstance3D", "StaticBody3D", "collision_layer", "collision_mask", "CollisionShape3D", "shape", "_on_flower_petal_fallen", "petal_fallen"),
+"node_count": 8,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 10, 4, 1, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 0, 0, 0, 14, 14, -1, 1, 15, 11, 0, 0, 0, 2147483647, 16, 12, 2, 4, 13, 17, 14, 0, 0, 0, 2147483647, 18, 15, 4, 4, 16, 19, 17, 20, 18, 21, 19, 0, 0, 0, 24, 22, -1, 1, 23, 20, 0, 5, 0, 25, 25, -1, 2, 26, 21, 27, 21, 0, 6, 0, 28, 28, -1, 2, 4, 22, 29, 23, 0),
+"variants": [ExtResource("3_ff4oj"), Transform3D(0.948381, 0.310237, -0.0657661, -0.209243, 0.767974, 0.605338, 0.238308, -0.560335, 0.793244, 0, 0, 0), 1.903, true, 0.01, 10.0, 0.62, 3.097, 1, 0.236, 3.0, SubResource("Environment_6a3x1"), ExtResource("4_4yhdq"), Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.00163019, 0, 0.0497221), false, ExtResource("5_3ghso"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973), 25.0, 1.75, Vector3(0, 0.22, 0), SubResource("PlaneMesh_bakm5"), 3, Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.247559, 0), SubResource("BoxShape3D_x52c4")],
+"version": 3
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8a1ij"]
 shader = ExtResource("4_5f7u3")
@@ -12,7 +51,7 @@ shader_parameter/focus_coord = Vector2(0.5, 0.6)
 
 [node name="LevelSwitcher" type="Node"]
 script = ExtResource("1_uvyns")
-levels = Array[PackedScene]([ExtResource("2_46qlg")])
+levels = Array[PackedScene]([ExtResource("2_46qlg"), SubResource("PackedScene_6eysf")])
 
 [node name="FadeEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8a1ij")

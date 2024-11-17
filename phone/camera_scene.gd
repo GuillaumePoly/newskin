@@ -29,7 +29,7 @@ func _process(delta: float):
 	if !enable_rotation:
 		return
 	
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) || Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
 		var current_mouse_position: Vector2 = get_viewport().get_mouse_position()
 		if not mouse_button_pressed_at_previous_frame:
 			mouse_button_pressed_at_previous_frame = true

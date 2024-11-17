@@ -6,6 +6,8 @@ var current_entered_number: String = ""
 var all_buttons: Array[String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "#", "*"]
 var phone_dict: Dictionary
 
+var game_won: bool = false
+
 var button_0: MeshInstance3D
 var button_1: MeshInstance3D
 var button_2: MeshInstance3D
@@ -63,12 +65,15 @@ func _ready() -> void:
 		"#": ["#", button_asterix],
 		"*": ["*", button_star],
 			}
+			
+	$"../PhoneBipingAndPickupPlayer".finished.connect(_on_phone_pick_up)
 
 
 func handle_button_pressed(button_pressed_label: String):
 	var corresponding_button_pressed_label: String = phone_dict[button_pressed_label][0]
-	print("\nButton Entered: ", button_pressed_label)
-	print("\nCorresponding Button: ", corresponding_button_pressed_label)
+	if game_won:
+		return
+	$"../ButtonPressPlayer".play()
 	if corresponding_button_pressed_label == "#" or corresponding_button_pressed_label == "*":
 		return
 	## If correct
@@ -86,7 +91,13 @@ func pressed_good_button():
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
+<<<<<<< Updated upstream
 		#switcher.next_scene
+=======
+		game_won = true
+		$"../PhoneBipingAndPickupPlayer".play()
+		#LevelSwitcher.next_level(5.0, Vector3.UP * .38)
+>>>>>>> Stashed changes
 	else:
 		shuffle_numbers()
 
@@ -151,3 +162,6 @@ func reset_to_initial_position():
 func move_phone_dict_button():
 	for key in phone_dict:
 		phone_dict[key][1].global_position = button_position_dict[key]
+
+func _on_phone_pick_up():
+	$"../ColorRect".visible = true

@@ -71,13 +71,12 @@ func _play_sound_eff_random(_stream: AudioStream):
 	var new_player: AudioStreamPlayer = AudioStreamPlayer.new()
 	var random_player: AudioStreamRandomizer = AudioStreamRandomizer.new()
 	random_player.add_stream(0, _stream)
-	random_player.random_pitch = 10.0
+	random_player.random_pitch = 1.2
 	
 	new_player.stream = random_player
 	
 	new_player.finished.connect(_on_pop_player_finished.bind(new_player))
 	new_player.bus = "VFX"
-	new_player.stream = _stream
 	new_player.volume_db = 0.0
 	get_tree().current_scene.add_child(new_player)
 	new_player.play()

@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bayj1rpydbcab"]
+
+[ext_resource type="Shader" path="res://flower/assets/flower_petal.gdshader" id="1_06aq4"]
+[ext_resource type="Texture2D" uid="uid://dhr81qkbphgow" path="res://flower/assets/gradient.png" id="1_h6oul"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_06aq4")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/emission = Color(0, 0, 0, 1)
+shader_parameter/emission_energy = 1.0
+shader_parameter/uv1_scale = Vector2(1, 1)
+shader_parameter/uv1_offset = Vector2(0, 0)
+shader_parameter/grab_mouse_position = null
+shader_parameter/deform = Vector2(0, 0)
+shader_parameter/texture_albedo = ExtResource("1_h6oul")

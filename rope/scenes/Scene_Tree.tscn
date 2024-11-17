@@ -276,6 +276,7 @@ stream = SubResource("AudioStreamRandomizer_uj8e8")
 
 [node name="ButterflySound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_is1hh")
+volume_db = -5.0
 
 [connection signal="mouse_entered" from="Chrysa" to="Chrysa" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Chrysa" to="Chrysa" method="_on_mouse_exited"]

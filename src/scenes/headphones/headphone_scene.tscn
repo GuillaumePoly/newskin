@@ -19,10 +19,10 @@ radius = 1.34195
 radius = 2.36771
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ha775"]
-albedo_color = Color(0.933333, 0.975338, 1, 1)
+albedo_color = Color(1, 0.839216, 0.631373, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6erxk"]
-albedo_color = Color(0.957621, 0.93405, 1, 1)
+albedo_color = Color(0.8, 0.670588, 0.505882, 1)
 
 [sub_resource type="Environment" id="Environment_s3r0g"]
 background_mode = 1

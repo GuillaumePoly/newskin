@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://drcvggpj6heb"]
+
+[ext_resource type="ArrayMesh" uid="uid://drbx1jys1ux7" path="res://Meshes/nuage.res" id="1_d5yxn"]
+[ext_resource type="Script" path="res://Scenes/click_vfx.gd" id="2_hkdl5"]
+
+[sub_resource type="Curve" id="Curve_1f1s5"]
+_data = [Vector2(0, 0.418324), 0.0, 0.0, 0, 0, Vector2(0.251825, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xo2df"]
+max_value = 2.0
+_data = [Vector2(0, 0.301136), 0.0, 0.0, 0, 0, Vector2(1, 0.504261), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_h2m3x"]
+offsets = PackedFloat32Array(0, 0.00406504, 0.593496, 0.941729)
+colors = PackedColorArray(1, 1, 1, 0, 0.97, 0.97, 0.97, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="ClickVFX" type="CPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.6363, -0.343914, -0.0183601)
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.9
+mesh = ExtResource("1_d5yxn")
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.5
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+orbit_velocity_curve = null
+radial_accel_min = -0.5
+radial_accel_max = 0.5
+damping_min = 10.0
+damping_max = 11.0
+damping_curve = SubResource("Curve_1f1s5")
+angle_min = -720.0
+angle_max = 630.6
+scale_amount_min = 0.05
+scale_amount_max = 0.1
+scale_amount_curve = SubResource("Curve_xo2df")
+color_ramp = SubResource("Gradient_h2m3x")
+script = ExtResource("2_hkdl5")

@@ -1,10 +1,10 @@
 extends TextureRect
 # Used to change crosshair depending on what the player is doing
 # HUD textures
-@onready var hand_closed = preload("res://textures/placeholders/hand_closed.svg")
-@onready var hand_open = preload("res://textures/placeholders/hand_open.svg")
-@onready var hand_point = preload("res://textures/placeholders/hand_point.svg")
-@onready var crosshair = preload("res://textures/placeholders/target_b.svg")
+@onready var hand_closed = preload("res://rope/textures/placeholders/hand_closed.svg")
+@onready var hand_open = preload("res://rope/textures/placeholders/hand_open.svg")
+@onready var hand_point = preload("res://rope/textures/placeholders/hand_point.svg")
+@onready var crosshair = preload("res://rope/textures/placeholders/target_b.svg")
 
 func _update_crosshair(state):
 	match state:

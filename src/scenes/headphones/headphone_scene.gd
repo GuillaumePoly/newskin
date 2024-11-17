@@ -85,7 +85,7 @@ func _on_hearplug_on_zone(hearplug: Hearplug):
 		HeadphonesStreamPlayer.tween_pan_property(0.0, 3.0)
 		HeadphonesStreamPlayer.activate_high_filter(false)
 		await get_tree().create_timer(3.0).timeout
-		LevelSwitcher.next_level(3.0)
+		LevelSwitcher.next_level(5.0)
 	elif number_of_hearplugs_arrived == 1:
 		current_db += 3.0
 		HeadphonesStreamPlayer.tween_db_property(current_db, 3.0)

@@ -3,21 +3,22 @@ class_name RotatableCamera
 
 @export var camera_radius: float = 10.0
 
-var rotation_enabled := true
+var rotation_enabled: bool = true
 
 var camera_sensitivity: float = 0.01
 var camera_target: Vector3 = Vector3.ZERO
 var mouse_button_pressed_at_previous_frame: bool = false
 var previous_mouse_position: Vector2
 
-var longitude: float = 0.0  # Initial longitude in radians
-var latitude: float = PI / 3  # Initial latitude in radians
+var longitude: float = 0 # Initial longitude in radians
+var latitude: float = 0  # Initial latitude in radians
 
 ## Boundaries to camera rotation
-var min_latitude: float = PI / 8
-var max_latitude: float = (PI / 2) - 0.01
-var min_longitude: float = - PI / 3
-var max_longitude: float = PI / 3
+## NOTE: For the phone scene, the good values are -1.047, 1.561, -1.047, 1.047 (- (PI / 3), (PI / 2) - 0.01, - PI / 3, PI / 3)
+@export var min_latitude: float = - (PI / 3)
+@export var max_latitude: float = (PI / 2) - 0.01
+@export var min_longitude: float = - PI / 3
+@export var max_longitude: float = PI / 3
 
 
 func _ready() -> void:
@@ -25,7 +26,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float):
-	if !rotation_enabled:
+	if not rotation_enabled:
 		return
 	
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):

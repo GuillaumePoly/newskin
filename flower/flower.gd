@@ -17,6 +17,11 @@ var petals_fallen : Array[Petal]
 
 var deform := Vector2.ZERO
 
+@onready var spawn_stream_player: AudioStreamPlayer = $StartPetalStreamPlayer
+@onready var start_stream_player: AudioStreamPlayer = $StartStreamPlayer
+@onready var stretch_stream_player: AudioStreamPlayer = $StretchStreamPlayer
+@onready var petal_stream_player: AudioStreamPlayer = $PetalStreamPlayer
+
 signal petal_fallen
 
 
@@ -24,6 +29,26 @@ func _ready() -> void:
 	#await LevelSwitcher.scene_finished_loading
 	
 	initialize()
+
+
+func _process(_delta: float) -> void:
+	if grabbed_petal == null:
+		return
+	
+	print(Input.get_last_mouse_velocity().length())
+	
+	if Input.get_last_mouse_velocity().length() > 50.0:
+		if !start_stream_player.playing:
+			stretch_stream_player.play((deform.length() * 33.33) * stretch_stream_player.stream.get_length())
+		else :
+			stretch_stream_player.stream_paused = false
+	elif stretch_stream_player.playing:
+		stretch_stream_player.stream_paused = true
+
+
+func play_sound():
+	spawn_stream_player.play()
+	spawn_stream_player.pitch_scale = spawn_stream_player.pitch_scale + 0.1
 
 
 func initialize() -> void:
@@ -35,10 +60,11 @@ func initialize() -> void:
 				continue
 			child.global_scale(Vector3.ZERO)
 	
-	global_scale(Vector3.ZERO)
+	global_scale(Vector3.ONE * 0.01)
 	var tween_flower_scale := create_tween()
 	tween_flower_scale.set_trans(Tween.TRANS_BACK)
-	tween_flower_scale.tween_property(self, "scale", Vector3.ONE, 1.0)
+	tween_flower_scale.tween_property(self, "scale", Vector3.ONE, 1.6)
+	get_tree().create_timer(0.75).timeout.connect(start_stream_player.play)
 	await tween_flower_scale.finished
 	
 	for child in get_children():
@@ -48,8 +74,9 @@ func initialize() -> void:
 			
 			var tween := create_tween()
 			tween.set_trans(Tween.TRANS_BACK)
-			tween.tween_property(child, "scale", Vector3.ONE, 0.4)
+			tween.tween_property(child, "scale", Vector3.ONE, .8)
 			await get_tree().create_timer(0.1).timeout
+			get_tree().create_timer(0.3).timeout.connect(play_sound)
 			
 			petal_amount += 1
 			(child as MeshInstance3D).set_surface_override_material(0, child.get_active_material(0).duplicate())
@@ -66,6 +93,8 @@ func initialize() -> void:
 			petal_rb.gravity_scale = 0.75
 			petal_rb.continuous_cd = true
 			petal_rb.angular_damp = 10.0
+			petal_rb.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+			petal_rb.center_of_mass = Vector3(0.0, 0.01, 0.0)
 			child.reparent(petal_rb)
 			
 			var col_shape := CollisionShape3D.new()
@@ -147,6 +176,7 @@ func _input(event: InputEvent) -> void:
 				petals_fallen.append(grabbed_petal)
 			petal_fallen.emit()
 			grabbed_petal.material.set_shader_parameter("emission", Color.BLACK)
+			petal_stream_player.play()
 			grabbed_petal = null
 
 

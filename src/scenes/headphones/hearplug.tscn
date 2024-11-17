@@ -1,19 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://conuxuixhfush"]
+[gd_scene load_steps=6 format=3 uid="uid://conuxuixhfush"]
 
 [ext_resource type="Script" path="res://src/scenes/headphones/hearplug.gd" id="1_vawdv"]
+[ext_resource type="ArrayMesh" uid="uid://bcbvp0e0nytb4" path="res://Meshes/hearbud.res" id="2_yopiq"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_rlegr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o05ci"]
+albedo_color = Color(0.952941, 0.980392, 1, 1)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_y34cq"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_w8i44"]
+points = PackedVector3Array(0.175873, 0.837864, 0.318803, 0.229633, -0.835689, -0.203723, 0.174441, -0.772096, -0.35548, -0.513696, -0.189561, 0.201189, 0.384684, -0.465679, 0.892911, 0.383267, 0.36717, -0.773083, -0.543609, 0.208006, -0.555824, 0.384977, 0.473401, 0.893555, 0.531554, -0.508435, -0.198212, -0.523857, 0.397918, 0.155224, 0.0787506, -0.337264, 0.97019, -0.537851, -0.502196, -0.347121, 0.284545, -0.260853, -0.840779, 0.53345, 0.517611, 0.366337, 0.175878, 0.785628, -0.35856, 0.227434, -0.775774, 0.525739, 0.48393, 0.674734, -0.251476, 0.170954, 0.46021, 0.86937, -0.491909, 0.514538, -0.248656, 0.533579, -0.202031, 0.674915, 0.435976, -0.776909, 0.370437, 0.533764, -0.0991277, -0.507764, -0.524606, -0.440431, 0.00778524, 0.333221, -0.623373, -0.620564, -0.550442, -0.25533, -0.563305, 0.388094, 0.845459, 0.268898, 0.123088, 0.210614, -0.822588, 0.0190554, 0.564534, -0.605032, -0.533283, 0.304511, 0.207709, 0.172065, 0.718108, 0.619194, 0.43373, -0.721204, -0.355905, 0.435047, -0.359763, -0.720631)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bh75w"]
+points = PackedVector3Array(-1.00108, -0.166923, -0.450736, -0.603242, 0.230955, 0.231274, -0.660137, -2.6676, -0.50757, -1.00108, -2.6676, -0.280233, -0.603242, -0.223941, -0.621321, -1.00108, -0.110217, -0.0530637, -0.944225, -2.6676, -0.564404, -0.660137, -2.55388, -0.223399, -0.614016, 0.372204, -0.38313, -0.558447, -0.506679, -0.160361, -0.660137, -0.0531992, 0.231274, -0.887407, -0.0531992, -0.564404, -0.773811, 0.344679, 0.060688, -0.944225, 0.117231, -0.393902, -0.944225, -2.6676, -0.223399, -0.660137, 0.117231, -0.621321, -1.00108, -2.6676, -0.50757, -0.716955, -2.6676, -0.564404, -0.830551, -0.110217, 0.117439, -0.603242, -0.0531992, 0.231274, -0.716955, -2.6676, -0.223399, -0.887407, 0.173937, 0.060688, -1.00108, -2.26972, -0.223399, -0.716955, -2.72462, -0.280233, -0.612862, 0.381436, 0.0483216, -0.773811, 0.173937, -0.564404, -0.944225, -0.337353, 0.00385387, -0.660137, 0.230955, 0.231274, -0.944225, -2.72462, -0.280233, -0.944225, 0.117231, -0.0530637, -0.660137, -2.6676, -0.280233, -0.944225, 0.0035069, -0.50757)
 
 [node name="Hearplug" type="RigidBody3D" groups=["grabbable"]]
 collision_layer = 2
 script = ExtResource("1_vawdv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_rlegr")
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.673219, 0.0889923)
+mesh = ExtResource("2_yopiq")
+surface_material_override/0 = SubResource("StandardMaterial3D_o05ci")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.673219, 0.0889923)
+shape = SubResource("ConvexPolygonShape3D_w8i44")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_y34cq")
-
-[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.19261, 0.673219, 0.0889923)
+shape = SubResource("ConvexPolygonShape3D_bh75w")

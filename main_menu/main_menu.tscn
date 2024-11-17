@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://btlmp0r3pw2i7"]
+[gd_scene load_steps=8 format=3 uid="uid://btlmp0r3pw2i7"]
 
+[ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_36km5"]
 [ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="1_80vit"]
 [ext_resource type="FontFile" uid="uid://1165h2ekafo0" path="res://common/assets/Winkle-Regular.ttf" id="1_vtwp8"]
 [ext_resource type="Shader" path="res://main_menu/title.gdshader" id="2_is8r2"]
@@ -19,17 +20,22 @@ font = ExtResource("1_vtwp8")
 font_size = 32
 
 [node name="MainMenu" type="Node3D"]
+script = ExtResource("1_36km5")
 
 [node name="Camera3D" parent="." instance=ExtResource("1_80vit")]
-camera_radius = 1.0
+transform = Transform3D(-0.0449848, -0.219633, 0.974545, 0, 0.975532, 0.219856, -0.998988, 0.00989018, -0.0438841, 0.86529, 0.480423, 0.143068)
+camera_radius = 1.5
+min_latitude = 20.0
+min_longitude = 0.0
+max_longitude = 30.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+transform = Transform3D(-0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, 0.612372, -0.353554, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bhq3a")
 
 [node name="Title" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -0.41337, 0, -0.112402)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.217801, 0)
 mesh = SubResource("TextMesh_parwr")

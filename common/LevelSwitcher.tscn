@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch7osesh2iyaf"]
+[gd_scene load_steps=8 format=3 uid="uid://ch7osesh2iyaf"]
 
 [ext_resource type="Script" path="res://common/LevelSwitcher.gd" id="1_uvyns"]
 [ext_resource type="PackedScene" uid="uid://ulv8gpjxnlox" path="res://flower/flower_scene.tscn" id="2_46qlg"]
+[ext_resource type="PackedScene" uid="uid://btlmp0r3pw2i7" path="res://main_menu/main_menu.tscn" id="2_fqd8q"]
 [ext_resource type="PackedScene" uid="uid://bv1mgonpgdr7i" path="res://phone/phone_scene.tscn" id="3_n4y1g"]
+[ext_resource type="PackedScene" uid="uid://dtfoupxsnx328" path="res://src/scenes/headphones/headphone_scene.tscn" id="3_y5kq8"]
 [ext_resource type="Shader" path="res://common/assets/fade_effect.gdshader" id="4_5f7u3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8a1ij"]
@@ -13,7 +15,7 @@ shader_parameter/focus_coord = Vector2(0.5, 0.6)
 
 [node name="LevelSwitcher" type="Node"]
 script = ExtResource("1_uvyns")
-levels = Array[PackedScene]([ExtResource("2_46qlg"), ExtResource("3_n4y1g")])
+levels = Array[PackedScene]([ExtResource("2_fqd8q"), ExtResource("3_y5kq8"), ExtResource("2_46qlg"), ExtResource("3_n4y1g")])
 
 [node name="FadeEffect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_8a1ij")

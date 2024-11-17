@@ -6,7 +6,7 @@
 
 [sub_resource type="Environment" id="Environment_6a3x1"]
 background_mode = 1
-background_color = Color(0.753774, 0.245417, 0.230641, 1)
+background_color = Color(0.74, 0.260727, 0.2442, 1)
 ambient_light_color = Color(0.529376, 0.313678, 0.5255, 1)
 reflected_light_source = 1
 sdfgi_min_cell_size = 0.0292969
@@ -31,7 +31,7 @@ size = Vector3(10, 0.5, 10)
 script = ExtResource("1_g532l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.948381, 0.310237, -0.0657661, -0.209243, 0.767974, 0.605338, 0.238308, -0.560335, 0.793244, 0, 0, 0)
+transform = Transform3D(0.583008, -0.399024, 0.70773, -0.209244, 0.767962, 0.605352, -0.785058, -0.501014, 0.364236, 0, 0, 0)
 light_energy = 1.903
 shadow_enabled = true
 shadow_bias = 0.01
@@ -46,14 +46,16 @@ directional_shadow_max_distance = 3.0
 environment = SubResource("Environment_6a3x1")
 
 [node name="Flower" parent="." instance=ExtResource("1_3x2wx")]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -0.00163019, 0, 0.0497221)
+transform = Transform3D(-0.652099, 0, 0.758134, 0, 1, 0, -0.758134, 0, -0.652099, -0.00163019, 0, 0.0497221)
 visible = false
 
 [node name="Camera3D" parent="." instance=ExtResource("2_xmhxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973)
 fov = 25.0
 camera_radius = 1.75
-camera_target = Vector3(0, 0.22, 0)
+camera_target = Vector3(0, 0.38, 0)
+min_latitude = 5.0
+min_longitude = 0.0
 
 [node name="ShadowPlane" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_bakm5")

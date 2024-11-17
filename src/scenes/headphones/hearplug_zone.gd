@@ -4,7 +4,6 @@ class_name HearplugZone
 @onready var inner_area: Area3D = $InnerArea
 @onready var outer_area: Area3D = $OuterArea
 
-@export var headphones_stream_player: HeadphonesStreamPlayer
 
 var is_zone_active: bool = true
 
@@ -35,14 +34,14 @@ func _on_hearplug_body_exited(body: Node3D, area: Area3D):
 
 func update_audio(in_outer_zone: bool):
 	if in_outer_zone:
-		headphones_stream_player.tween_db_property(owner.current_db + 4.0, 1.0)
+		HeadphonesStreamPlayer.tween_db_property(owner.current_db + 4.0, 1.0)
 		if owner.number_of_hearplugs_arrived > 0:
-			headphones_stream_player.tween_pan_property(0, 1.0)
+			HeadphonesStreamPlayer.tween_pan_property(0, 1.0)
 		else:
 			if name.contains("Left"):
-				headphones_stream_player.tween_pan_property(-1.0, 1.0)
+				HeadphonesStreamPlayer.tween_pan_property(-1.0, 1.0)
 			elif name.contains("Right"):
-				headphones_stream_player.tween_pan_property(1.0, 1.0)
+				HeadphonesStreamPlayer.tween_pan_property(1.0, 1.0)
 	else:
-		headphones_stream_player.tween_pan_property(owner.current_pan, 1.0)
-		headphones_stream_player.tween_db_property(owner.current_db, 1.0)
+		HeadphonesStreamPlayer.tween_pan_property(owner.current_pan, 1.0)
+		HeadphonesStreamPlayer.tween_db_property(owner.current_db, 1.0)

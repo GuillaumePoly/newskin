@@ -7,7 +7,7 @@
 
 [sub_resource type="Environment" id="Environment_bhq3a"]
 background_mode = 1
-background_color = Color(0.587218, 0.673565, 0.686921, 1)
+background_color = Color(0.3933, 0.57132, 0.69, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1r7nx"]
 render_priority = 0

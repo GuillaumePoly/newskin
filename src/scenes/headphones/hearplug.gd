@@ -17,9 +17,9 @@ var is_grabbed: bool = false:
 				tween_position(self, 0.5)
 				var _rotation_plugged: Vector3
 				if name.contains("Left"):
-					tween_rotation_property(self, 3.0, Vector3(0.0, 180, 0.0))
+					tween_rotation_property(self, 1, Vector3(0.0, 180, 0.0))
 				else:
-					tween_rotation_property(self, 3.0, Vector3(0.0, -200, 0.0))
+					tween_rotation_property(self, 1, Vector3(0.0, 120, 0.0))
 		if new_value:
 			tween_rotation_property(self, 0.75)
 		if new_value != is_grabbed:
@@ -81,4 +81,4 @@ func tween_rotation_property(object: Node3D, duration: float, _rotation: Vector3
 	
 	tween_rotation.set_ease(Tween.EASE_OUT)
 	tween_rotation.set_trans(Tween.TRANS_CUBIC)
-	tween_rotation.tween_property(object, "rotation", _rotation, duration)
+	tween_rotation.tween_property(object, "rotation", Vector3(deg_to_rad(_rotation.x), deg_to_rad(_rotation.y), deg_to_rad(_rotation.z)), duration)#.from(object.rotation - _rotation)

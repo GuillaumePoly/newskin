@@ -3,8 +3,8 @@ extends RigidBody3D
 var speed: Vector2
 var canClick: bool
 var pos: Vector3
-const CLICK_VFX = preload("res://Scenes/click_vfx.tscn")
-const BUTTERFLY = preload("res://Scenes/butterfly.tscn")
+const CLICK_VFX = preload("res://rope/scenes/click_vfx.tscn")
+const BUTTERFLY = preload("res://rope/scenes/butterfly.tscn")
 @onready var camera_3d: Camera3D = $"../Camera3D"
 
 var ray_length = 1000

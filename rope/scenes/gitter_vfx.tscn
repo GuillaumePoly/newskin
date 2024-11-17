@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqiore6d4ltst"]
 
-[ext_resource type="Texture2D" uid="uid://bs6cnuhth1ms2" path="res://Textures/star.png" id="1_t23ro"]
-[ext_resource type="Script" path="res://Scenes/click_vfx.gd" id="2_3gsch"]
+[ext_resource type="Texture2D" uid="uid://bs6cnuhth1ms2" path="res://rope/textures/star.png" id="1_t23ro"]
+[ext_resource type="Script" path="res://rope/scenes/click_vfx.gd" id="2_28xne"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wo8dq"]
 transparency = 1
@@ -54,6 +54,6 @@ scale_amount_min = 0.1
 scale_amount_max = 0.25
 scale_amount_curve = SubResource("Curve_xo2df")
 color_ramp = SubResource("Gradient_h2m3x")
-script = ExtResource("2_3gsch")
+script = ExtResource("2_28xne")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

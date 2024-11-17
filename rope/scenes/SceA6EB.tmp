@@ -1,13 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1x2jw127ovev"]
+[gd_scene load_steps=11 format=3 uid="uid://c1x2jw127ovev"]
 
 [ext_resource type="Script" path="res://rope/scenes/butterfy_scene_manager.gd" id="1_8mxo0"]
 [ext_resource type="ArrayMesh" uid="uid://djgwjglwtkd5b" path="res://Meshes/Crysa.res" id="1_w2jqa"]
-[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://materials/tree.tres" id="2_0q6qa"]
 [ext_resource type="ArrayMesh" uid="uid://f1glco7e6orf" path="res://Meshes/Tree.res" id="2_nv8p0"]
-[ext_resource type="Script" path="res://rope/scenes/chrysa.gd" id="3_udf3u"]
-[ext_resource type="Material" uid="uid://bt4yiffh2i8kc" path="res://materials/chrysa.tres" id="5_gjj7d"]
-[ext_resource type="Script" path="res://rope/scenes/camera_3d.gd" id="5_gswfh"]
-[ext_resource type="Script" path="res://rope/scenes/path_follow_3d.gd" id="8_qbwgb"]
+[ext_resource type="Script" path="res://rope/scripts/chrysa.gd" id="4_qu6mp"]
 
 [sub_resource type="Environment" id="Environment_8gyqm"]
 background_mode = 1
@@ -25,6 +21,20 @@ data = PackedVector3Array(-0.4436, 2.6299, 0.1055, -0.4663, 2.5238, 0.0586, -0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b5o3b"]
 radius = 0.150744
 height = 0.615922
+
+[sub_resource type="GDScript" id="GDScript_51jvr"]
+script/source = "extends Camera3D
+var cameraSwitch: bool
+@export var EndCameraPosition : Vector3
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if cameraSwitch :
+		global_position = EndCameraPosition.lerp(global_position, exp(-.75 * delta))
+"
 
 [sub_resource type="Curve3D" id="Curve3D_6j632"]
 _data = {
@@ -58,7 +68,6 @@ transform = Transform3D(-4.37114e-08, -1, 0, 0.906308, -3.9616e-08, 0.422619, -0
 transform = Transform3D(0.999999, -1.9984e-15, 0, 2.68674e-14, 1, -2.66454e-15, -1.49012e-08, -2.66454e-15, 0.999999, 0.145762, -8.02124, -0.295732)
 mesh = ExtResource("2_nv8p0")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("2_0q6qa")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Tree"]
 transform = Transform3D(0.999999, -1.9984e-15, 0, 2.68674e-14, 1, -2.66454e-15, -1.49012e-08, -2.66454e-15, 0.999999, 0.145762, -8.02124, -0.295732)
@@ -66,7 +75,7 @@ shape = SubResource("ConcavePolygonShape3D_mqjqr")
 
 [node name="Chrysa" type="RigidBody3D" parent="." node_paths=PackedStringArray("pathFollowArray")]
 transform = Transform3D(-4.38087e-08, -1.00223, 0, 1.00223, -4.38087e-08, 0, 0, 0, 1.00223, -8.97399, 6, 0.407)
-script = ExtResource("3_udf3u")
+script = ExtResource("4_qu6mp")
 pathFollowArray = [NodePath("../Path3D/PathFollow3D"), NodePath("../Path3D2/PathFollow3D2"), NodePath("../Path3D3/PathFollow3D3"), NodePath("../Path3D4/PathFollow3D"), NodePath("../Path3D5/PathFollow3D"), NodePath("../Path3D6/PathFollow3D"), NodePath("../Path3D7/PathFollow3D2"), NodePath("../Path3D8/PathFollow3D3"), NodePath("../Path3D9/PathFollow3D"), NodePath("../Path3D10/PathFollow3D"), NodePath("../Path3D11/PathFollow3D"), NodePath("../Path3D12/PathFollow3D"), NodePath("../Path3D13/PathFollow3D2"), NodePath("../Path3D14/PathFollow3D3"), NodePath("../Path3D15/PathFollow3D"), NodePath("../Path3D16/PathFollow3D")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chrysa"]
@@ -77,11 +86,10 @@ shape = SubResource("CapsuleShape3D_b5o3b")
 transform = Transform3D(0.0375782, 0.853899, 0.0118235, -0.841126, 0.0390547, -0.147225, -0.147609, -0.00516216, 0.84195, 0.0283842, 0.00257206, 0.0680397)
 mesh = ExtResource("1_w2jqa")
 skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("5_gjj7d")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.951, 5.582, -0.335)
-script = ExtResource("5_gswfh")
+script = SubResource("GDScript_51jvr")
 EndCameraPosition = Vector3(-7.5, 1.5, -4.5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -90,164 +98,132 @@ shadow_enabled = true
 shadow_opacity = 0.55
 
 [node name="Path3D" type="Path3D" parent="."]
-transform = Transform3D(-0.102369, 0, -0.959778, 0, 1.56951, 0, 0.254164, 0, -0.386568, -8.02843, -0.701562, 3.08134)
+transform = Transform3D(-0.136722, 0, -1.08419, 0, 1.56951, 0, 0.339455, 0, -0.436677, -8.17395, -0.701562, 2.65962)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D2" type="Path3D" parent="."]
-transform = Transform3D(0.063501, 0, 1.26549, 0, 1.2236, 0, -0.383663, 0, 0.209453, -6.58115, 1.88347, -1.45074)
+transform = Transform3D(0.0846528, 0, 1.51321, 0, 1.2236, 0, -0.511458, 0, 0.250454, -6.38201, 1.88347, -0.97227)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D2" type="PathFollow3D" parent="Path3D2"]
 transform = Transform3D(0.242911, 0.0558801, 0.312772, 0, 0.39371, -0.0703402, -0.317725, 0.0427222, 0.239124, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D3" type="Path3D" parent="."]
-transform = Transform3D(0.881013, 0, 0, 0, 1.35453, 0, 0, 0, 0.295552, -6.63128, 0.968093, -0.674329)
+transform = Transform3D(1.09082, 0, 0, 0, 1.35453, 0, 0, 0, 0.236848, -6.44408, 0.968093, -0.350073)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D3" type="PathFollow3D" parent="Path3D3"]
 transform = Transform3D(0.448393, 0.10315, 0.577351, 0, 0.726754, -0.129842, -0.586493, 0.0788614, 0.441404, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D4" type="Path3D" parent="."]
-transform = Transform3D(-0.319577, 0, 0.509061, 0, 0.562995, 0, -0.219652, 0, -0.318227, -8.43262, 0.923247, 0.367805)
+transform = Transform3D(-0.298895, 0, 0.401148, 0, 0.562995, 0, -0.205437, 0, -0.250768, -8.6744, 0.923247, 0.485066)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D4"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D5" type="Path3D" parent="."]
-transform = Transform3D(-0.4118, 0, 0.601067, 0, 0.787484, 0, -0.283038, 0, -0.375741, -11.3391, 2.34474, -0.363994)
+transform = Transform3D(-0.38515, 0, 0.47365, 0, 0.787484, 0, -0.264721, 0, -0.29609, -12.273, 2.34474, -0.101379)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D5"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D6" type="Path3D" parent="."]
-transform = Transform3D(0.129135, 0, 0.971907, 0, 1.56951, 0, -0.248859, 0, 0.504325, -7.12557, 2.17072, -1.2651)
+transform = Transform3D(0.172527, 0, 1.06758, 0, 1.56951, 0, -0.332482, 0, 0.55397, -7.05608, 2.17072, -0.823502)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D6"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D7" type="Path3D" parent="."]
-transform = Transform3D(-0.101024, 0, -1.31181, 0, 1.2236, 0, 0.380075, 0, -0.348677, -8.47777, 0.308749, 3.10899)
+transform = Transform3D(-0.134809, 0, -1.5321, 0, 1.2236, 0, 0.507183, 0, -0.407231, -8.7303, 0.308749, 2.68178)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D2" type="PathFollow3D" parent="Path3D7"]
 transform = Transform3D(0.242911, 0.0558801, 0.312772, 0, 0.39371, -0.0703402, -0.317725, 0.0427222, 0.239124, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D8" type="Path3D" parent="."]
-transform = Transform3D(-0.861629, 0, 0.0287889, 0, 1.35453, 0, -0.0827674, 0, -0.299697, -13.8721, 2.98408, 1.98604)
+transform = Transform3D(-1.04625, 0, 0.0227113, 0, 1.35453, 0, -0.100502, 0, -0.236428, -15.4093, 2.98408, 1.78188)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D3" type="PathFollow3D" parent="Path3D8"]
 transform = Transform3D(0.448393, 0.10315, 0.577351, 0, 0.726754, -0.129842, -0.586493, 0.0788614, 0.441404, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D9" type="Path3D" parent="."]
-transform = Transform3D(0.45928, 0, -0.331875, 0, 0.562995, 0, 0.385226, 0, 0.165637, -6.25039, 0.868813, 1.26886)
+transform = Transform3D(0.269343, 0, -0.435332, 0, 0.562995, 0, 0.225914, 0, 0.217272, -5.97248, 0.868813, 1.20715)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D9"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D10" type="Path3D" parent="."]
-transform = Transform3D(0.591819, 0, -0.391856, 0, 0.787484, 0, 0.496394, 0, 0.195573, -3.30874, 1.83859, 2.4321)
+transform = Transform3D(0.34707, 0, -0.514011, 0, 0.787484, 0, 0.291108, 0, 0.25654, -2.3303, 1.83859, 2.13934)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D10"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D11" type="Path3D" parent="."]
-transform = Transform3D(0.0766599, 0, 1.63085, 0, 0.398618, 0, -0.404453, 0, 1.10917, -6.57914, 0.963806, 0.154137)
+transform = Transform3D(0.104858, 0, 1.89711, 0, 0.398618, 0, -0.553224, 0, 1.29026, -6.37952, 0.963806, 0.313838)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D11"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D12" type="Path3D" parent="."]
-transform = Transform3D(0.49341, 0, -0.0385732, 0, 0.794474, 0, 0.031527, 0, 0.603688, -2.40954, 0.875719, 1.4627)
+transform = Transform3D(0.603204, 0, -0.0305785, 0, 0.794474, 0, 0.0385424, 0, 0.478567, -1.21696, 0.875719, 1.36249)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D12"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D13" type="Path3D" parent="."]
-transform = Transform3D(-0.742461, 0, -0.13809, 0, 0.619377, 0, 0.116054, 0, -0.883434, -7.09414, -0.0667968, 1.90124)
+transform = Transform3D(-0.943683, 0, -0.11427, 0, 0.619377, 0, 0.147507, 0, -0.731044, -7.01717, -0.0667968, 1.71392)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D2" type="PathFollow3D" parent="Path3D13"]
 transform = Transform3D(0.242911, 0.0558801, 0.312772, 0, 0.39371, -0.0703402, -0.317725, 0.0427222, 0.239124, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D14" type="Path3D" parent="."]
-transform = Transform3D(-0.174788, 0, 0.152443, 0, 0.685653, 0, -0.529065, 0, -0.0503624, -8.50309, 1.28744, -0.480824)
+transform = Transform3D(-0.115546, 0, 0.302656, 0, 0.685653, 0, -0.349746, 0, -0.0999883, -8.76165, 1.28744, -0.195003)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D3" type="PathFollow3D" parent="Path3D14"]
 transform = Transform3D(0.448393, 0.10315, 0.577351, 0, 0.726754, -0.129842, -0.586493, 0.0788614, 0.441404, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D15" type="Path3D" parent="."]
-transform = Transform3D(-0.0524027, 0, -0.603855, 0, 0.284984, 0, 0.180142, 0, -0.501463, -8.59363, 1.2167, 1.50854)
+transform = Transform3D(-0.0716633, 0, -0.687099, 0, 0.284984, 0, 0.246353, 0, -0.570592, -8.87375, 1.2167, 1.39922)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D15"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [node name="Path3D16" type="Path3D" parent="."]
-transform = Transform3D(-0.0675251, 0, -0.712993, 0, 0.398618, 0, 0.232128, 0, -0.592095, -5.45104, 0.202713, 2.29393)
+transform = Transform3D(-0.0923439, 0, -0.811282, 0, 0.398618, 0, 0.317446, 0, -0.673718, -4.98278, 0.202713, 2.02861)
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D16"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
 
 [connection signal="mouse_entered" from="Chrysa" to="Chrysa" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Chrysa" to="Chrysa" method="_on_mouse_exited"]

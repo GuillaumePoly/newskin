@@ -52,7 +52,7 @@ visible = false
 [node name="Camera3D" parent="." instance=ExtResource("2_xmhxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973)
 fov = 25.0
-camera_radius = 1.75
+camera_radius = 2.0
 camera_target = Vector3(0, 0.38, 0)
 min_latitude = 5.0
 min_longitude = 0.0

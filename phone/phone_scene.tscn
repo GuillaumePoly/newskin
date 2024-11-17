@@ -98,6 +98,7 @@ mesh = SubResource("PlaneMesh_e5kgc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("3_vc4ur")
+camera_radius = 55.0
 
 [node name="phone" parent="." instance=ExtResource("2_6wy13")]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)

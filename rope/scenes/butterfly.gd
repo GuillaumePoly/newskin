@@ -9,21 +9,25 @@ var butterflysound:AudioStreamPlayer
 @export var counter: int = 3
 const CLICK_VFX = preload("res://rope/scenes/click_vfx.tscn")
 const GITTER_VFX = preload("res://rope/scenes/gitter_vfx.tscn")
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready() -> void:
 	animation_player.play("Fy")
 	animation_player.speed_scale = randf_range(0.9, 1.1)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
 	global_position = followPath.global_position.lerp(global_position, exp(-1 * delta)) 
 	global_rotation_degrees = followPath.global_rotation_degrees.lerp(global_rotation_degrees, exp(-1 * delta))
-	
+
+
 func _on_mouse_entered() -> void:
 	canClick = true
-	
+
+
 func _on_mouse_exited() -> void:
 	canClick = false
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed():
@@ -40,8 +44,6 @@ func _input(event: InputEvent) -> void:
 		
 		if !raycast_result.is_empty():
 			# Spawn the VFX at the hit position
-		
-			
 			if canClick:
 				if counter > 0:
 					counter -=1

@@ -9,5 +9,4 @@ static func removeButt():
 	if counter > 1:
 		counter -= 1
 	else:
-		LevelSwitcher.next_level(5.0,endpos)
-		
+		LevelSwitcher.next_level(5.0, endpos)

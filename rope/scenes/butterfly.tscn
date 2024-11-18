@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://rope/scenes/butterfly.gd" id="1_2f3g8"]
 [ext_resource type="ArrayMesh" uid="uid://dcfd85arlsyjn" path="res://Meshes/ButterfyBody.res" id="1_q0qnp"]
 [ext_resource type="ArrayMesh" uid="uid://ckw5mbidknthh" path="res://Meshes/ButterfyRightWing.res" id="2_x5rju"]
-[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://materials/tree.tres" id="3_f38ge"]
+[ext_resource type="Material" uid="uid://cq7j7sm7lef52" path="res://Materials/tree.tres" id="3_f38ge"]
 [ext_resource type="ArrayMesh" uid="uid://dn8nf3ig37git" path="res://Meshes/ButterfyLeftWing.res" id="4_eqjcb"]
-[ext_resource type="Material" uid="uid://dqdonwowvl261" path="res://materials/wings.tres" id="5_s2u1g"]
-[ext_resource type="PackedScene" uid="uid://cggqrmjw4dhsb" path="res://rope/scenes/gitterbutterfy_vfx.tscn" id="6_wc07c"]
+[ext_resource type="Material" uid="uid://dqdonwowvl261" path="res://Materials/wings.tres" id="5_s2u1g"]
+[ext_resource type="PackedScene" path="res://rope/scenes/gitterbutterfy_vfx.tscn" id="6_wc07c"]
 [ext_resource type="AudioStream" uid="uid://1caj232bnp0g" path="res://rope/scenes/audio/laugh_01.ogg" id="8_kkknj"]
 [ext_resource type="AudioStream" uid="uid://vvsxnx0mnwce" path="res://rope/scenes/audio/laugh_02.ogg" id="9_3uver"]
 [ext_resource type="AudioStream" uid="uid://bp0l610h3guve" path="res://rope/scenes/audio/laugh_03.ogg" id="10_lcgvj"]
@@ -90,6 +90,7 @@ stream_4/stream = ExtResource("12_fidr2")
 [node name="Butterfly" type="AnimatableBody3D"]
 sync_to_physics = false
 script = ExtResource("1_2f3g8")
+counter = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

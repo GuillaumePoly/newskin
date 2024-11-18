@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=13 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
@@ -6,10 +6,7 @@
 [ext_resource type="Material" uid="uid://cw7nxf7j0c26a" path="res://src/character_02.tres" id="4_5d0mc"]
 [ext_resource type="Material" uid="uid://cgs4x1crvf0vj" path="res://src/character.tres" id="4_8s5yl"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
-[ext_resource type="Shader" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="8_rigwt"]
 [ext_resource type="PackedScene" uid="uid://bi0icjv7bn2kq" path="res://src/floor.tscn" id="9_6edpe"]
-[ext_resource type="Texture2D" uid="uid://c4ggdp0kg5wjk" path="res://addons/simplegrasstextured/textures/grassbushcc008.png" id="9_jqjjn"]
-[ext_resource type="Script" path="res://addons/simplegrasstextured/grass.gd" id="10_6x3dp"]
 [ext_resource type="PackedScene" uid="uid://cj28u3jtfql0f" path="res://src/scenes/headphones/model_headphones.tscn" id="10_bkxnk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
@@ -24,55 +21,6 @@ radius = 2.36771
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5ymk"]
 resource_local_to_scene = true
 albedo_color = Color(0.670989, 0.917647, 1, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ggbni"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("8_rigwt")
-shader_parameter/albedo = Color(0, 0.191845, 1, 1)
-shader_parameter/texture_frames = Vector2(1, 1)
-shader_parameter/light_mode = 1
-shader_parameter/alpha_scissor_threshold = 0.5
-shader_parameter/normal_scale = 1.0
-shader_parameter/metallic = 0.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/roughness = 1.0
-shader_parameter/roughness_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/scale_h = 1.0
-shader_parameter/scale_w = 1.0
-shader_parameter/scale_var = -0.25
-shader_parameter/grass_strength = 0.55
-shader_parameter/optimization_by_distance = false
-shader_parameter/optimization_level = 7.0
-shader_parameter/optimization_dist_min = 10.0
-shader_parameter/optimization_dist_max = 50.0
-shader_parameter/grass_size_y = 1.0
-shader_parameter/interactive_mode = true
-shader_parameter/interactive_level_xz = 3.0
-shader_parameter/interactive_level_y = 0.3
-shader_parameter/texture_albedo = ExtResource("9_jqjjn")
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_dijnh"]
-_surfaces = [{
-"aabb": AABB(-0.5, 0, -0.5, 1, 1, 1),
-"attribute_data": PackedByteArray("/wAA/wAAAAAAAAAAAAAA/wAAgD8AAIA/AAAA/wAAAAAAAIA//wAA/wAAgD8AAAAA/wAA/wAAAAAAAAAAAAAA/wAAgD8AAIA/AAAA/wAAAAAAAIA//wAA/wAAgD8AAAAA"),
-"format": 34359742495,
-"index_count": 12,
-"index_data": PackedByteArray("AAABAAIAAwABAAAABAAFAAYABwAFAAQA"),
-"material": SubResource("ShaderMaterial_ggbni"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 8,
-"vertex_data": PackedByteArray("AAAAvwAAgD8AAAAAAAAAPwAAAAAAAAAAAAAAvwAAAAAAAAAAAAAAPwAAgD8AAAAAAAAAAAAAgD8AAAC/AAAAAAAAAAAAAAA/AAAAAAAAAAAAAAC/AAAAAAAAgD8AAAA//3//f////7//f/9/////v/9//3////+//3//f////78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vw==")
-}]
-metadata/GodotVersion = "4.3-stable (official)"
-
-[sub_resource type="MultiMesh" id="MultiMesh_4jaou"]
-transform_format = 1
-instance_count = 12
-mesh = SubResource("ArrayMesh_dijnh")
-buffer = PackedFloat32Array(-0.416275, 0, 0.909239, 0.493332, 0, 1, 0, 0.25695, -0.909239, 0, -0.416275, -1.4979, -0.892702, 0, 0.450647, -0.642648, 0, 1, 0, 0.25695, -0.450647, 0, -0.892702, -1.25611, -0.905854, 0, 0.42359, 0.938481, 0, 1, 0, 0.25695, -0.42359, 0, -0.905854, -1.14984, 0.387463, 0, 0.921885, -2.47719, 0, 1, 0, 0.25695, -0.921885, 0, 0.387463, 0.37933, 0.994186, 0, -0.107678, 1.25903, 0, 1, 0, 0.25695, 0.107678, 0, 0.994186, -0.663445, 0.369108, 0, -0.929386, 2.13507, 0, 1, 0, 0.25695, 0.929386, 0, 0.369108, 0.542891, 0.860333, 0, -0.509732, 1.76242, 0, 1, 0, 0.25695, 0.509732, 0, 0.860333, 0.157935, -0.96736, 0, -0.253405, -1.81018, 0, 1, 0, 0.25695, 0.253405, 0, -0.96736, -0.680723, -0.949963, 0, 0.312362, 0.748483, 0, 1, 0, 0.25695, -0.312362, 0, -0.949963, 1.26346, -0.0820549, 0, 0.996628, -0.689353, 0, 1, 0, 0.25695, -0.996628, 0, -0.0820549, 1.49909, 0.17728, 0, 0.984161, -1.33337, 0, 1, 0, 0.25695, -0.984161, 0, 0.17728, 0.76406, -0.706226, 0, -0.707986, -2.12318, 0, 1, 0, 0.25695, 0.707986, 0, -0.706226, 0.503617)
 
 [node name="HeadphoneScene" type="Node3D"]
 script = ExtResource("1_r7bxv")
@@ -181,21 +129,6 @@ surface_material_override/0 = null
 
 [node name="MeshInstance3D2" parent="ModelHeadphones/ResetButton/Button" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_i5ymk")
-
-[node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="."]
-visible = false
-multimesh = SubResource("MultiMesh_4jaou")
-script = ExtResource("10_6x3dp")
-albedo = Color(0, 0.191845, 1, 1)
-texture_albedo = ExtResource("9_jqjjn")
-sgt_radius = 0.1
-sgt_density = 25
-sgt_scale = 1.0
-sgt_rotation = 0.0
-sgt_rotation_rand = 1.0
-sgt_dist_min = 0.25
-sgt_follow_normal = false
-metadata/SimpleGrassTextured = "2.0.5"
 
 [node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.3, 0)

@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
-[ext_resource type="Material" uid="uid://cw7nxf7j0c26a" path="res://src/character_02.tres" id="4_5d0mc"]
-[ext_resource type="Material" uid="uid://cgs4x1crvf0vj" path="res://src/character.tres" id="4_8s5yl"]
+[ext_resource type="Material" path="res://src/character_02.tres" id="4_5d0mc"]
+[ext_resource type="Material" path="res://src/character.tres" id="4_8s5yl"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
-[ext_resource type="PackedScene" uid="uid://bi0icjv7bn2kq" path="res://src/floor.tscn" id="9_6edpe"]
+[ext_resource type="PackedScene" path="res://src/floor.tscn" id="9_6edpe"]
 [ext_resource type="PackedScene" uid="uid://cj28u3jtfql0f" path="res://src/scenes/headphones/model_headphones.tscn" id="10_bkxnk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
@@ -114,7 +114,7 @@ shape = SubResource("SphereShape3D_j71ja")
 transform = Transform3D(0.35, 0, 1.49012e-08, 0, 0.35, 0, -1.49012e-08, 0, 0.35, 0.144, 0.374, -0.701)
 
 [node name="ear" parent="HearplugZoneRight" index="3"]
-transform = Transform3D(0.35, 0, 5.96046e-08, 0, 0.35, 0, -5.96046e-08, 0, 0.35, 0.0804563, 0.874442, -0.259908)
+transform = Transform3D(0.35, 0, 5.96046e-08, 0, 0.35, 0, -5.96046e-08, 0, 0.35, -0.157746, 0.874442, -0.204286)
 
 [node name="ear" parent="HearplugZoneRight/ear" index="0"]
 cast_shadow = 0

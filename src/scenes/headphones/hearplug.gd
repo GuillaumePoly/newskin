@@ -17,7 +17,7 @@ var is_grabbed: bool = false:
 				tween_position(self, 0.5)
 				var _rotation_plugged: Vector3
 				if name.contains("Left"):
-					tween_rotation_property(self, 1, Vector3(0.0, 180, 0.0))
+					tween_rotation_property(self, 1, Vector3(0.0, -120, 0.0))
 				else:
 					tween_rotation_property(self, 1, Vector3(0.0, 120, 0.0))
 		if new_value:

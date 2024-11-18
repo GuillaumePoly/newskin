@@ -77,7 +77,7 @@ func _play_sound_eff_random(_stream: AudioStream):
 	
 	new_player.finished.connect(_on_pop_player_finished.bind(new_player))
 	new_player.bus = "VFX"
-	new_player.volume_db = 0.0
+	new_player.volume_db = -10.0
 	get_tree().current_scene.add_child(new_player)
 	new_player.play()
 

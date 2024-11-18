@@ -41,10 +41,13 @@ collision_mask = 2
 size = Vector3(85.751, 32.5223, 102.674)
 material = SubResource("StandardMaterial3D_mqb2j")
 
+[node name="RopeStartPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.8)
+
 [node name="RopeLeft" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_3rxrb")
-start_point = NodePath("../ModelHeadphones")
+start_point = NodePath("../RopeStartPoint")
 end_point = NodePath("../HearplugLeft")
 number_of_segments = 30
 cable_length = 20.0
@@ -53,7 +56,7 @@ cable_thickness = 0.05
 [node name="RopeRight" type="Node3D" parent="." node_paths=PackedStringArray("start_point", "end_point")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 script = ExtResource("1_3rxrb")
-start_point = NodePath("../ModelHeadphones")
+start_point = NodePath("../RopeStartPoint")
 end_point = NodePath("../HearplugRight")
 number_of_segments = 30
 cable_length = 20.0
@@ -131,7 +134,7 @@ surface_material_override/0 = null
 surface_material_override/0 = SubResource("StandardMaterial3D_i5ymk")
 
 [node name="HearplugLeft" parent="." instance=ExtResource("2_pm2kj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17588, 3.3, -2.50572)
 
 [node name="MeshInstance3D" parent="HearplugLeft" index="0"]
 transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.200137, 0.673219, 0.113421)

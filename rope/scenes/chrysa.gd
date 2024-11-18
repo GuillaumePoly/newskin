@@ -19,16 +19,15 @@ func _ready() -> void:
 	BUTTERFLY = load("res://rope/scenes/butterfly.tscn")
 	butterfy_scene_manager.counter = pathFollowArray.size()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_mouse_entered() -> void:
 	self.linear_velocity = Vector3(-speed.x * 0.001, 0, 0)
 	canClick = true
-	
+
+
 func _on_mouse_exited() -> void:
 	canClick = false
+
 
 func _input(event):
 	if event is InputEventMouseMotion:

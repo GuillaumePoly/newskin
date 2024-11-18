@@ -48,7 +48,7 @@ func _ready() -> void:
 	initial_position_z = position.z
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	position.z = initial_position_z
 	if check_position_y and position.y < -10.0:
 		check_position_y = false

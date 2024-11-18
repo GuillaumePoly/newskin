@@ -9,7 +9,7 @@ extends Node3D
 
 @export var grab_distance: float = 20
 var grabbed_object = null
-var mouse = Vector2()
+var _mouse = Vector2()
 const DIST = 1000 #Ray Max distance
 
 var _initial_x_position_hearplug: float
@@ -30,17 +30,17 @@ func _ready() -> void:
 	_initial_x_position_hearplug = hearplug_right.position.x
 	_initial_y_position_hearplug = hearplug_right.position.y
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if grabbed_object:
 		var grab_pos_tmp = get_grab_position()
 		grabbed_object.position = Vector3(grab_pos_tmp.x, grab_pos_tmp.y, grabbed_object.position.z)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		mouse = event.position
+		_mouse = event.position
 	if event is InputEventMouseButton:
 		if event.pressed == true and event.button_index == MOUSE_BUTTON_LEFT:
-			get_mouse_world_pos(mouse)
+			get_mouse_world_pos(_mouse)
 			if is_instance_valid(grabbed_object):
 				grabbed_object.is_grabbed = true
 		elif event.pressed == false and event.button_index == MOUSE_BUTTON_LEFT:
@@ -71,7 +71,7 @@ func get_mouse_world_pos(mouse:Vector2):
 
 #Get the position in the world you want to object to follow
 func get_grab_position():
-	return get_viewport().get_camera_3d().project_position(mouse,grab_distance)
+	return get_viewport().get_camera_3d().project_position(_mouse, grab_distance)
 
 
 func _on_hearplug_on_zone(hearplug: Hearplug):

@@ -1,9 +1,9 @@
 extends Camera3D
 
 @export var camera_radius: float = 40.0
+@export var camera_target: Vector3 = Vector3.ZERO
 
 var camera_sensitivity: float = 0.1
-var camera_target: Vector3 = Vector3.ZERO
 var mouse_button_pressed_at_previous_frame: bool = false
 var previous_mouse_position: Vector2
 var rotation_enabled: bool = true

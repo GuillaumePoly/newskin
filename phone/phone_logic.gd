@@ -27,6 +27,8 @@ var button_star: MeshInstance3D
 @onready var cable1: MeshInstance3D = $"../phone/NurbsPath"
 @onready var cable2: MeshInstance3D = $"../phone/NurbsPath_001"
 
+signal correct_number_updated(new_correct_number)
+
 const button_position_dict = {
 	"0": Vector3(6.465, 1.728, -3.502),
 	"1": Vector3(6.994, 3.987, -1.318),
@@ -90,6 +92,7 @@ func handle_button_pressed(button_pressed_label: String):
 
 
 func pressed_good_button():
+	correct_number_updated.emit(current_entered_number)
 	# Check if game over
 	if current_entered_number == correct_number:
 		print("You won the game!!")
@@ -108,6 +111,7 @@ func pressed_good_button():
 func pressed_wrong_button():
 	# Reset current sequence
 	current_entered_number = ""
+	correct_number_updated.emit(current_entered_number)
 	reset_to_initial_position()
 
 
@@ -161,8 +165,13 @@ func reset_to_initial_position():
 
 
 func move_phone_dict_button():
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	
 	for key in phone_dict:
-		phone_dict[key][1].global_position = button_position_dict[key]
+		tween.tween_property(phone_dict[key][1], "global_position", button_position_dict[key], 0.3)
+		#phone_dict[key][1].global_position = button_position_dict[key]
+		tween.parallel()
 
 func _on_phone_pick_up():
 	$"../ColorRect".visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bv1mgonpgdr7i"]
+[gd_scene load_steps=31 format=3 uid="uid://bv1mgonpgdr7i"]
 
 [ext_resource type="PackedScene" uid="uid://dyd4ngykkotwa" path="res://phone/assets/phone.blend" id="2_6wy13"]
 [ext_resource type="Script" path="res://phone/button.gd" id="2_x76o1"]
@@ -8,6 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://cxtr86jdo7hge" path="res://phone/assets/phone.ogg" id="6_235b0"]
 [ext_resource type="Texture2D" uid="uid://bfmcvovrtc43n" path="res://phone/assets/eliot_nb.png" id="8_cwpal"]
 [ext_resource type="PackedScene" uid="uid://m0wqlv05fbmv" path="res://phone/assets/pin/scene.gltf" id="8_vp408"]
+[ext_resource type="FontFile" uid="uid://c3l0nu13rw85j" path="res://common/assets/LCDAT&TPhone.ttf" id="9_24ni4"]
+[ext_resource type="Script" path="res://phone/number_display.gd" id="9_fi7jp"]
+[ext_resource type="Shader" path="res://common/assets/analog.gdshader" id="9_vcg51"]
+[ext_resource type="Texture2D" uid="uid://bqeofcnv2aru5" path="res://common/assets/Texturelabs_MonitorPatterns_page_01.png" id="10_6p8mr"]
 
 [sub_resource type="Environment" id="Environment_dlyjm"]
 background_mode = 1
@@ -78,6 +82,22 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("8_cwpal")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_0h31b"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dausr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("9_vcg51")
+shader_parameter/opacity = 1.0
+shader_parameter/pixel_size = 0.01
+shader_parameter/greyscale = true
+shader_parameter/contrast = 0.955
+shader_parameter/pixel_colors = Color(0.713546, 0.864606, 0.458878, 1)
+shader_parameter/background_color = null
+shader_parameter/tiledtexture = ExtResource("10_6p8mr")
+shader_parameter/canvas_texture = SubResource("ViewportTexture_0h31b")
+
 [node name="PhoneScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -98,7 +118,7 @@ mesh = SubResource("PlaneMesh_e5kgc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("3_vc4ur")
-camera_radius = 55.0
+camera_target = Vector3(0, 5, 0)
 
 [node name="phone" parent="." instance=ExtResource("2_6wy13")]
 transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
@@ -231,5 +251,36 @@ texture = ExtResource("8_cwpal")
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("8_vp408")]
 transform = Transform3D(19.432, 93.2538, 30.4322, -95.1251, 25.4887, -17.3648, -23.9501, -25.5744, 93.6608, 1.36089, 13.0155, -22.3709)
+
+[node name="Display" type="Sprite3D" parent="."]
+transform = Transform3D(-1.61751e-07, 1.09282, 3.79062, 3.70822e-08, 3.79062, -1.09282, -3.945, -9.17604e-09, -1.65693e-07, 8.96096, 11.635, -3.22506)
+material_override = SubResource("ShaderMaterial_dausr")
+transparent = false
+texture = SubResource("ViewportTexture_0h31b")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(170, 42)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.260245, 0.335014, 0.191337, 1)
+
+[node name="NumberDisplay" type="Label" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("9_24ni4")
+theme_override_font_sizes/font_size = 33
+horizontal_alignment = 1
+script = ExtResource("9_fi7jp")
+
+[connection signal="correct_number_updated" from="PhoneLogic" to="SubViewport/NumberDisplay" method="_on_phone_logic_correct_number_updated"]
 
 [editable path="phone"]

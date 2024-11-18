@@ -66,5 +66,6 @@ func releaseButterfly():
 			butter.followPath = pathFollowArray[i]
 			butter.position = self.global_position
 			butter.butterflysound = butterfly_sound
+			$"../ChrysaOpenPlayer".play()
 			get_tree().current_scene.add_child(butter)
 			queue_free()

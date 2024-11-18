@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c1x2jw127ovev"]
+[gd_scene load_steps=25 format=3 uid="uid://c1x2jw127ovev"]
 
 [ext_resource type="Script" path="res://rope/scenes/butterfy_scene_manager.gd" id="1_8mxo0"]
 [ext_resource type="ArrayMesh" uid="uid://djgwjglwtkd5b" path="res://Meshes/Crysa.res" id="1_w2jqa"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://bp0l610h3guve" path="res://rope/scenes/audio/laugh_03.ogg" id="11_v616k"]
 [ext_resource type="AudioStream" uid="uid://bnff4vh1mdnom" path="res://rope/scenes/audio/laugh_04.ogg" id="12_wqsx1"]
 [ext_resource type="AudioStream" uid="uid://dkd4ynlp57k6i" path="res://rope/scenes/audio/laugh_05.ogg" id="13_lgugb"]
+[ext_resource type="AudioStream" uid="uid://bylfyqdycilfx" path="res://rope/scenes/audio/Firework_pop.ogg" id="17_oyrue"]
 
 [sub_resource type="Environment" id="Environment_8gyqm"]
 background_mode = 1
@@ -277,6 +278,9 @@ stream = SubResource("AudioStreamRandomizer_uj8e8")
 [node name="ButterflySound" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_is1hh")
 volume_db = -5.0
+
+[node name="ChrysaOpenPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_oyrue")
 
 [connection signal="mouse_entered" from="Chrysa" to="Chrysa" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Chrysa" to="Chrysa" method="_on_mouse_exited"]

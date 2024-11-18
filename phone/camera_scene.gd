@@ -36,7 +36,7 @@ var latitude: float = 0  # Initial latitude in radians
 func _ready() -> void:
 	camera_start_fov = fov
 	longitude = (min_longitude + max_longitude)/2.0
-	latitude = (min_latitude + max_latitude)/2.0
+	latitude = 0.4
 
 
 func _process(delta: float):

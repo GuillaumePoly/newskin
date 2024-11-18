@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://btlmp0r3pw2i7"]
+[gd_scene load_steps=12 format=3 uid="uid://btlmp0r3pw2i7"]
 
 [ext_resource type="Script" path="res://main_menu/main_menu.gd" id="1_36km5"]
 [ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="1_80vit"]
@@ -18,6 +18,19 @@ material = SubResource("ShaderMaterial_1r7nx")
 text = "ELIE"
 font = ExtResource("1_vtwp8")
 font_size = 32
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v3qhq"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_6erm1"]
+material = SubResource("StandardMaterial3D_v3qhq")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y2gi"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_u33pr"]
+material = SubResource("StandardMaterial3D_6y2gi")
+inner_radius = 0.1
+outer_radius = 0.13
 
 [node name="MainMenu" type="Node3D"]
 script = ExtResource("1_36km5")
@@ -39,3 +52,11 @@ environment = SubResource("Environment_bhq3a")
 [node name="Title" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.217801, 0)
 mesh = SubResource("TextMesh_parwr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-5.21253e-16, -4.37114e-08, 1, -1, 1.19249e-08, 0, -1.19249e-08, -1, -4.37114e-08, 0, -0.17217, 0)
+mesh = SubResource("PrismMesh_6erm1")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0, 1, 0, -0.176391, 0)
+mesh = SubResource("TorusMesh_u33pr")

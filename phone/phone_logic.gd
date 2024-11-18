@@ -100,10 +100,8 @@ func pressed_good_button():
 		phone_state2.visible = true
 		cable1.visible = false
 		cable2.visible = true
-		#switcher.next_scene
 		game_won = true
 		$"../PhoneBipingAndPickupPlayer".play()
-		#LevelSwitcher.next_level(5.0, Vector3.UP * .38)
 	else:
 		shuffle_numbers()
 

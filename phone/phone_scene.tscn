@@ -253,7 +253,7 @@ texture = ExtResource("8_cwpal")
 transform = Transform3D(19.432, 93.2538, 30.4322, -95.1251, 25.4887, -17.3648, -23.9501, -25.5744, 93.6608, 1.36089, 13.0155, -22.3709)
 
 [node name="Display" type="Sprite3D" parent="."]
-transform = Transform3D(-1.61751e-07, 1.09282, 3.79062, 3.70822e-08, 3.79062, -1.09282, -3.945, -9.17604e-09, -1.65693e-07, 8.96096, 11.635, -3.22506)
+transform = Transform3D(-1.61751e-07, 1.09282, 3.79062, 3.70822e-08, 3.79062, -1.09282, -3.945, -9.17604e-09, -1.65693e-07, 8.94, 11.635, -3.225)
 material_override = SubResource("ShaderMaterial_dausr")
 transparent = false
 texture = SubResource("ViewportTexture_0h31b")

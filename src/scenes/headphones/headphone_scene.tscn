@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dtfoupxsnx328"]
+[gd_scene load_steps=14 format=3 uid="uid://dtfoupxsnx328"]
 
 [ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="1_3rxrb"]
 [ext_resource type="Script" path="res://src/scenes/headphones/headphone_scene.gd" id="1_r7bxv"]
 [ext_resource type="PackedScene" uid="uid://conuxuixhfush" path="res://src/scenes/headphones/hearplug.tscn" id="2_pm2kj"]
-[ext_resource type="Material" path="res://src/character_02.tres" id="4_5d0mc"]
-[ext_resource type="Material" path="res://src/character.tres" id="4_8s5yl"]
+[ext_resource type="Material" uid="uid://cw7nxf7j0c26a" path="res://src/character_02.tres" id="4_5d0mc"]
+[ext_resource type="Material" uid="uid://cgs4x1crvf0vj" path="res://src/character.tres" id="4_8s5yl"]
 [ext_resource type="PackedScene" uid="uid://bpl41ygrbtgci" path="res://src/scenes/headphones/hearplug_zone.tscn" id="4_sp4dj"]
-[ext_resource type="PackedScene" path="res://src/floor.tscn" id="9_6edpe"]
+[ext_resource type="AudioStream" uid="uid://c48djlebd5m4l" path="res://src/scenes/headphones/take_earbuds.ogg" id="9_3uquo"]
+[ext_resource type="PackedScene" uid="uid://bi0icjv7bn2kq" path="res://src/floor.tscn" id="9_6edpe"]
 [ext_resource type="PackedScene" uid="uid://cj28u3jtfql0f" path="res://src/scenes/headphones/model_headphones.tscn" id="10_bkxnk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqb2j"]
@@ -149,6 +150,10 @@ transform = Transform3D(-0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.200137, 0.673219
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.332, 0)
 
 [node name="Floor" parent="." instance=ExtResource("9_6edpe")]
+
+[node name="TakeEarbudsPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_3uquo")
+volume_db = 3.0
 
 [editable path="HearplugZoneLeft"]
 [editable path="HearplugZoneLeft/InnerArea"]

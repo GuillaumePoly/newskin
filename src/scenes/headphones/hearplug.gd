@@ -22,8 +22,8 @@ var is_grabbed: bool = false:
 					tween_rotation_property(self, 1, Vector3(0.0, 120, 0.0))
 		if new_value:
 			tween_rotation_property(self, 0.75)
-		if new_value != is_grabbed:
-			HeadphonesStreamPlayer._play_sound_eff_random(stream_pop)
+		if new_value != is_grabbed and not is_plugged:
+			$"../TakeEarbudsPlayer".play()
 		is_grabbed = new_value
 
 var is_on_area_inner: bool = false:
@@ -72,6 +72,7 @@ func tween_position(object: Node3D, duration: float):
 
 	inner_area.is_zone_active = false
 	is_plugged = true
+	HeadphonesStreamPlayer._play_sound_eff_random(stream_pop)
 
 func tween_rotation_property(object: Node3D, duration: float, _rotation: Vector3 = Vector3(0.0, 0.0, 0.0)):
 	if tween_rotation != null:

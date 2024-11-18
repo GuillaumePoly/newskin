@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://ddqo17pfv6xjt"]
 
 [ext_resource type="Texture2D" uid="uid://dbl4a0tvdw7pl" path="res://rope/textures/placeholders/DarkPrototypeTexture.png" id="1_edrna"]
-[ext_resource type="PackedScene" uid="uid://cssglj6choju3" path="res://rope/scenes/player.tscn" id="2_n8x4n"]
-[ext_resource type="PackedScene" uid="uid://dpnia7pnlgqet" path="res://rope/scenes/psuedo_physics_cable.tscn" id="2_nc41p"]
-[ext_resource type="PackedScene" uid="uid://mdsdgeynk147" path="res://rope/scenes/cable_terminal.tscn" id="3_p56pu"]
-[ext_resource type="PackedScene" uid="uid://dtci3471vxmbj" path="res://rope/scenes/psuedo_physics_cable_double.tscn" id="5_1lv8e"]
+[ext_resource type="PackedScene" path="res://rope/scenes/player.tscn" id="2_n8x4n"]
+[ext_resource type="PackedScene" path="res://rope/scenes/psuedo_physics_cable.tscn" id="2_nc41p"]
+[ext_resource type="PackedScene" path="res://rope/scenes/cable_terminal.tscn" id="3_p56pu"]
+[ext_resource type="PackedScene" path="res://rope/scenes/psuedo_physics_cable_double.tscn" id="5_1lv8e"]
 [ext_resource type="Script" path="res://rope/scripts/psuedo_physics_cable.gd" id="6_7t30t"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yg1ph"]

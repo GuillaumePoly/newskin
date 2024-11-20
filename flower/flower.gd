@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 	if grabbed_petal == null:
 		return
 	
-	print(Input.get_last_mouse_velocity().length())
+	#print(Input.get_last_mouse_velocity().length())
 	
 	if Input.get_last_mouse_velocity().length() > 50.0:
 		if !start_stream_player.playing:

@@ -118,6 +118,7 @@ mesh = SubResource("PlaneMesh_e5kgc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 script = ExtResource("3_vc4ur")
+camera_radius = 45.0
 camera_target = Vector3(0, 5, 0)
 
 [node name="phone" parent="." instance=ExtResource("2_6wy13")]
@@ -281,6 +282,10 @@ theme_override_font_sizes/font_size = 33
 horizontal_alignment = 1
 script = ExtResource("9_fi7jp")
 
+[node name="QuitGameTimer" type="Timer" parent="."]
+wait_time = 10.0
+
 [connection signal="correct_number_updated" from="PhoneLogic" to="SubViewport/NumberDisplay" method="_on_phone_logic_correct_number_updated"]
+[connection signal="timeout" from="QuitGameTimer" to="PhoneLogic" method="_on_quit_game_timer_timeout"]
 
 [editable path="phone"]

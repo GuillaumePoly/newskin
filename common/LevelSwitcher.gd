@@ -31,7 +31,7 @@ func next_level(transition_duration : float = 2.0, focus_point : Vector3 = Vecto
 		changing_scene = true
 	
 	var screen_point := get_viewport().get_camera_3d().unproject_position(focus_point)
-	print(Vector2(screen_point)/Vector2(get_viewport().size))
+	#print(Vector2(screen_point)/Vector2(get_viewport().size))
 	fade_effect.set_shader_parameter("focus_coord", Vector2(screen_point)/Vector2(get_viewport().size))
 	
 	var tween_in := create_tween()

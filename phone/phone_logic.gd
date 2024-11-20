@@ -171,5 +171,11 @@ func move_phone_dict_button():
 		#phone_dict[key][1].global_position = button_position_dict[key]
 		tween.parallel()
 
+
 func _on_phone_pick_up():
 	$"../ColorRect".visible = true
+	$"../QuitGameTimer".start()
+
+
+func _on_quit_game_timer_timeout() -> void:
+	get_tree().quit()

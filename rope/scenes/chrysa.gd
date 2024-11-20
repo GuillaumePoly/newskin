@@ -57,7 +57,7 @@ func _input(event):
 					counter -=1
 				else:
 					releaseButterfly()
-			
+
 
 func releaseButterfly():
 	camera_3d.cameraSwitch = true;

@@ -31,7 +31,7 @@ shadow_opacity = 0.6
 directional_shadow_mode = 1
 directional_shadow_split_1 = 0.0
 directional_shadow_blend_splits = true
-directional_shadow_max_distance = 21.8
+directional_shadow_max_distance = 22.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s3r0g")

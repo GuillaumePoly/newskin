@@ -12,7 +12,7 @@ func press():
 	if is_pressed == false and is_appeared == true:
 		is_pressed = true
 		animation_player.play("press")
-		print("presssss")
+
 
 func appear():
 	if is_appeared == false:

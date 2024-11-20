@@ -90,7 +90,7 @@ shape = SubResource("ConcavePolygonShape3D_mqjqr")
 [node name="Chrysa" type="RigidBody3D" parent="." node_paths=PackedStringArray("pathFollowArray")]
 transform = Transform3D(-4.38087e-08, -1.00223, 0, 1.00223, -4.38087e-08, 0, 0, 0, 1.00223, -8.97399, 6, 0.407)
 script = ExtResource("3_udf3u")
-pathFollowArray = [NodePath("../Path3D/PathFollow3D"), NodePath("../Path3D2/PathFollow3D2"), NodePath("../Path3D3/PathFollow3D3"), NodePath("../Path3D4/PathFollow3D"), NodePath("../Path3D5/PathFollow3D"), NodePath("../Path3D6/PathFollow3D"), NodePath("../Path3D7/PathFollow3D2"), NodePath("../Path3D8/PathFollow3D3"), NodePath("../Path3D9/PathFollow3D"), NodePath("../Path3D10/PathFollow3D"), NodePath("../Path3D11/PathFollow3D"), NodePath("../Path3D12/PathFollow3D"), NodePath("../Path3D13/PathFollow3D2"), NodePath("../Path3D14/PathFollow3D3"), NodePath("../Path3D15/PathFollow3D"), NodePath("../Path3D16/PathFollow3D")]
+pathFollowArray = [NodePath("../Path3D/PathFollow3D"), NodePath("../Path3D2/PathFollow3D2"), NodePath("../Path3D3/PathFollow3D3"), NodePath("../Path3D4/PathFollow3D"), NodePath("../Path3D5/PathFollow3D"), NodePath("../Path3D6/PathFollow3D"), NodePath("../Path3D7/PathFollow3D2"), NodePath("../Path3D8/PathFollow3D3"), NodePath("../Path3D9/PathFollow3D"), NodePath("../Path3D10/PathFollow3D"), NodePath("../Path3D11/PathFollow3D"), NodePath("../Path3D12/PathFollow3D"), NodePath("../Path3D13/PathFollow3D2")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Chrysa"]
 transform = Transform3D(-0.0436194, 0.99905, 0, -0.999048, -0.0436195, 0, 0, 0, 1, -0.441566, -0.0153399, 0)
@@ -257,16 +257,6 @@ transform = Transform3D(-0.0524027, 0, -0.603855, 0, 0.284984, 0, 0.180142, 0, -
 curve = SubResource("Curve3D_6j632")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D15"]
-transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
-rotation_mode = 4
-script = ExtResource("8_qbwgb")
-movementSpeed = 0.05
-
-[node name="Path3D16" type="Path3D" parent="."]
-transform = Transform3D(-0.0675251, 0, -0.712993, 0, 0.398618, 0, 0.232128, 0, -0.592095, -5.45104, 0.202713, 2.29393)
-curve = SubResource("Curve3D_6j632")
-
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D16"]
 transform = Transform3D(0.607361, 0.13972, 0.782039, 0, 0.984412, -0.175875, -0.794421, 0.10682, 0.597894, -1.98661, 0.935073, -0.261168)
 rotation_mode = 4
 script = ExtResource("8_qbwgb")

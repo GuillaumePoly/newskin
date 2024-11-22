@@ -20,11 +20,8 @@
 
 [sub_resource type="Environment" id="Environment_8gyqm"]
 background_mode = 1
-background_color = Color(0.459557, 0.701465, 0.369148, 1)
+background_color = Color(0.0917467, 0.14, 0.0742, 1)
 glow_enabled = true
-glow_intensity = 8.0
-glow_bloom = 0.01
-glow_hdr_threshold = 0.24
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_sevb7"]
 

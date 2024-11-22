@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://ulv8gpjxnlox"]
+[gd_scene load_steps=9 format=3 uid="uid://ulv8gpjxnlox"]
 
 [ext_resource type="PackedScene" uid="uid://decqhh2fiemr7" path="res://flower/flower.tscn" id="1_3x2wx"]
 [ext_resource type="Script" path="res://flower/flower_scene.gd" id="1_g532l"]
 [ext_resource type="PackedScene" uid="uid://buvo41hrqtkd8" path="res://phone/camera_scene.tscn" id="2_xmhxm"]
+[ext_resource type="Shader" path="res://common/assets/unshaded_shadows.gdshader" id="4_v2aof"]
 
 [sub_resource type="Environment" id="Environment_6a3x1"]
 background_mode = 1
@@ -13,15 +14,13 @@ sdfgi_min_cell_size = 0.0292969
 sdfgi_cascade0_distance = 1.875
 sdfgi_max_distance = 30.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ongnr"]
-transparency = 1
-blend_mode = 2
-albedo_color = Color(0.695503, 0.695503, 0.695503, 1)
-shadow_to_opacity = true
-proximity_fade_enabled = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5rla"]
+render_priority = 0
+shader = ExtResource("4_v2aof")
+shader_parameter/color = Color(0.741176, 0.262745, 0.243137, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bakm5"]
-material = SubResource("StandardMaterial3D_ongnr")
+material = SubResource("ShaderMaterial_e5rla")
 size = Vector2(4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x52c4"]
@@ -47,7 +46,6 @@ environment = SubResource("Environment_6a3x1")
 
 [node name="Flower" parent="." instance=ExtResource("1_3x2wx")]
 transform = Transform3D(-0.652099, 0, 0.758134, 0, 1, 0, -0.758134, 0, -0.652099, -0.00163019, 0, 0.0497221)
-visible = false
 
 [node name="Camera3D" parent="." instance=ExtResource("2_xmhxm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.562699, 1.02973)

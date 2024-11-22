@@ -1,5 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://bv1mgonpgdr7i"]
+[gd_scene load_steps=32 format=3 uid="uid://bv1mgonpgdr7i"]
 
+[ext_resource type="Shader" path="res://common/assets/unshaded_shadows.gdshader" id="1_l7k40"]
 [ext_resource type="PackedScene" uid="uid://dyd4ngykkotwa" path="res://phone/assets/phone.blend" id="2_6wy13"]
 [ext_resource type="Script" path="res://phone/button.gd" id="2_x76o1"]
 [ext_resource type="Script" path="res://phone/phone_logic.gd" id="3_c0fc8"]
@@ -19,13 +20,13 @@ background_color = Color(1, 0.760784, 0.376471, 1)
 ambient_light_energy = 4.5
 reflected_light_source = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bw8vx"]
-blend_mode = 2
-albedo_color = Color(0.961566, 0.929469, 0.936759, 1)
-shadow_to_opacity = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qdw6y"]
+render_priority = 0
+shader = ExtResource("1_l7k40")
+shader_parameter/color = Color(1, 0.760784, 0.376471, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_e5kgc"]
-material = SubResource("StandardMaterial3D_bw8vx")
+material = SubResource("ShaderMaterial_qdw6y")
 size = Vector2(100, 100)
 
 [sub_resource type="TextMesh" id="TextMesh_6yqau"]
@@ -105,6 +106,7 @@ environment = SubResource("Environment_dlyjm")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.656179, 0.259463, 0.708596, -0.465306, 0.878381, 0.109254, -0.594071, -0.401404, 0.697105, 59.7838, 82.6808, 3.75447)
+light_energy = 0.1
 shadow_enabled = true
 shadow_opacity = 0.6
 directional_shadow_mode = 1
